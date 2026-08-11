@@ -65,7 +65,11 @@ class ApiClient {
 
     if (staticAccounts[usernameClean]) {
       let expectedPass = `${usernameClean.toLowerCase()}123`;
-      if (usernameClean === 'MASTER') {
+      if (usernameClean === 'SUPERADMIN') {
+        expectedPass = '123456';
+      } else if (usernameClean === 'SUPERMASTER') {
+        expectedPass = 'Supermaster123';
+      } else if (usernameClean === 'MASTER') {
         expectedPass = 'Master123';
       } else if (usernameClean === 'AGENT') {
         expectedPass = 'Agent123';
@@ -86,7 +90,11 @@ class ApiClient {
       );
       if (matchedAccount) {
         let expectedPass = `${matchedAccount.username.toLowerCase()}123`;
-        if (matchedAccount.accountType === 'Master') {
+        if (matchedAccount.accountType === 'Supermaster') {
+          if (mockHash(passwordClean) === mockHash('Supermaster123')) {
+            expectedPass = 'Supermaster123';
+          }
+        } else if (matchedAccount.accountType === 'Master') {
           if (mockHash(passwordClean) === mockHash('Master123')) {
             expectedPass = 'Master123';
           }
