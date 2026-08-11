@@ -106,7 +106,7 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
   ];
 
   const othersItems = [
-    { label: 'Our Casino', to: '/casino/our-casino', icon: Gem, comingSoon: true },
+    { label: 'Our Casino', to: '/casino', icon: Gem },
     { label: 'Our VIP Casino', to: '/casino/vip', icon: Award, comingSoon: true },
     { label: 'Our Premium Casino', to: '/casino/premium', icon: Gem, comingSoon: true },
     { label: 'Our Virtual', to: '/casino/virtual', icon: Activity, comingSoon: true },
