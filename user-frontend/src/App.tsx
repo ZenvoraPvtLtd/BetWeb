@@ -1,11 +1,14 @@
-import { AuthProvider } from './context/AuthContext';
-import { AppRoutes } from './routes/AppRoutes';
+import { AuthProvider } from './user/context/AuthContext';
+import { AppRoutes } from './user/routes/AppRoutes';
+import { GlobalErrorBoundary } from './user/components/common/GlobalErrorBoundary';
 
 function App() {
   return (
-    <AuthProvider>
-      <AppRoutes />
-    </AuthProvider>
+    <GlobalErrorBoundary>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </GlobalErrorBoundary>
   );
 }
 

@@ -1,0 +1,173 @@
+- [x] Setup Root Repository Package
+  - [x] Create monorepo `package.json` at repository root
+- [x] Scaffold User Frontend Project
+  - [x] Initialize `user-frontend/` React SPA project
+  - [x] Install required packages (`react-router-dom`, `lucide-react`, `tailwindcss`, `@tailwindcss/vite`)
+- [x] Setup Configurations
+  - [x] Create `vite.config.ts` and Tailwind CSS styles
+  - [x] Create `vercel.json` SPA routing redirects
+  - [x] Configure `.env.example`
+- [x] Setup Auth & Session Services
+  - [x] Create `src/types/auth.ts`
+  - [x] Create `src/utils/session.ts`
+  - [x] Create `src/services/auth/mockAuthService.ts`
+  - [x] Create `src/context/AuthContext.tsx`
+- [x] Setup Router & Gates
+  - [x] Create `ProtectedRoute.tsx` and `PublicRoute.tsx`
+  - [x] Create `AppRoutes.tsx` with `/logina` and `/home` routes
+- [x] Setup Layouts & Base Components
+  - [x] Create layout wrappers `PublicLayout.tsx` and `UserLayout.tsx`
+  - [x] Create base components (`Button`, `Input`, `LoadingSpinner`, `ErrorMessage`, `PageContainer`)
+- [x] Verification
+  - [x] Verify build compilation succeeds for both admin and user applications
+- [x] Post-Login Promotion Modal
+  - [x] Create `PromotionModal.tsx` 2x2 grid with warning strip, escape keys, and scroll locking
+- [x] Home Dashboard Layout Shell
+  - [x] Create `HomeHeader.tsx` with coins and user profile
+  - [x] Create `HomeNavigation.tsx` subheader tab bars
+  - [x] Create `HomeSidebar.tsx` collapsable categories
+  - [x] Create `HomeContent.tsx` matches table and casino play-cards
+- [x] Premium Dashboard Redesign & Isolation
+  - [x] Create mock data: `userSports.ts`, `userMatches.ts`, `userGames.ts`, `navigation.ts`
+  - [x] Structure isolated User namespace directory `src/user/`
+  - [x] Create sidebar: `UserSidebar.tsx` supporting collapse/expand and mobile drawer layouts
+  - [x] Create header: `UserHeader.tsx` with exposure, balance and user dropdowns
+  - [x] Create stats: `DashboardStats.tsx` card indicators
+  - [x] Create sports selector: `SportsSelector.tsx` scrollbar selectors
+  - [x] Create matches: `MatchCard.tsx` with Back/Lay controls
+  - [x] Create casino games: `FeaturedGames.tsx` and `GameCard.tsx`
+  - [x] Create master layout: `UserLayout.tsx` wrapping dashboard viewports
+  - [x] Integrate into `HomePage.tsx`
+  - [x] Validate compilation checks
+- [x] Phase 2 — Premium Home / Exchange Dashboard
+  - [x] Create structured models `src/user/types/` (sports, matches, games, user)
+  - [x] Refactor sticky `UserHeader.tsx` with search fields and profile details dropdown (Balance/Exposure)
+  - [x] Expand collapsible sidebar sections (MAIN, SPORTS, CASINO, GAME CATEGORIES)
+  - [x] Create `AccountSummary.tsx` showing virtual Indian Rupees configurations
+  - [x] Bind real-time Live Counts to `SportsSelector` buttons
+  - [x] Create separate Live Matches & Upcoming Matches dashboard panels
+  - [x] Create reusable `MarketCard.tsx` showing Back/Lay selection grids
+  - [x] Create `PromoBanner` rotating slides carousel
+  - [x] Integrate once-per-session restrictions and click outside close bounds on `PromotionModal`
+  - [x] Create loading `Skeleton` states and `EmptyState` panels
+- [x] Phase 3 — Sports + Game Pages + Navigation Flow
+  - [x] Define `src/user/types/bet.ts` structures
+  - [x] Create `BetSlipContext.tsx` to handle mock placement flows and placed bets tracking
+  - [x] Create floating `BetSlip.tsx` side panels (desktop) and slide drawer bottom sheets (mobile)
+  - [x] Create collapsible `RulesPanel.tsx` and payout index mappings in `data/rules.ts`
+  - [x] Create `MyBetsPanel.tsx` scrollable bet log table
+  - [x] Create reusable `Breadcrumbs.tsx` indicator links
+  - [x] Create dynamic `SportPage.tsx` filtering matches by live/upcoming categories
+  - [x] Create `MatchDetailPage.tsx` handling back/lay betslip triggers
+  - [x] Create `CasinoListPage.tsx` mapping cards to `/game/:slug` slugs
+  - [x] Create `TeenpattiListPage.tsx` room selections
+  - [x] Create central `GamePage.tsx` container supporting streaming decks, card layouts, rules, and my bets sections
+  - [x] Register new routing patterns in `AppRoutes.tsx` inside the `BetSlipProvider` wrapper
+- [x] Phase 4 — User Reports & Account Activity
+  - [x] Create structured TS models in `src/user/types/reports.ts`
+  - [x] Create reports databases `src/user/data/reports/` (myBets, accountStatements, currentBets, deletedBets, gameReports, profitLoss)
+  - [x] Create reusable `DataTable` supporting compact grids and automatic stack card adjustments for mobile
+  - [x] Create `ReportFilters` and `DateRangeFilter` providing text queries, quick dates, and custom calendar ranges
+  - [x] Create P/L bar indicator breakdowns `ProfitLossChart.tsx`
+  - [x] Create `ReportDetailDrawer.tsx` text details layouts
+  - [x] Renders summary panels: `ReportsHomePage.tsx` directory lists
+  - [x] Build report logs: `MyBetsPage.tsx`, `AccountStatementPage.tsx`, `CurrentBetsPage.tsx`, `DeletedBetsPage.tsx`, `GameReportsPage.tsx`, `ProfitLossPage.tsx`
+  - [x] Add REPORTS lists and toggle structures inside collapsible `UserSidebar.tsx`
+  - [x] Register report routing structures inside dynamic `AppRoutes.tsx`
+- [x] Phase 5 — User Settings & Management Module
+  - [x] Create structured TS models in `src/user/types/settings.ts`
+  - [x] Create settings databases `src/user/data/settings/` (blockedMarkets, messages, availableMatches, casinoSettings, paymentMethods)
+  - [x] Create unified `SettingsContext` to manage local mock state (blocked markets list, read/unread notifications status, matches schedule toggles, defaults payment selection)
+  - [x] Render dynamic CSS-based Toast Alerts and custom confirmation dialog overlays
+  - [x] Create reusable `SettingsCard`, `SettingsToggle`, and `MessageDetailDrawer` components
+  - [x] Build overview screens: `SettingsHomePage.tsx` directory lists
+  - [x] Build settings logs: `BlockMarketsPage.tsx`, `MessagesPage.tsx`, `AddMatchListPage.tsx`, `CasinoSettingsPage.tsx`, `PaymentMethodPage.tsx`
+  - [x] Add SETTINGS list selections and unread messages badge updates to collapsible `UserSidebar.tsx`
+  - [x] Register settings routing structures inside `AppRoutes.tsx`
+- [x] Phase 6 — Complete User Account & Remaining Frontend
+  - [x] Create Profile page `/account/profile` with security information layout
+  - [x] Create Change Password page `/account/change-password` with strength indicators
+  - [x] Create Account Settings page `/account/settings` with toggle switches
+  - [x] Integrate "My Bets" page `/reports/my-bets` shortcut triggers
+  - [x] Build premium accordions-based Rules Page `/rules`
+  - [x] Create Professional informational guide page `/responsible-gaming`
+  - [x] Add floating Notification dropdown displaying unread inbox alerts
+  - [x] Complete Header Search bar supporting dynamic search queries against matches and casino lists
+  - [x] Add ACCOUNT section collapsible lists inside sidebar (`UserSidebar.tsx`)
+  - [x] Create static links pages: `/terms` and `/privacy`
+  - [x] Create FAQ help desk support center `/support`
+  - [x] Build custom NotFoundPage (404) and UnauthorizedPage
+  - [x] Implement GlobalErrorBoundary wrapping
+  - [x] Create reusable Loaders: `PageLoader`, `OverlayLoader`, `ButtonLoader`
+  - [x] Validate build compile check succeeds
+- [x] Refine User Dropdown & Statement Updates
+  - [x] Update dropdown layout with exact 15 navigation options
+  - [x] Implement Balance and Exposure visibility checkbox toggles in header
+  - [x] Create Set Button Values page `/account/button-values`
+  - [x] Create Security Auth Verification page `/account/security-auth`
+  - [x] Create Deposit Statement page `/reports/deposit-statement`
+  - [x] Create Withdraw Statement page `/reports/withdraw-statement`
+  - [x] Create Bet History page `/reports/bet-history`
+  - [x] Create Unsettled Bet page `/reports/unsettled-bet` with selection rules
+  - [x] Create Casino Report History page `/reports/casino-report-history`
+  - [x] Implement responsive Mobile bottom sheet drawer layout
+  - [x] Verify compilation is successful
+- [x] User Sidebar - Add Racing & Others
+  - [x] Add RACING collapsible menu options list
+  - [x] Add OTHERS casino/game list links with "coming soon" check alerts
+  - [x] Add local storage persistence triggers
+  - [x] Highlight active pathname selections
+- [x] Home Page - Top Navigation & Match Ticker
+  - [x] Configure userTopNavigation item orders
+  - [x] Highlight special CRASH labels
+  - [x] Create MatchTicker live match card slider
+  - [x] Integrate components into global layout wrapper
+- [x] Phase 7 - Home "All" Market & Game Grid
+  - [x] Restructure HomePage container slots
+  - [x] Create HomeMarketTable outcomes rendering
+  - [x] Create GameGrid catalog responsive tiles
+  - [x] Link betting cells to useBetSlip trigger methods
+- [x] Phase 8 - Golf Category Page
+  - [x] Create isolated Golf data inside marketData.ts
+  - [x] Merge golfMatches into central userMatches database
+  - [x] Verify state-based activeSport filters
+- [x] Phase 9 - All Sports Category Pages
+  - [x] Register parameters routing paths home/:sportSlug and sports/:sportSlug in AppRoutes.tsx
+  - [x] Expand marketData.ts with detailed matches for all remaining categories
+  - [x] Add dynamic sportSlug param listeners inside HomePage.tsx
+- [x] Lottery Navigation Correction
+  - [x] Reroute LOTTERY clicks in topNavItems to Cricket route
+  - [x] Reroute Lottery clicks in sidebar to Cricket route
+  - [x] Clean up unused SportPage import from AppRoutes.tsx
+- [x] Phase - 32 Cards Page Implementation
+  - [x] Create cards32Games.ts configuration dataset
+  - [x] Build Cards32ListPage layout grid
+  - [x] Map games/32-cards route in AppRoutes.tsx
+- [x] Phase - Teenpatti / Casino Game Lobby
+  - [x] Add image/provider properties to Game type
+  - [x] Implement image error fallbacks inside GameCard.tsx
+  - [x] Build 100+ teenpattiGames.ts catalog
+  - [x] Implement progressive loading inside TeenpattiListPage.tsx
+- [x] Phase - Poker Page Implementation
+  - [x] Build unified CasinoLobbyPage.tsx component
+  - [x] Map games/poker and games/teenpatti routes to CasinoLobbyPage.tsx
+  - [x] Remove unused TeenpattiListPage.tsx file
+- [x] Phase - Lucky 7 Live Game Lobby
+  - [x] Create lucky7Games.ts configuration dataset
+  - [x] Update CasinoLobbyPage.tsx to dynamically load Lucky 7 games list
+  - [x] Map games/lucky7 route in AppRoutes.tsx
+  - [x] Set up Lucky 7 routing inside UserSidebar.tsx
+- [x] Fix Match Ticker Blinking / Flickering
+  - [x] Remove animate-ping from live red dot in MatchTicker.tsx
+  - [x] Remove animate-pulse from live badges in MatchCard.tsx, SportsSelector.tsx, MatchDetailPage.tsx, and GamePage.tsx
+- [x] Crash Page Implementation - UI Only
+  - [x] Create crashGames.ts dataset listing the 9 Spribe games
+  - [x] Build dedicated CrashPage.tsx, sidebar, grids, and cards
+  - [x] Map crash routes (/crash, /games/crash, /casino/crash) in AppRoutes.tsx
+- [x] Fix Live Status Indicator Animation
+  - [x] Add custom utility animate-live-pulse and keyframes in index.css
+  - [x] Apply animate-live-pulse class specifically to status dots in MatchTicker, MatchCard, SportsSelector, MatchDetailPage, and GamePage
+  - [x] Refactor from Tailwind @utility directive to standard CSS class in index.css to resolve IDE warning
+- [x] Match Ticker Live Status Set
+  - [x] Update Sydney Thunder v Hobart Hurricanes to isLive: true in matchTicker.ts
+  - [x] Update Wellington Firebirds v Central Stags to isLive: true in matchTicker.ts and matches.ts
