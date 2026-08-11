@@ -172,6 +172,6 @@
   - [x] Update Sydney Thunder v Hobart Hurricanes to isLive: true in matchTicker.ts
   - [x] Update Wellington Firebirds v Central Stags to isLive: true in matchTicker.ts and matches.ts
 - [x] Implement "Others -> Our Casino -> All Casino" Page
-  - [x] Prefix Vercel build script binaries with npx in package.json
+  - [x] Prefix Vercel build script binaries with npx in package.json and frontend/package.json
   - [x] Expand casinoGames.ts database to cover 105 games
   - [x] Build Our Casino page layout inside CasinoListPage.tsx
