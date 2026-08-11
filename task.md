@@ -175,3 +175,8 @@
   - [x] Prefix Vercel build script binaries with npx in package.json and frontend/package.json
   - [x] Expand casinoGames.ts database to cover 105 games
   - [x] Build Our Casino page layout inside CasinoListPage.tsx
+- [x] Fix Vercel Build Error — TypeScript TSC Permission Denied
+  - [x] Untrack node_modules from Git index caching
+  - [x] Add root level .gitignore file to ignore node_modules
+  - [x] Perform clean node_modules installation using the package lockfile
+  - [x] Verify local typescript builds compile successfully on both workspaces
