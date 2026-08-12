@@ -105,19 +105,26 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
     { label: 'Greyhound Racing', to: '/sports/greyhound-racing', icon: Zap }
   ];
 
-  const othersItems = [
-    { label: 'Our Casino', to: '/casino', icon: Gem },
-    { label: 'Our VIP Casino', to: '/casino/vip', icon: Award, comingSoon: true },
-    { label: 'Our Premium Casino', to: '/casino/premium', icon: Gem, comingSoon: true },
-    { label: 'Our Virtual', to: '/casino/virtual', icon: Activity, comingSoon: true },
+  interface OthersItem {
+    label: string;
+    to: string;
+    icon: any;
+    comingSoon?: boolean;
+  }
+
+  const othersItems: OthersItem[] = [
+    { label: 'Our Casino', to: '/casino/our-casino', icon: Gem },
+    { label: 'Our VIP Casino', to: '/casino/vip', icon: Award },
+    { label: 'Our Premium Casino', to: '/casino/premium', icon: Gem },
+    { label: 'Our Virtual', to: '/casino/virtual', icon: Activity },
     { label: 'Live Casino', to: '/casino/live', icon: Dices },
-    { label: 'Casino', to: '/casino', icon: Dices },
+    { label: 'Casino', to: '/casino/casino', icon: Dices },
     { label: 'Mini', to: '/casino/mini', icon: LayoutGrid },
     { label: 'Slots', to: '/casino/slots', icon: Sliders },
     { label: 'Crash', to: '/casino/crash', icon: Activity },
-    { label: 'Sports', to: '/sports', icon: Trophy },
-    { label: 'Slot Game', to: '/games/slot', icon: Gamepad },
-    { label: 'Fantasy Game', to: '/games/fantasy', icon: Sparkles }
+    { label: 'Sports', to: '/casino/sports', icon: Trophy },
+    { label: 'Slot Game', to: '/casino/slot-game', icon: Gamepad },
+    { label: 'Fantasy Game', to: '/casino/fantasy', icon: Sparkles }
   ];
 
   const gameCategoryItems = [

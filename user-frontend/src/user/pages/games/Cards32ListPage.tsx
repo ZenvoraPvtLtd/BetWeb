@@ -12,6 +12,53 @@ interface CategoryItem {
   icon: React.ComponentType<{ className?: string }>;
 }
 
+interface Cards32GameCardProps {
+  game: any;
+}
+
+const Cards32GameCard: React.FC<Cards32GameCardProps> = ({ game }) => {
+  const [imageError, setImageError] = useState(false);
+  const showFallback = !game.image || imageError;
+
+  return (
+    <a
+      href={game.route}
+      className="group relative bg-[#101C2C] border border-white/5 rounded-[12px] overflow-hidden hover:-translate-y-1 hover:border-[#38BDF8]/30 transition-all duration-200 shadow-md hover:shadow-[#38BDF8]/5"
+    >
+      <div className="aspect-[4/3] w-full overflow-hidden bg-zinc-950/40 relative">
+        {showFallback ? (
+          <img
+            src="/R.jpg"
+            alt={game.name}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <img
+            src={game.image}
+            alt={game.name}
+            loading="lazy"
+            onError={() => setImageError(true)}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1320] via-[#0B1320]/10 to-transparent" />
+      </div>
+
+      <div className="p-3 bg-[#0B1320] border-t border-white/5 flex items-center justify-between">
+        <div className="min-w-0">
+          <span className="text-[11px] font-bold text-zinc-300 group-hover:text-white transition-colors truncate block">
+            {game.name}
+          </span>
+          <span className="text-[8px] font-bold text-zinc-550 uppercase tracking-widest block mt-0.5 animate-pulse-none">
+            {game.category}
+          </span>
+        </div>
+        <PlayCircle className="w-4 h-4 text-zinc-550 group-hover:text-[#38BDF8] shrink-0 transition-colors" />
+      </div>
+    </a>
+  );
+};
+
 export const Cards32ListPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>('ALL');
 
@@ -78,33 +125,7 @@ export const Cards32ListPage: React.FC = () => {
           <div className="flex-1 w-full">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
               {filteredGames.map((game) => (
-                <a
-                  key={game.id}
-                  href={game.route}
-                  className="group relative bg-[#101C2C] border border-white/5 rounded-[12px] overflow-hidden hover:-translate-y-1 hover:border-[#38BDF8]/30 transition-all duration-200 shadow-md hover:shadow-[#38BDF8]/5"
-                >
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-zinc-950/40 relative">
-                    <img
-                      src={game.image}
-                      alt={game.name}
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1320] via-[#0B1320]/10 to-transparent" />
-                  </div>
-
-                  <div className="p-3 bg-[#0B1320] border-t border-white/5 flex items-center justify-between">
-                    <div className="min-w-0">
-                      <span className="text-[11px] font-bold text-zinc-300 group-hover:text-white transition-colors truncate block">
-                        {game.name}
-                      </span>
-                      <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest block mt-0.5">
-                        {game.category}
-                      </span>
-                    </div>
-                    <PlayCircle className="w-4 h-4 text-zinc-500 group-hover:text-[#38BDF8] shrink-0 transition-colors" />
-                  </div>
-                </a>
+                <Cards32GameCard key={game.id} game={game} />
               ))}
             </div>
           </div>

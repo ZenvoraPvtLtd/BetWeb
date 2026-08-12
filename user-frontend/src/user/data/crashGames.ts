@@ -26,7 +26,7 @@ export const crashGames: CrashGame[] = [
     id: "crash-3",
     name: "Plinko",
     slug: "plinko",
-    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300&auto=format&fit=crop&q=60",
+    image: "/R.jpg",
     provider: "Spribe"
   },
   {

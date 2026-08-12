@@ -13,19 +13,29 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
 
   return (
     <div className="relative aspect-[3/4] rounded-[16px] overflow-hidden border border-slate-700/10 shadow-md group select-none bg-[#101C2C] hover:shadow-[#0EA5E9]/10 hover:border-[#38BDF8]/20 transition-all duration-200">
+      {/* Background Gradient */}
+      <div
+        style={{
+          background: `linear-gradient(135deg, ${game.gradientFrom || '#0F172A'} 0%, ${game.gradientTo || '#1E293B'} 100%)`,
+        }}
+        className="absolute inset-0"
+      />
+
       {showFallback ? (
-        <div
-          style={{
-            background: `linear-gradient(135deg, ${game.gradientFrom || '#0F172A'} 0%, ${game.gradientTo || '#1E293B'} 100%)`,
-          }}
-          className="absolute inset-0 transition-transform duration-300 group-hover:scale-105"
+        <img
+          src="/R.jpg"
+          alt={game.title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       ) : (
         <img
           src={game.image}
           alt={game.title}
           loading="lazy"
-          onError={() => setImageError(true)}
+          onError={() => {
+            console.log('Failed to load image for: ' + game.title);
+            setImageError(true);
+          }}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       )}

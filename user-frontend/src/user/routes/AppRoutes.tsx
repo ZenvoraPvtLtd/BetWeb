@@ -8,6 +8,7 @@ import { HomePage } from '../pages/dashboard/HomePage';
 import { MatchDetailPage } from '../pages/sports/MatchDetailPage';
 import { CasinoListPage } from '../pages/casino/CasinoListPage';
 import { GenericCasinoPage } from '../pages/casino/GenericCasinoPage';
+import { CasinoCategoryPage } from '../pages/casino/CasinoCategoryPage';
 import { CasinoLobbyPage } from '../pages/games/CasinoLobbyPage';
 import { Cards32ListPage } from '../pages/games/Cards32ListPage';
 import { CrashPage } from '../pages/games/CrashPage';
@@ -87,10 +88,18 @@ export const AppRoutes: React.FC = () => {
                     
                     {/* Casino Listing & Game Categories */}
                     <Route path="casino" element={<CasinoListPage />} />
-                    <Route path="casino/live" element={<GenericCasinoPage />} />
-                    <Route path="casino/mini" element={<GenericCasinoPage />} />
-                    <Route path="casino/slots" element={<GenericCasinoPage />} />
-                    <Route path="casino/crash" element={<CrashPage />} />
+                    <Route path="casino/our-casino" element={<CasinoCategoryPage />} />
+                    <Route path="casino/vip" element={<CasinoCategoryPage />} />
+                    <Route path="casino/premium" element={<CasinoCategoryPage />} />
+                    <Route path="casino/virtual" element={<CasinoCategoryPage />} />
+                    <Route path="casino/live" element={<CasinoCategoryPage />} />
+                    <Route path="casino/casino" element={<CasinoCategoryPage />} />
+                    <Route path="casino/mini" element={<CasinoCategoryPage />} />
+                    <Route path="casino/slots" element={<CasinoCategoryPage />} />
+                    <Route path="casino/crash" element={<CasinoCategoryPage />} />
+                    <Route path="casino/sports" element={<CasinoCategoryPage />} />
+                    <Route path="casino/slot-game" element={<CasinoCategoryPage />} />
+                    <Route path="casino/fantasy" element={<CasinoCategoryPage />} />
                     <Route path="games/crash" element={<CrashPage />} />
                     <Route path="crash" element={<CrashPage />} />
                     <Route path="games/slot" element={<GenericCasinoPage />} />

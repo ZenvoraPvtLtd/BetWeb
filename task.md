@@ -180,3 +180,12 @@
   - [x] Add root level .gitignore file to ignore node_modules
   - [x] Perform clean node_modules installation using the package lockfile
   - [x] Verify local typescript builds compile successfully on both workspaces
+- [x] Update Other Casino Pages — Reuse Our Casino Content
+  - [x] Create reusable CasinoCategoryPage.tsx component loading shared casinoGames data
+  - [x] Add route mapping for all 12 casino sub-routes in AppRoutes.tsx
+  - [x] Link all sidebar menu options in UserSidebar.tsx, removing comingSoon properties
+- [x] R.jpg Fallback Asset Mapping
+  - [x] Copy R.jpg to user-frontend/public/R.jpg
+  - [x] Remap fallback image sources to load local /R.jpg asset in GameCard, CrashPage, and Cards32ListPage
+- [x] GameGrid Fallback Integration
+  - [x] Refactor GameGrid.tsx cards mapping to support HomeGameCard subcomponent wrappers with R.jpg fallback mapping

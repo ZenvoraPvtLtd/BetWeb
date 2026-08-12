@@ -22,9 +22,14 @@ export const CrashGameCard: React.FC<CrashGameCardProps> = ({ game }) => {
     >
       <div className="aspect-[4/3] w-full overflow-hidden bg-zinc-950/40 relative">
         {showFallback ? (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1E293B] to-[#0F172A] flex flex-col items-center justify-center p-3">
-            <HelpCircle className="w-6 h-6 text-zinc-550 mb-1" />
-            <span className="text-[10px] text-zinc-450 font-bold uppercase tracking-wider">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1E293B] to-[#0F172A] flex flex-col items-center justify-center p-3 relative">
+            <img
+              src="/R.jpg"
+              alt={game.name}
+              className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay"
+            />
+            <HelpCircle className="w-6 h-6 text-zinc-550 mb-1 z-10" />
+            <span className="text-[10px] text-zinc-450 font-bold uppercase tracking-wider z-10">
               {game.provider}
             </span>
           </div>

@@ -49,7 +49,7 @@ export const cards32Games: Cards32Game[] = [
     id: "32g-5",
     name: "Aztec Plinko 1000",
     slug: "aztec-plinko-1000",
-    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300&auto=format&fit=crop&q=60",
+    image: "/R.jpg",
     category: "SLOTS",
     route: "/game/aztec-plinko-1000",
     enabled: true
@@ -85,7 +85,7 @@ export const cards32Games: Cards32Game[] = [
     id: "32g-9",
     name: "Stairs",
     slug: "stairs",
-    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300&auto=format&fit=crop&q=60",
+    image: "/R.jpg",
     category: "SLOTS",
     route: "/game/stairs",
     enabled: true
@@ -139,7 +139,7 @@ export const cards32Games: Cards32Game[] = [
     id: "32g-15",
     name: "Coin Flip",
     slug: "coin-flip",
-    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300&auto=format&fit=crop&q=60",
+    image: "/R.jpg",
     category: "CARDS",
     route: "/game/coin-flip",
     enabled: true
@@ -184,7 +184,7 @@ export const cards32Games: Cards32Game[] = [
     id: "32g-20",
     name: "Hot Mines",
     slug: "hot-mines",
-    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300&auto=format&fit=crop&q=60",
+    image: "/R.jpg",
     category: "MINES",
     route: "/game/hot-mines",
     enabled: true
@@ -220,7 +220,7 @@ export const cards32Games: Cards32Game[] = [
     id: "32g-24",
     name: "Hilo Joker",
     slug: "hilo-joker",
-    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300&auto=format&fit=crop&q=60",
+    image: "/R.jpg",
     category: "CARDS",
     route: "/game/hilo-joker",
     enabled: true
@@ -265,7 +265,7 @@ export const cards32Games: Cards32Game[] = [
     id: "32g-29",
     name: "Wheel",
     slug: "wheel",
-    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300&auto=format&fit=crop&q=60",
+    image: "/R.jpg",
     category: "CASINO",
     route: "/game/wheel",
     enabled: true
