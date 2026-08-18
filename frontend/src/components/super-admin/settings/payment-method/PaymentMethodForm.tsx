@@ -107,9 +107,6 @@ export const PaymentMethodForm: React.FC = () => {
     if (!formData.ifscCode.trim()) {
       newErrors.ifscCode = 'IFSC Code is required.';
     }
-    if (!formData.qrCode) {
-      newErrors.qrCode = 'UPI QR Code image is required.';
-    }
     if (!formData.accountNumber.trim()) {
       newErrors.accountNumber = 'Account Number is required.';
     }
@@ -119,443 +116,224 @@ export const PaymentMethodForm: React.FC = () => {
     if (!formData.accountHolderName.trim()) {
       newErrors.accountHolderName = 'Account Holder Name is required.';
     }
+    if (!formData.qrCode) {
+      newErrors.qrCode = 'UPI QR Code file is required.';
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setIsSubmitting(true);
     setShowSuccess(false);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Simulate network save request
+      await new Promise((resolve) => setTimeout(resolve, 800));
       setShowSuccess(true);
-      setFormData({
-        bankName: '',
-        upiId: '',
-        ifscCode: '',
-        accountNumber: '',
-        upiName: '',
-        accountHolderName: '',
-        qrCode: null,
-      });
-      if (previewUrl) {
-        URL.revokeObjectURL(previewUrl);
-        setPreviewUrl(null);
-      }
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
       setTimeout(() => setShowSuccess(false), 3000);
-    }, 600);
+    } catch (err) {
+      console.error('Failed to submit payment method form', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="w-full relative">
-      {/* Toast alert banner */}
+      {/* Toast Alert Banner */}
       {showSuccess && (
-        <div className="mb-4 p-3 bg-emerald-50 border border-emerald-250 text-emerald-800 rounded-[6px] text-xs flex items-center gap-2 select-none animate-fadeIn">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span className="font-semibold">Payment Method updated successfully.</span>
+        <div className="mb-4 p-3 bg-[#131B2E] border border-emerald-500/40 text-emerald-300 rounded-[8px] text-xs flex items-center gap-2 select-none animate-fadeIn">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <span className="font-semibold">Payment method updated successfully.</span>
         </div>
       )}
 
-      {/* Main Form Container Card */}
+      {/* Main input form */}
       <form
         onSubmit={handleSubmit}
-        className="bg-white border border-zinc-200 rounded-[8px] p-6 shadow-sm flex flex-col gap-6 select-none"
+        className="bg-[#131B2E] border border-[#1E293B] rounded-[10px] p-6 shadow-xl flex flex-col gap-6 select-none"
       >
-        {/* Section title */}
-        <div className="border-b border-zinc-150 pb-3 flex items-center">
-          <h2 className="text-xs font-bold text-zinc-800 uppercase tracking-wider font-mono">
-            Account-Setting
-          </h2>
-        </div>
-
-        {/* Desktop 2-column Grid */}
-        <div className="hidden lg:grid grid-cols-2 gap-8 items-start">
-          {/* Left Column */}
-          <div className="flex flex-col gap-5 text-left">
-            {/* Bank Name */}
-            <div className="flex flex-col gap-1.5">
-              <label
-                htmlFor="bankName"
-                className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
-              >
-                Bank Name *
-              </label>
-              <input
-                id="bankName"
-                name="bankName"
-                type="text"
-                placeholder="Bank Name"
-                value={formData.bankName}
-                onChange={handleChange}
-                className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                  ${
-                    errors.bankName
-                      ? 'border-red-400 focus:ring-red-400'
-                      : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                  }
-                `}
-              />
-              {errors.bankName && (
-                <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                  <AlertCircle className="w-3 h-3" />
-                  {errors.bankName}
-                </span>
-              )}
-            </div>
-
-            {/* IFSC Code */}
-            <div className="flex flex-col gap-1.5">
-              <label
-                htmlFor="ifscCode"
-                className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
-              >
-                IFSC Code *
-              </label>
-              <input
-                id="ifscCode"
-                name="ifscCode"
-                type="text"
-                placeholder="IFSC Code"
-                value={formData.ifscCode}
-                onChange={handleChange}
-                className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                  ${
-                    errors.ifscCode
-                      ? 'border-red-400 focus:ring-red-400'
-                      : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                  }
-                `}
-              />
-              {errors.ifscCode && (
-                <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                  <AlertCircle className="w-3 h-3" />
-                  {errors.ifscCode}
-                </span>
-              )}
-            </div>
-
-            {/* Account Number */}
-            <div className="flex flex-col gap-1.5">
-              <label
-                htmlFor="accountNumber"
-                className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
-              >
-                Account Number *
-              </label>
-              <input
-                id="accountNumber"
-                name="accountNumber"
-                type="text"
-                placeholder="Account Number"
-                value={formData.accountNumber}
-                onChange={handleChange}
-                className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                  ${
-                    errors.accountNumber
-                      ? 'border-red-400 focus:ring-red-400'
-                      : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                  }
-                `}
-              />
-              {errors.accountNumber && (
-                <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                  <AlertCircle className="w-3 h-3" />
-                  {errors.accountNumber}
-                </span>
-              )}
-            </div>
-
-            {/* Account Holder Name */}
-            <div className="flex flex-col gap-1.5">
-              <label
-                htmlFor="accountHolderName"
-                className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
-              >
-                Account Holder Name *
-              </label>
-              <input
-                id="accountHolderName"
-                name="accountHolderName"
-                type="text"
-                placeholder="Account Holder Name"
-                value={formData.accountHolderName}
-                onChange={handleChange}
-                className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                  ${
-                    errors.accountHolderName
-                      ? 'border-red-400 focus:ring-red-400'
-                      : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                  }
-                `}
-              />
-              {errors.accountHolderName && (
-                <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                  <AlertCircle className="w-3 h-3" />
-                  {errors.accountHolderName}
-                </span>
-              )}
-            </div>
-
-            {/* Submit Button (Desktop position) */}
-            <div className="mt-2">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="px-6 h-[38px] rounded-[6px] text-xs font-bold uppercase tracking-wider bg-zinc-950 hover:bg-zinc-850 disabled:bg-zinc-800 text-white transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-zinc-700"
-              >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-              </button>
-            </div>
-          </div>
-
-          {/* Right Column */}
-          <div className="flex flex-col gap-5 text-left">
-            {/* Upi Id */}
-            <div className="flex flex-col gap-1.5">
-              <label
-                htmlFor="upiId"
-                className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
-              >
-                Upi Id *
-              </label>
-              <input
-                id="upiId"
-                name="upiId"
-                type="text"
-                placeholder="UPI ID"
-                value={formData.upiId}
-                onChange={handleChange}
-                className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                  ${
-                    errors.upiId
-                      ? 'border-red-400 focus:ring-red-400'
-                      : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                  }
-                `}
-              />
-              {errors.upiId && (
-                <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                  <AlertCircle className="w-3 h-3" />
-                  {errors.upiId}
-                </span>
-              )}
-            </div>
-
-            {/* UPI QR Code upload */}
-            <div className="flex flex-col gap-1.5">
-              <span className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono">
-                UPI QR Code *
-              </span>
-              <div
-                className={`w-full border border-dashed rounded-[6px] p-4 flex flex-col items-center justify-center text-center transition-colors min-h-[148px]
-                  ${errors.qrCode ? 'border-red-400 bg-red-50/10' : 'border-zinc-250 hover:bg-zinc-50/30'}
-                `}
-              >
-                <input
-                  id="qrCode"
-                  name="qrCode"
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  accept="image/png, image/jpeg, image/jpg, image/webp"
-                  className="hidden"
-                />
-
-                {!formData.qrCode ? (
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center gap-2 text-zinc-500 cursor-pointer group focus:outline-none"
-                  >
-                    <Upload className="w-6 h-6 text-zinc-400 group-hover:text-zinc-650 transition-colors" />
-                    <span className="text-xs font-semibold text-zinc-700 group-hover:text-indigo-650 transition-colors">
-                      Upload QR Code
-                    </span>
-                    <span className="text-[10px] text-zinc-400">PNG, JPEG, WEBP up to 5MB</span>
-                  </button>
-                ) : (
-                  <div className="w-full flex flex-col items-center gap-2">
-                    {previewUrl && (
-                      <div className="relative w-16 h-16 border border-zinc-200 rounded overflow-hidden shadow-sm bg-zinc-50 flex items-center justify-center select-none">
-                        <img src={previewUrl} alt="QR Preview" className="w-full h-full object-contain" />
-                        <button
-                          type="button"
-                          onClick={handleRemoveFile}
-                          className="absolute top-0.5 right-0.5 w-4 h-4 bg-zinc-950/80 rounded-full flex items-center justify-center text-white hover:bg-red-650 transition-colors cursor-pointer"
-                        >
-                          <X className="w-2.5 h-2.5" />
-                        </button>
-                      </div>
-                    )}
-                    <span className="text-[11px] font-semibold text-zinc-700 max-w-[200px] truncate">
-                      {formData.qrCode.name}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="text-[10px] text-indigo-650 hover:text-indigo-850 font-bold uppercase tracking-wider cursor-pointer focus:outline-none"
-                    >
-                      Change File
-                    </button>
-                  </div>
-                )}
-              </div>
-              {errors.qrCode && (
-                <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                  <AlertCircle className="w-3 h-3" />
-                  {errors.qrCode}
-                </span>
-              )}
-            </div>
-
-            {/* Upi Name */}
-            <div className="flex flex-col gap-1.5">
-              <label
-                htmlFor="upiName"
-                className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
-              >
-                Upi Name *
-              </label>
-              <input
-                id="upiName"
-                name="upiName"
-                type="text"
-                placeholder="UPI Name"
-                value={formData.upiName}
-                onChange={handleChange}
-                className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                  ${
-                    errors.upiName
-                      ? 'border-red-400 focus:ring-red-400'
-                      : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                  }
-                `}
-              />
-              {errors.upiName && (
-                <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                  <AlertCircle className="w-3 h-3" />
-                  {errors.upiName}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Viewport Layout - Linear list */}
-        <div className="flex lg:hidden flex-col gap-5 text-left">
-          {/* 1. Bank Name */}
+        <div className="hidden lg:grid grid-cols-2 gap-x-8 gap-y-5 items-start text-left">
+          {/* Row 1 Left: Bank Name */}
           <div className="flex flex-col gap-1.5">
             <label
-              htmlFor="mob_bankName"
-              className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
+              htmlFor="bankName"
+              className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono"
             >
               Bank Name *
             </label>
             <input
-              id="mob_bankName"
+              id="bankName"
               name="bankName"
               type="text"
               placeholder="Bank Name"
               value={formData.bankName}
               onChange={handleChange}
-              className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                ${
-                  errors.bankName
-                    ? 'border-red-400 focus:ring-red-400'
-                    : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                }
+              className={`w-full px-3.5 h-[38px] rounded-[8px] border text-xs font-medium bg-[#090E17] text-slate-100 placeholder-slate-500 transition-colors focus:outline-none focus:border-orange-500
+                ${errors.bankName ? 'border-red-500/80 focus:border-red-500' : 'border-[#233252]'}
               `}
             />
             {errors.bankName && (
-              <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
+              <span className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5 font-mono">
                 <AlertCircle className="w-3 h-3" />
                 {errors.bankName}
               </span>
             )}
           </div>
 
-          {/* 2. Upi Id */}
+          {/* Row 1 Right: Account Number */}
           <div className="flex flex-col gap-1.5">
             <label
-              htmlFor="mob_upiId"
-              className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
+              htmlFor="accountNumber"
+              className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono"
             >
-              Upi Id *
+              Account Number *
             </label>
             <input
-              id="mob_upiId"
+              id="accountNumber"
+              name="accountNumber"
+              type="text"
+              placeholder="Account Number"
+              value={formData.accountNumber}
+              onChange={handleChange}
+              className={`w-full px-3.5 h-[38px] rounded-[8px] border text-xs font-medium bg-[#090E17] text-slate-100 placeholder-slate-500 transition-colors focus:outline-none focus:border-orange-500
+                ${errors.accountNumber ? 'border-red-500/80 focus:border-red-500' : 'border-[#233252]'}
+              `}
+            />
+            {errors.accountNumber && (
+              <span className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5 font-mono">
+                <AlertCircle className="w-3 h-3" />
+                {errors.accountNumber}
+              </span>
+            )}
+          </div>
+
+          {/* Row 2 Left: UPI ID */}
+          <div className="flex flex-col gap-1.5">
+            <label
+              htmlFor="upiId"
+              className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono"
+            >
+              UPI ID *
+            </label>
+            <input
+              id="upiId"
               name="upiId"
               type="text"
               placeholder="UPI ID"
               value={formData.upiId}
               onChange={handleChange}
-              className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                ${
-                  errors.upiId
-                    ? 'border-red-400 focus:ring-red-400'
-                    : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                }
+              className={`w-full px-3.5 h-[38px] rounded-[8px] border text-xs font-medium bg-[#090E17] text-slate-100 placeholder-slate-500 transition-colors focus:outline-none focus:border-orange-500
+                ${errors.upiId ? 'border-red-500/80 focus:border-red-500' : 'border-[#233252]'}
               `}
             />
             {errors.upiId && (
-              <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
+              <span className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5 font-mono">
                 <AlertCircle className="w-3 h-3" />
                 {errors.upiId}
               </span>
             )}
           </div>
 
-          {/* 3. IFSC Code */}
+          {/* Row 2 Right: UPI Name */}
           <div className="flex flex-col gap-1.5">
             <label
-              htmlFor="mob_ifscCode"
-              className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
+              htmlFor="upiName"
+              className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono"
+            >
+              UPI Name *
+            </label>
+            <input
+              id="upiName"
+              name="upiName"
+              type="text"
+              placeholder="UPI Name"
+              value={formData.upiName}
+              onChange={handleChange}
+              className={`w-full px-3.5 h-[38px] rounded-[8px] border text-xs font-medium bg-[#090E17] text-slate-100 placeholder-slate-500 transition-colors focus:outline-none focus:border-orange-500
+                ${errors.upiName ? 'border-red-500/80 focus:border-red-500' : 'border-[#233252]'}
+              `}
+            />
+            {errors.upiName && (
+              <span className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5 font-mono">
+                <AlertCircle className="w-3 h-3" />
+                {errors.upiName}
+              </span>
+            )}
+          </div>
+
+          {/* Row 3 Left: IFSC Code */}
+          <div className="flex flex-col gap-1.5">
+            <label
+              htmlFor="ifscCode"
+              className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono"
             >
               IFSC Code *
             </label>
             <input
-              id="mob_ifscCode"
+              id="ifscCode"
               name="ifscCode"
               type="text"
               placeholder="IFSC Code"
               value={formData.ifscCode}
               onChange={handleChange}
-              className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                ${
-                  errors.ifscCode
-                    ? 'border-red-400 focus:ring-red-400'
-                    : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                }
+              className={`w-full px-3.5 h-[38px] rounded-[8px] border text-xs font-medium bg-[#090E17] text-slate-100 placeholder-slate-500 transition-colors focus:outline-none focus:border-orange-500
+                ${errors.ifscCode ? 'border-red-500/80 focus:border-red-500' : 'border-[#233252]'}
               `}
             />
             {errors.ifscCode && (
-              <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
+              <span className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5 font-mono">
                 <AlertCircle className="w-3 h-3" />
                 {errors.ifscCode}
               </span>
             )}
           </div>
 
-          {/* 4. UPI QR Code */}
+          {/* Row 3 Right: Account Holder Name */}
           <div className="flex flex-col gap-1.5">
-            <span className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono">
+            <label
+              htmlFor="accountHolderName"
+              className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono"
+            >
+              Account Holder Name *
+            </label>
+            <input
+              id="accountHolderName"
+              name="accountHolderName"
+              type="text"
+              placeholder="Account Holder Name"
+              value={formData.accountHolderName}
+              onChange={handleChange}
+              className={`w-full px-3.5 h-[38px] rounded-[8px] border text-xs font-medium bg-[#090E17] text-slate-100 placeholder-slate-500 transition-colors focus:outline-none focus:border-orange-500
+                ${errors.accountHolderName ? 'border-red-500/80 focus:border-red-500' : 'border-[#233252]'}
+              `}
+            />
+            {errors.accountHolderName && (
+              <span className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5 font-mono">
+                <AlertCircle className="w-3 h-3" />
+                {errors.accountHolderName}
+              </span>
+            )}
+          </div>
+
+          {/* Row 4 Left: UPI QR Code */}
+          <div className="flex flex-col gap-1.5">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono">
               UPI QR Code *
             </span>
             <div
-              className={`w-full border border-dashed rounded-[6px] p-4 flex flex-col items-center justify-center text-center transition-colors min-h-[148px]
-                ${errors.qrCode ? 'border-red-400 bg-red-50/10' : 'border-zinc-250 hover:bg-zinc-50/30'}
+              className={`w-full border border-dashed rounded-[8px] p-4 flex flex-col items-center justify-center text-center transition-colors min-h-[148px] bg-[#0E1524]
+                ${errors.qrCode ? 'border-red-500/50 bg-red-950/10' : 'border-[#233252] hover:border-orange-500/50'}
               `}
             >
               <input
-                id="mob_qrCode"
+                ref={fileInputRef}
+                id="qrCode"
                 name="qrCode"
                 type="file"
                 onChange={handleFileChange}
@@ -567,35 +345,35 @@ export const PaymentMethodForm: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex flex-col items-center gap-2 text-zinc-500 cursor-pointer group focus:outline-none"
+                  className="flex flex-col items-center gap-2 text-slate-400 cursor-pointer group focus:outline-none"
                 >
-                  <Upload className="w-6 h-6 text-zinc-400 group-hover:text-zinc-650 transition-colors" />
-                  <span className="text-xs font-semibold text-zinc-700 group-hover:text-indigo-650 transition-colors">
+                  <Upload className="w-6 h-6 text-slate-500 group-hover:text-orange-400 transition-colors" />
+                  <span className="text-xs font-semibold text-slate-300 group-hover:text-orange-400 transition-colors">
                     Upload QR Code
                   </span>
-                  <span className="text-[10px] text-zinc-400">PNG, JPEG, WEBP up to 5MB</span>
+                  <span className="text-[10px] text-slate-500">PNG, JPEG, WEBP up to 5MB</span>
                 </button>
               ) : (
                 <div className="w-full flex flex-col items-center gap-2">
                   {previewUrl && (
-                    <div className="relative w-16 h-16 border border-zinc-200 rounded overflow-hidden shadow-sm bg-zinc-50 flex items-center justify-center select-none">
+                    <div className="relative w-16 h-16 border border-[#233252] rounded-[6px] overflow-hidden shadow-sm bg-[#090E17] flex items-center justify-center select-none">
                       <img src={previewUrl} alt="QR Preview" className="w-full h-full object-contain" />
                       <button
                         type="button"
                         onClick={handleRemoveFile}
-                        className="absolute top-0.5 right-0.5 w-4 h-4 bg-zinc-950/80 rounded-full flex items-center justify-center text-white hover:bg-red-650 transition-colors cursor-pointer"
+                        className="absolute top-0.5 right-0.5 w-4 h-4 bg-red-600 rounded-full flex items-center justify-center text-white hover:bg-red-500 transition-colors cursor-pointer"
                       >
                         <X className="w-2.5 h-2.5" />
                       </button>
                     </div>
                   )}
-                  <span className="text-[11px] font-semibold text-zinc-700 max-w-[200px] truncate">
+                  <span className="text-[11px] font-semibold text-slate-300 max-w-[200px] truncate">
                     {formData.qrCode.name}
                   </span>
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="text-[10px] text-indigo-650 hover:text-indigo-850 font-bold uppercase tracking-wider cursor-pointer focus:outline-none"
+                    className="text-[10px] text-orange-400 hover:text-orange-300 font-bold uppercase tracking-wider cursor-pointer focus:outline-none"
                   >
                     Change File
                   </button>
@@ -603,116 +381,62 @@ export const PaymentMethodForm: React.FC = () => {
               )}
             </div>
             {errors.qrCode && (
-              <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
+              <span className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5 font-mono">
                 <AlertCircle className="w-3 h-3" />
                 {errors.qrCode}
               </span>
             )}
           </div>
 
-          {/* 5. Account Number */}
-          <div className="flex flex-col gap-1.5">
-            <label
-              htmlFor="mob_accountNumber"
-              className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
+          {/* Row 4 Right: Submit Button Desktop */}
+          <div className="flex flex-col justify-end h-full pt-6">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full h-[40px] rounded-[8px] text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-[#FF5722] to-[#F97316] hover:from-[#F4511E] hover:to-[#EA580C] text-white shadow-md shadow-orange-950/40 transition-all cursor-pointer focus:outline-none"
             >
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Viewport Form Controls */}
+        <div className="flex lg:hidden flex-col gap-4 text-left">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono">
+              Bank Name *
+            </label>
+            <input
+              name="bankName"
+              type="text"
+              placeholder="Bank Name"
+              value={formData.bankName}
+              onChange={handleChange}
+              className="w-full px-3.5 h-[38px] rounded-[8px] border border-[#233252] text-xs font-medium bg-[#090E17] text-slate-100"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono">
               Account Number *
             </label>
             <input
-              id="mob_accountNumber"
               name="accountNumber"
               type="text"
               placeholder="Account Number"
               value={formData.accountNumber}
               onChange={handleChange}
-              className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                ${
-                  errors.accountNumber
-                    ? 'border-red-400 focus:ring-red-400'
-                    : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                }
-              `}
+              className="w-full px-3.5 h-[38px] rounded-[8px] border border-[#233252] text-xs font-medium bg-[#090E17] text-slate-100"
             />
-            {errors.accountNumber && (
-              <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                <AlertCircle className="w-3 h-3" />
-                {errors.accountNumber}
-              </span>
-            )}
           </div>
 
-          {/* 6. Upi Name */}
-          <div className="flex flex-col gap-1.5">
-            <label
-              htmlFor="mob_upiName"
-              className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
-            >
-              Upi Name *
-            </label>
-            <input
-              id="mob_upiName"
-              name="upiName"
-              type="text"
-              placeholder="UPI Name"
-              value={formData.upiName}
-              onChange={handleChange}
-              className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                ${
-                  errors.upiName
-                    ? 'border-red-400 focus:ring-red-400'
-                    : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                }
-              `}
-            />
-            {errors.upiName && (
-              <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                <AlertCircle className="w-3 h-3" />
-                {errors.upiName}
-              </span>
-            )}
-          </div>
-
-          {/* 7. Account Holder Name */}
-          <div className="flex flex-col gap-1.5">
-            <label
-              htmlFor="mob_accountHolderName"
-              className="text-[11px] font-bold text-zinc-700 uppercase tracking-wider font-mono"
-            >
-              Account Holder Name *
-            </label>
-            <input
-              id="mob_accountHolderName"
-              name="accountHolderName"
-              type="text"
-              placeholder="Account Holder Name"
-              value={formData.accountHolderName}
-              onChange={handleChange}
-              className={`w-full px-3.5 h-[38px] rounded-[6px] border text-xs font-medium bg-zinc-50/20 text-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:bg-white placeholder-zinc-400
-                ${
-                  errors.accountHolderName
-                    ? 'border-red-400 focus:ring-red-400'
-                    : 'border-zinc-250 focus:border-indigo-500 focus:ring-indigo-500'
-                }
-              `}
-            />
-            {errors.accountHolderName && (
-              <span className="text-[10px] text-red-500 flex items-center gap-1 mt-0.5">
-                <AlertCircle className="w-3 h-3" />
-                {errors.accountHolderName}
-              </span>
-            )}
-          </div>
-
-          {/* Submit Button (Mobile layout position) */}
-          <div className="mt-2 w-full text-left">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full h-[38px] rounded-[6px] text-xs font-bold uppercase tracking-wider bg-zinc-955 hover:bg-zinc-850 disabled:bg-zinc-800 text-white transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-zinc-700"
-            >
-              {isSubmitting ? 'Submitting...' : 'Submit'}
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full h-[40px] rounded-[8px] text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-[#FF5722] to-[#F97316] text-white shadow-md transition-all mt-2"
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </button>
         </div>
       </form>
     </div>

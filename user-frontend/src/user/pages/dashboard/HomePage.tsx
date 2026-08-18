@@ -55,8 +55,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="flex flex-col gap-6 p-6">
-        
+      <div className="flex flex-col gap-6">
         {/* Category Sport Filters */}
         <SportsSelector
           selectedSportId={selectedSportId}

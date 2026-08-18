@@ -35,17 +35,17 @@ export const SuperAdminNavigation: React.FC = () => {
   };
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `flex items-center gap-2 px-3 py-1.5 rounded-[6px] text-xs font-semibold select-none cursor-pointer transition-all duration-150 ${
+    `flex items-center gap-2 px-3 py-1.5 rounded-[8px] text-xs font-semibold select-none cursor-pointer transition-all duration-150 ${
       isActive
-        ? 'bg-zinc-800 text-white font-semibold'
-        : 'text-zinc-400 hover:text-white hover:bg-zinc-900/60'
+        ? 'bg-orange-500/15 text-orange-400 border border-orange-500/30'
+        : 'text-slate-400 hover:text-white hover:bg-[#131B2E] border border-transparent'
     }`;
 
   const dropdownTriggerClass = (name: 'reports' | 'casino' | 'settings') =>
-    `flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] text-xs font-semibold select-none cursor-pointer transition-all duration-150 ${
+    `flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-xs font-semibold select-none cursor-pointer transition-all duration-150 ${
       activeDropdown === name
-        ? 'bg-zinc-800 text-white'
-        : 'text-zinc-400 hover:text-white hover:bg-zinc-900/60'
+        ? 'bg-orange-500/15 text-orange-400 border border-orange-500/30'
+        : 'text-slate-400 hover:text-white hover:bg-[#131B2E] border border-transparent'
     }`;
 
   return (
@@ -72,18 +72,18 @@ export const SuperAdminNavigation: React.FC = () => {
         >
           <ReceiptText className="w-3.5 h-3.5" />
           <span>Reports</span>
-          <ChevronDown className={`w-3.5 h-3.5 text-zinc-500 transition-transform ${activeDropdown === 'reports' ? 'rotate-180' : ''}`} />
+          <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${activeDropdown === 'reports' ? 'rotate-180 text-orange-400' : ''}`} />
         </button>
         {activeDropdown === 'reports' && (
-          <ul className="absolute left-0 mt-1.5 w-44 bg-zinc-950 border border-zinc-800 rounded-[6px] shadow-md py-1 z-50 text-xs text-zinc-400 focus:outline-none">
+          <ul className="absolute left-0 mt-2 w-48 bg-[#131B2E] border border-[#233252] rounded-[10px] shadow-xl py-1 z-50 text-xs text-slate-300 focus:outline-none backdrop-blur-md">
             <li>
-              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-zinc-900 hover:text-white transition-colors">Client Report</Link>
+              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-[#18233C] hover:text-white transition-colors">Client Report</Link>
             </li>
             <li>
-              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-zinc-900 hover:text-white transition-colors">Market Report</Link>
+              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-[#18233C] hover:text-white transition-colors">Market Report</Link>
             </li>
             <li>
-              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-zinc-900 hover:text-white transition-colors">Settlement Report</Link>
+              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-[#18233C] hover:text-white transition-colors">Settlement Report</Link>
             </li>
           </ul>
         )}
@@ -99,15 +99,15 @@ export const SuperAdminNavigation: React.FC = () => {
         >
           <Dices className="w-3.5 h-3.5" />
           <span>Live Casino</span>
-          <ChevronDown className={`w-3.5 h-3.5 text-zinc-500 transition-transform ${activeDropdown === 'casino' ? 'rotate-180' : ''}`} />
+          <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${activeDropdown === 'casino' ? 'rotate-180 text-orange-400' : ''}`} />
         </button>
         {activeDropdown === 'casino' && (
-          <ul className="absolute left-0 mt-1.5 w-44 bg-zinc-950 border border-zinc-800 rounded-[6px] shadow-md py-1 z-50 text-xs text-zinc-400 focus:outline-none">
+          <ul className="absolute left-0 mt-2 w-48 bg-[#131B2E] border border-[#233252] rounded-[10px] shadow-xl py-1 z-50 text-xs text-slate-300 focus:outline-none backdrop-blur-md">
             <li>
-              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-zinc-900 hover:text-white transition-colors">Provider List</Link>
+              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-[#18233C] hover:text-white transition-colors">Provider List</Link>
             </li>
             <li>
-              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-zinc-900 hover:text-white transition-colors">Active Sessions</Link>
+              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-[#18233C] hover:text-white transition-colors">Active Sessions</Link>
             </li>
           </ul>
         )}
@@ -123,15 +123,15 @@ export const SuperAdminNavigation: React.FC = () => {
         >
           <Settings2 className="w-3.5 h-3.5" />
           <span>Settings</span>
-          <ChevronDown className={`w-3.5 h-3.5 text-zinc-500 transition-transform ${activeDropdown === 'settings' ? 'rotate-180' : ''}`} />
+          <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${activeDropdown === 'settings' ? 'rotate-180 text-orange-400' : ''}`} />
         </button>
         {activeDropdown === 'settings' && (
-          <ul className="absolute left-0 mt-1.5 w-44 bg-zinc-950 border border-zinc-800 rounded-[6px] shadow-md py-1 z-50 text-xs text-zinc-400 focus:outline-none">
+          <ul className="absolute left-0 mt-2 w-48 bg-[#131B2E] border border-[#233252] rounded-[10px] shadow-xl py-1 z-50 text-xs text-slate-300 focus:outline-none backdrop-blur-md">
             <li>
-              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-zinc-900 hover:text-white transition-colors">Global Limits</Link>
+              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-[#18233C] hover:text-white transition-colors">Global Limits</Link>
             </li>
             <li>
-              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-zinc-900 hover:text-white transition-colors">Security Settings</Link>
+              <Link to="/admin/pending" onClick={closeAll} className="block px-3.5 py-2 hover:bg-[#18233C] hover:text-white transition-colors">Security Settings</Link>
             </li>
           </ul>
         )}

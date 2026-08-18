@@ -108,71 +108,69 @@ export const DeletedBets: React.FC = () => {
   return (
     <SuperAdminLayout>
       <div className="flex flex-col text-left select-none relative animate-fadeIn">
-        {/* Alerts toast */}
+        {/* Toast Notification Alert */}
         {toastMessage && (
           <div
-            className={`
-            fixed top-20 right-6 z-50 flex items-center gap-2 border text-xs font-semibold px-4 py-3 rounded-lg shadow-xl animate-slideRight
-            ${
+            className={`fixed top-20 right-6 z-50 flex items-center gap-2 text-xs font-semibold px-4 py-3 rounded-lg shadow-2xl animate-slideRight backdrop-blur-md ${
               toastMessage.type === 'error'
-                ? 'bg-red-50 border-red-200 text-red-700'
-                : 'bg-zinc-900 border-zinc-800 text-white'
-            }
-          `}
+                ? 'bg-[#131B2E] border border-red-500/40 text-red-300'
+                : 'bg-[#131B2E] border border-emerald-500/40 text-emerald-300'
+            }`}
           >
             {toastMessage.type === 'error' ? (
-              <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
+              <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
             ) : (
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
             )}
             <span>{toastMessage.text}</span>
             <button
               onClick={() => setToastMessage(null)}
-              className="ml-2 hover:opacity-80 cursor-pointer focus:outline-none"
+              className="ml-2 text-slate-400 hover:text-white cursor-pointer"
             >
               <X className="w-3.5 h-3.5" />
             </button>
           </div>
         )}
 
-        {/* Breadcrumb Path */}
-        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-5">
-          <Link to="/admin/market-analysis" className="hover:text-zinc-950 transition-colors">
+        {/* Breadcrumb path */}
+        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-5">
+          <Link to="/admin/market-analysis" className="hover:text-orange-400 transition-colors">
             Super Admin
           </Link>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-400">Reports</span>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-955">Deleted Bets</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-slate-500">Reports</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-orange-400">Deleted Bets</span>
         </nav>
 
         {/* Page Title */}
         <div className="mb-6">
-          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-955 leading-none">
-            Deleted Bet History
+          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100 leading-none">
+            Deleted Bets History
           </h1>
-          <p className="text-xs text-zinc-550 mt-1.5">
-            View details of cancelled, voided, or deleted bets from previous trading sessions.
+          <p className="text-xs text-slate-400 mt-1.5">
+            Audit history of voided, cancelled, and purged betting tickets.
           </p>
         </div>
 
-        {/* Shared filters layout console */}
+        {/* Reusable Filter Selection Header */}
         <CurrentBetsFilters onApplyFilters={handleApplyFilters} onReset={handleReset} />
 
-        {/* Action Toolbar */}
+        {/* Selection Count and Bulk Action Toolbar */}
         {!isInitialState && bets.length > 0 && (
-          <div className="flex items-center justify-between gap-4 mb-4 bg-zinc-50 border border-zinc-200/80 rounded-lg p-3">
-            <span className="text-xs text-zinc-500 font-semibold">
-              {selectedIds.length} of {bets.length} record(s) selected
+          <div className="flex items-center justify-between gap-4 mb-4 bg-[#131B2E] border border-[#1E293B] rounded-[10px] p-3 shadow-md">
+            <span className="text-xs text-slate-300 font-semibold">
+              <span className="text-orange-400">{selectedIds.length}</span> of {bets.length} record(s) selected
             </span>
             <button
               onClick={handleDeleteClick}
+              disabled={selectedIds.length === 0}
               className={`
-                h-[32px] px-3.5 rounded-[6px] border text-xs font-semibold flex items-center gap-1.5 transition-colors focus:outline-none cursor-pointer
+                h-[32px] px-3.5 rounded-[8px] border text-xs font-semibold flex items-center gap-1.5 transition-colors focus:outline-none shadow-sm
                 ${
                   selectedIds.length === 0
-                    ? 'border-zinc-200 text-zinc-400 bg-zinc-50'
-                    : 'border-zinc-300 text-zinc-800 bg-white hover:bg-zinc-50 active:brightness-95'
+                    ? 'border-[#233252] text-slate-500 bg-[#0E1524] cursor-not-allowed'
+                    : 'border-red-500/40 text-red-400 bg-red-950/40 hover:bg-red-900/50 hover:text-red-300 cursor-pointer active:scale-95'
                 }
               `}
             >
@@ -196,7 +194,7 @@ export const DeletedBets: React.FC = () => {
           onSelectAll={handleSelectAll}
         />
 
-        {/* Reusable pagination controls */}
+        {/* Pagination Bar */}
         {!isInitialState && bets.length > 0 && (
           <AccountPagination
             currentPage={currentPage}
@@ -205,7 +203,7 @@ export const DeletedBets: React.FC = () => {
           />
         )}
 
-        {/* Confirmation dialog placeholder */}
+        {/* Action Confirmation Modal */}
         <DeleteDeletedBetsDialog
           isOpen={isConfirmOpen}
           onClose={() => setIsConfirmOpen(false)}

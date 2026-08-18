@@ -12,13 +12,13 @@ export const UserFooter: React.FC = () => {
   ];
 
   return (
-    <footer className="w-full bg-[#0B1625] border-t border-zinc-900/60 py-6 px-6 mt-auto text-left select-none">
+    <footer className="w-full bg-[#0E1524] border-t border-[#1E293B] py-6 px-6 mt-auto text-left select-none">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-bold text-white uppercase tracking-widest">
+          <span className="text-[10px] font-extrabold text-orange-400 uppercase tracking-widest font-mono">
             XPLAY5 Exchange
           </span>
-          <span className="text-[9px] font-semibold text-zinc-500">
+          <span className="text-[9px] font-semibold text-slate-500">
             © {currentYear} XPLAY5. All rights reserved. Demo mock interface.
           </span>
         </div>
@@ -28,7 +28,7 @@ export const UserFooter: React.FC = () => {
             <a
               key={link.label}
               href={link.to}
-              className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:underline transition-colors"
+              className="text-[10px] font-bold uppercase tracking-wider text-slate-400 hover:text-orange-400 transition-colors"
             >
               {link.label}
             </a>

@@ -30,10 +30,10 @@ export const ProfitLossPage: React.FC = () => {
   }, [dateOption, fromDate, toDate]);
 
   const summaryCards = [
-    { label: 'Total Profit', value: `+₹${totalProfit.toLocaleString()}`, color: 'text-[#22C55E]' },
-    { label: 'Total Loss', value: `-₹${totalLoss.toLocaleString()}`, color: 'text-[#F43F5E]' },
-    { label: 'Net Profit/Loss', value: `${netPL >= 0 ? '+' : ''}₹${netPL.toLocaleString()}`, color: netPL >= 0 ? 'text-[#22C55E]' : 'text-[#F43F5E]' },
-    { label: 'Total Volume / Stake', value: `₹${totalStake.toLocaleString()}`, color: 'text-white' }
+    { label: 'Total Profit', value: `+₹${totalProfit.toLocaleString()}`, color: 'text-emerald-400' },
+    { label: 'Total Loss', value: `-₹${totalLoss.toLocaleString()}`, color: 'text-rose-400' },
+    { label: 'Net Profit/Loss', value: `${netPL >= 0 ? '+' : ''}₹${netPL.toLocaleString()}`, color: netPL >= 0 ? 'text-emerald-400' : 'text-rose-400' },
+    { label: 'Total Volume / Stake', value: `₹${totalStake.toLocaleString()}`, color: 'text-slate-100' }
   ];
 
   const breadcrumbs = [
@@ -43,14 +43,14 @@ export const ProfitLossPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <ReportsHeader
           title="Profit & Loss Statement"
           description="Consolidated statement of mock trading gains and losses divided by exchange category."
           breadcrumbs={breadcrumbs}
         />
 
-        <div className="flex bg-zinc-950/20 border border-zinc-900 p-4 rounded-[12px] self-start w-full sm:w-auto">
+        <div className="flex bg-[#131B2E] border border-[#1E293B] p-4 rounded-[12px] self-start w-full sm:w-auto shadow-sm">
           <DateRangeFilter
             selectedOption={dateOption}
             onChangeOption={setDateOption}
@@ -66,7 +66,7 @@ export const ProfitLossPage: React.FC = () => {
         ) : isLoading ? (
           <div className="flex flex-col gap-6">
             <SummaryCardSkeleton />
-            <div className="h-56 bg-[#111F30] border border-slate-700/10 rounded-[12px] animate-pulse" />
+            <div className="h-56 bg-[#131B2E] border border-[#1E293B] rounded-[12px] animate-pulse" />
           </div>
         ) : (
           <>

@@ -13,14 +13,6 @@ import {
   ClipboardList,
   Settings,
   CircleUser,
-  Flame,
-  Zap,
-  Gem,
-  Award,
-  Sliders,
-  Activity,
-  Gamepad,
-  LayoutGrid,
   Compass
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
@@ -101,52 +93,41 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
   ];
 
   const racingItems = [
-    { label: 'Horse Racing', to: '/sports/horse-racing', icon: Flame },
-    { label: 'Greyhound Racing', to: '/sports/greyhound-racing', icon: Zap }
+    { label: 'Horse Racing', to: '/sports/horse-racing', icon: Trophy },
+    { label: 'Greyhound Racing', to: '/sports/greyhound-racing', icon: Trophy }
   ];
 
-  interface OthersItem {
-    label: string;
-    to: string;
-    icon: any;
-    comingSoon?: boolean;
-  }
-
-  const othersItems: OthersItem[] = [
-    { label: 'Our Casino', to: '/casino/our-casino', icon: Gem },
-    { label: 'Our VIP Casino', to: '/casino/vip', icon: Award },
-    { label: 'Our Premium Casino', to: '/casino/premium', icon: Gem },
-    { label: 'Our Virtual', to: '/casino/virtual', icon: Activity },
-    { label: 'Live Casino', to: '/casino/live', icon: Dices },
-    { label: 'Casino', to: '/casino/casino', icon: Dices },
-    { label: 'Mini', to: '/casino/mini', icon: LayoutGrid },
-    { label: 'Slots', to: '/casino/slots', icon: Sliders },
-    { label: 'Crash', to: '/casino/crash', icon: Activity },
-    { label: 'Sports', to: '/casino/sports', icon: Trophy },
-    { label: 'Slot Game', to: '/casino/slot-game', icon: Gamepad },
-    { label: 'Fantasy Game', to: '/casino/fantasy', icon: Sparkles }
+  const othersItems = [
+    { label: 'Live Casino', to: '/casino', icon: Sparkles, comingSoon: false },
+    { label: 'Crash Games', to: '/games/crash', icon: Sparkles, comingSoon: false },
+    { label: 'Slot Games', to: '/games/slots', icon: Dices, comingSoon: true },
+    { label: 'Fantasy Sports', to: '/sports/fantasy', icon: Trophy, comingSoon: true }
   ];
 
   const gameCategoryItems = [
-    'Lottery',
-    'Baccarat',
-    '32 Cards',
     'Teenpatti',
-    'Poker',
+    'Casino',
+    'Cards 32',
+    'Crash',
     'Lucky 7',
+    'Lottery'
   ];
 
   const reportItems = [
-    { label: 'My Bets', to: '/reports/my-bets' },
     { label: 'Account Statement', to: '/reports/account-statement' },
-    { label: 'Current Bets', to: '/reports/current-bets' },
-    { label: 'Deleted Bets', to: '/reports/deleted-bets' },
+    { label: 'Deposit Statement', to: '/reports/deposit-statement' },
+    { label: 'Withdraw Statement', to: '/reports/withdraw-statement' },
+    { label: 'Profit Loss', to: '/reports/profit-loss' },
+    { label: 'Bet History', to: '/reports/bet-history' },
+    { label: 'Live Current Bets', to: '/reports/current-bets' },
+    { label: 'Unsettled Bet', to: '/reports/unsettled-bet' },
     { label: 'Game Reports', to: '/reports/game-reports' },
-    { label: 'Profit & Loss', to: '/reports/profit-loss' }
+    { label: 'Casino History', to: '/reports/casino-report-history' }
   ];
 
   const settingItems = [
     { label: 'Block Markets', to: '/settings/block-markets' },
+    { label: 'Casino Settings', to: '/settings/casino' },
     { label: 'Messages', to: '/settings/messages', badge: true },
     { label: 'Add Match List', to: '/settings/add-match-list' },
     { label: 'Casino List', to: '/settings/casino-list' },
@@ -185,12 +166,12 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
 
   const renderLogo = () => {
     return (
-      <div className="h-16 border-b border-zinc-900/60 flex items-center justify-between px-4 shrink-0 bg-[#0B1625]/30 select-none">
+      <div className="h-16 border-b border-[#1E293B] flex items-center justify-between px-4 shrink-0 bg-[#0E1524] select-none">
         <Logo width={isCollapsed ? 35 : 110} theme="light" />
         {!isCollapsed && (
           <button
             onClick={() => setIsCollapsed(true)}
-            className="p-1.5 hover:bg-zinc-800 rounded-md text-zinc-550 hover:text-white transition-colors outline-none hidden md:block cursor-pointer"
+            className="p-1.5 hover:bg-[#18233C] rounded-md text-slate-400 hover:text-white transition-colors outline-none hidden md:block cursor-pointer"
             aria-label="Collapse Sidebar"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -201,12 +182,12 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
   };
 
   const sidebarContent = (
-    <div className="flex-1 flex flex-col h-full bg-[#07111F] text-white select-none">
+    <div className="flex-1 flex flex-col h-full bg-[#090D16] text-[#F8FAFC] select-none">
       {renderLogo()}
 
       <div className="flex-1 overflow-y-auto py-4 px-2.5 flex flex-col gap-1.5 scrollbar-thin">
         {!isCollapsed && (
-          <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest px-3 mb-1 block">
+          <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest px-3 mb-1 block font-mono">
             Main
           </span>
         )}
@@ -220,19 +201,19 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
               href={item.to}
               onClick={(e) => handleLinkClick(e, item.to)}
               className={`
-                h-10 w-full flex items-center gap-3 px-3 rounded-[6px] text-xs font-semibold
+                h-10 w-full flex items-center gap-3 px-3 rounded-[8px] text-xs font-semibold
                 transition-all duration-150 relative group outline-none
                 ${
                   isActive
-                    ? 'bg-[#0EA5E9] text-white shadow-md shadow-[#0EA5E9]/15'
-                    : 'text-zinc-400 hover:text-white hover:bg-zinc-900/40'
+                    ? 'bg-gradient-to-r from-[#FF5722] to-[#F97316] text-white shadow-md shadow-orange-950/40'
+                    : 'text-slate-400 hover:text-white hover:bg-[#131B2E]'
                 }
               `}
             >
-              <Icon className={`w-[17px] h-[17px] shrink-0 ${isActive ? 'text-white' : 'text-[#0EA5E9]'}`} />
+              <Icon className={`w-[17px] h-[17px] shrink-0 ${isActive ? 'text-white' : 'text-orange-400'}`} />
               {!isCollapsed && <span>{item.label}</span>}
               {isCollapsed && (
-                <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#111F30] text-white text-[11px] font-bold rounded border border-zinc-800 shadow-md opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
+                <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] font-bold rounded border border-[#233252] shadow-xl opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
                   {item.label}
                 </div>
               )}
@@ -240,37 +221,37 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
           );
         })}
 
-        <div className="h-[1px] bg-zinc-900/60 my-2 mx-1 shrink-0" />
+        <div className="h-[1px] bg-[#1E293B] my-2 mx-1 shrink-0" />
 
         {/* RACING Section */}
         <div className="flex flex-col">
           <button
             onClick={() => !isCollapsed && toggleRacing()}
             className={`
-              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-zinc-900/20 outline-none transition-colors relative group
+              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-white hover:bg-[#131B2E] outline-none transition-colors relative group
               ${isCollapsed ? 'pointer-events-none' : 'cursor-pointer'}
             `}
           >
             <div className="flex items-center gap-3">
-              <Compass className="w-[17px] h-[17px] text-[#0EA5E9] shrink-0" />
+              <Compass className="w-[17px] h-[17px] text-orange-400 shrink-0" />
               {!isCollapsed && <span>Racing</span>}
             </div>
             {!isCollapsed && (
               <ChevronDown
-                className={`w-3.5 h-3.5 text-zinc-550 transition-transform ${
+                className={`w-3.5 h-3.5 text-slate-500 transition-transform ${
                   racingExpanded ? 'rotate-180' : ''
                 }`}
               />
             )}
             {isCollapsed && (
-              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#111F30] text-white text-[11px] font-bold rounded border border-zinc-800 shadow-md opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
+              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] font-bold rounded border border-[#233252] shadow-xl opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
                 Racing
               </div>
             )}
           </button>
 
           {!isCollapsed && racingExpanded && (
-            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-zinc-900 ml-[21px]">
+            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-[#1E293B] ml-[21px]">
               {racingItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = location.pathname === item.to;
@@ -281,10 +262,10 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
                     onClick={(e) => handleLinkClick(e, item.to)}
                     className={`
                       h-8 flex items-center gap-2 text-[11px] font-semibold transition-colors
-                      ${isActive ? 'text-[#0EA5E9]' : 'text-zinc-455 hover:text-white'}
+                      ${isActive ? 'text-orange-400 font-bold' : 'text-slate-400 hover:text-white'}
                     `}
                   >
-                    <Icon className="w-3.5 h-3.5 shrink-0" />
+                    <Icon className="w-3.5 h-3.5 shrink-0 text-slate-500" />
                     <span>{item.label}</span>
                   </a>
                 );
@@ -298,30 +279,30 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
           <button
             onClick={() => !isCollapsed && toggleOthers()}
             className={`
-              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-zinc-900/20 outline-none transition-colors relative group
+              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-white hover:bg-[#131B2E] outline-none transition-colors relative group
               ${isCollapsed ? 'pointer-events-none' : 'cursor-pointer'}
             `}
           >
             <div className="flex items-center gap-3">
-              <Dices className="w-[17px] h-[17px] text-[#0EA5E9] shrink-0" />
+              <Dices className="w-[17px] h-[17px] text-orange-400 shrink-0" />
               {!isCollapsed && <span>Others</span>}
             </div>
             {!isCollapsed && (
               <ChevronDown
-                className={`w-3.5 h-3.5 text-zinc-550 transition-transform ${
+                className={`w-3.5 h-3.5 text-slate-500 transition-transform ${
                   othersExpanded ? 'rotate-180' : ''
                 }`}
               />
             )}
             {isCollapsed && (
-              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#111F30] text-white text-[11px] font-bold rounded border border-zinc-800 shadow-md opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
+              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] font-bold rounded border border-[#233252] shadow-xl opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
                 Others
               </div>
             )}
           </button>
 
           {!isCollapsed && othersExpanded && (
-            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-zinc-900 ml-[21px]">
+            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-[#1E293B] ml-[21px]">
               {othersItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = location.pathname === item.to;
@@ -333,15 +314,15 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
                     className={`
                       h-8 flex items-center justify-between text-[11px] font-semibold transition-colors pr-1
                       ${item.comingSoon ? 'opacity-40 hover:opacity-60' : ''}
-                      ${isActive ? 'text-[#0EA5E9]' : 'text-zinc-450 hover:text-white'}
+                      ${isActive ? 'text-orange-400 font-bold' : 'text-slate-400 hover:text-white'}
                     `}
                   >
                     <div className="flex items-center gap-2">
-                      <Icon className="w-3.5 h-3.5 shrink-0" />
+                      <Icon className="w-3.5 h-3.5 shrink-0 text-slate-500" />
                       <span>{item.label}</span>
                     </div>
                     {item.comingSoon && (
-                      <span className="text-[7px] px-1 py-0.2 rounded border border-zinc-800 bg-zinc-950/20 text-zinc-500 font-bold uppercase tracking-wider scale-90 shrink-0">
+                      <span className="text-[7px] px-1 py-0.2 rounded border border-[#233252] bg-[#090E17] text-slate-500 font-bold uppercase tracking-wider scale-90 shrink-0">
                         Soon
                       </span>
                     )}
@@ -357,30 +338,30 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
           <button
             onClick={() => !isCollapsed && toggleSports()}
             className={`
-              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-zinc-900/20 outline-none transition-colors relative group
+              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-white hover:bg-[#131B2E] outline-none transition-colors relative group
               ${isCollapsed ? 'pointer-events-none' : 'cursor-pointer'}
             `}
           >
             <div className="flex items-center gap-3">
-              <Trophy className="w-[17px] h-[17px] text-[#0EA5E9] shrink-0" />
+              <Trophy className="w-[17px] h-[17px] text-orange-400 shrink-0" />
               {!isCollapsed && <span>Sports</span>}
             </div>
             {!isCollapsed && (
               <ChevronDown
-                className={`w-3.5 h-3.5 text-zinc-550 transition-transform ${
+                className={`w-3.5 h-3.5 text-slate-500 transition-transform ${
                   sportsExpanded ? 'rotate-180' : ''
                 }`}
               />
             )}
             {isCollapsed && (
-              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#111F30] text-white text-[11px] font-bold rounded border border-zinc-800 shadow-md opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
+              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] font-bold rounded border border-[#233252] shadow-xl opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
                 Sports
               </div>
             )}
           </button>
 
           {!isCollapsed && sportsExpanded && (
-            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-zinc-900 ml-[21px]">
+            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-[#1E293B] ml-[21px]">
               {sportsItems.map((sport) => {
                 const route = `/sports/${sport.toLowerCase().replace(' ', '-')}`;
                 const isActive = location.pathname === route;
@@ -391,7 +372,7 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
                     onClick={(e) => handleLinkClick(e, route)}
                     className={`
                       h-8 flex items-center text-[11px] font-semibold transition-colors
-                      ${isActive ? 'text-[#0EA5E9]' : 'text-zinc-450 hover:text-white'}
+                      ${isActive ? 'text-orange-400 font-bold' : 'text-slate-400 hover:text-white'}
                     `}
                   >
                     {sport}
@@ -407,30 +388,30 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
           <button
             onClick={() => !isCollapsed && setGamesExpanded(!gamesExpanded)}
             className={`
-              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-zinc-900/20 outline-none transition-colors relative group
+              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-white hover:bg-[#131B2E] outline-none transition-colors relative group
               ${isCollapsed ? 'pointer-events-none' : 'cursor-pointer'}
             `}
           >
             <div className="flex items-center gap-3">
-              <Sparkles className="w-[17px] h-[17px] text-[#0EA5E9] shrink-0" />
+              <Sparkles className="w-[17px] h-[17px] text-orange-400 shrink-0" />
               {!isCollapsed && <span>Game Categories</span>}
             </div>
             {!isCollapsed && (
               <ChevronDown
-                className={`w-3.5 h-3.5 text-zinc-550 transition-transform ${
+                className={`w-3.5 h-3.5 text-slate-500 transition-transform ${
                   gamesExpanded ? 'rotate-180' : ''
                 }`}
               />
             )}
             {isCollapsed && (
-              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#111F30] text-white text-[11px] font-bold rounded border border-zinc-800 shadow-md opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
+              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] font-bold rounded border border-[#233252] shadow-xl opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
                 Games
               </div>
             )}
           </button>
 
           {!isCollapsed && gamesExpanded && (
-            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-zinc-900 ml-[21px]">
+            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-[#1E293B] ml-[21px]">
               {gameCategoryItems.map((game) => {
                 let route = `/games/${game.toLowerCase().replace(' ', '-')}`;
                 if (game === 'Teenpatti') {
@@ -448,7 +429,7 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
                     onClick={(e) => handleLinkClick(e, route)}
                     className={`
                       h-8 flex items-center text-[11px] font-semibold transition-colors
-                      ${isActive ? 'text-[#0EA5E9]' : 'text-zinc-455 hover:text-white'}
+                      ${isActive ? 'text-orange-400 font-bold' : 'text-slate-400 hover:text-white'}
                     `}
                   >
                     {game}
@@ -464,30 +445,30 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
           <button
             onClick={() => !isCollapsed && setReportsExpanded(!reportsExpanded)}
             className={`
-              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-zinc-900/20 outline-none transition-colors relative group
+              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-white hover:bg-[#131B2E] outline-none transition-colors relative group
               ${isCollapsed ? 'pointer-events-none' : 'cursor-pointer'}
             `}
           >
             <div className="flex items-center gap-3">
-              <ClipboardList className="w-[17px] h-[17px] text-[#0EA5E9] shrink-0" />
+              <ClipboardList className="w-[17px] h-[17px] text-orange-400 shrink-0" />
               {!isCollapsed && <span>Reports</span>}
             </div>
             {!isCollapsed && (
               <ChevronDown
-                className={`w-3.5 h-3.5 text-zinc-550 transition-transform ${
+                className={`w-3.5 h-3.5 text-slate-500 transition-transform ${
                   reportsExpanded ? 'rotate-180' : ''
                 }`}
               />
             )}
             {isCollapsed && (
-              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#111F30] text-white text-[11px] font-bold rounded border border-zinc-800 shadow-md opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
+              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] font-bold rounded border border-[#233252] shadow-xl opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
                 Reports
               </div>
             )}
           </button>
 
           {!isCollapsed && reportsExpanded && (
-            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-zinc-900 ml-[21px]">
+            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-[#1E293B] ml-[21px]">
               {reportItems.map((rep) => {
                 const isActive = location.pathname === rep.to;
                 return (
@@ -497,7 +478,7 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
                     onClick={(e) => handleLinkClick(e, rep.to)}
                     className={`
                       h-8 flex items-center text-[11px] font-semibold transition-colors
-                      ${isActive ? 'text-[#0EA5E9]' : 'text-zinc-400 hover:text-white'}
+                      ${isActive ? 'text-orange-400 font-bold' : 'text-slate-400 hover:text-white'}
                     `}
                   >
                     {rep.label}
@@ -513,30 +494,30 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
           <button
             onClick={() => !isCollapsed && setSettingsExpanded(!settingsExpanded)}
             className={`
-              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-zinc-900/20 outline-none transition-colors relative group
+              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-white hover:bg-[#131B2E] outline-none transition-colors relative group
               ${isCollapsed ? 'pointer-events-none' : 'cursor-pointer'}
             `}
           >
             <div className="flex items-center gap-3">
-              <Settings className="w-[17px] h-[17px] text-[#0EA5E9] shrink-0" />
+              <Settings className="w-[17px] h-[17px] text-orange-400 shrink-0" />
               {!isCollapsed && <span>Settings</span>}
             </div>
             {!isCollapsed && (
               <ChevronDown
-                className={`w-3.5 h-3.5 text-zinc-550 transition-transform ${
+                className={`w-3.5 h-3.5 text-slate-500 transition-transform ${
                   settingsExpanded ? 'rotate-180' : ''
                 }`}
               />
             )}
             {isCollapsed && (
-              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#111F30] text-white text-[11px] font-bold rounded border border-zinc-800 shadow-md opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
+              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] font-bold rounded border border-[#233252] shadow-xl opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
                 Settings
               </div>
             )}
           </button>
 
           {!isCollapsed && settingsExpanded && (
-            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-zinc-900 ml-[21px]">
+            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-[#1E293B] ml-[21px]">
               {settingItems.map((set) => {
                 const isActive = location.pathname === set.to;
                 return (
@@ -546,7 +527,7 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
                     onClick={(e) => handleLinkClick(e, set.to)}
                     className={`
                       h-8 flex items-center justify-between text-[11px] font-semibold transition-colors pr-1
-                      ${isActive ? 'text-[#0EA5E9]' : 'text-zinc-400 hover:text-white'}
+                      ${isActive ? 'text-orange-400 font-bold' : 'text-slate-400 hover:text-white'}
                     `}
                   >
                     <span>{set.label}</span>
@@ -562,30 +543,30 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
           <button
             onClick={() => !isCollapsed && setAccountExpanded(!accountExpanded)}
             className={`
-              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-zinc-900/20 outline-none transition-colors relative group
+              h-9 w-full flex items-center justify-between px-3 rounded-[6px] text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-white hover:bg-[#131B2E] outline-none transition-colors relative group
               ${isCollapsed ? 'pointer-events-none' : 'cursor-pointer'}
             `}
           >
             <div className="flex items-center gap-3">
-              <CircleUser className="w-[17px] h-[17px] text-[#0EA5E9] shrink-0" />
+              <CircleUser className="w-[17px] h-[17px] text-orange-400 shrink-0" />
               {!isCollapsed && <span>Account</span>}
             </div>
             {!isCollapsed && (
               <ChevronDown
-                className={`w-3.5 h-3.5 text-zinc-550 transition-transform ${
+                className={`w-3.5 h-3.5 text-slate-500 transition-transform ${
                   accountExpanded ? 'rotate-180' : ''
                 }`}
               />
             )}
             {isCollapsed && (
-              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#111F30] text-white text-[11px] font-bold rounded border border-zinc-800 shadow-md opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
+              <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] font-bold rounded border border-[#233252] shadow-xl opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap z-50">
                 Account
               </div>
             )}
           </button>
 
           {!isCollapsed && accountExpanded && (
-            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-zinc-900 ml-[21px]">
+            <div className="flex flex-col gap-0.5 pl-9 mt-1 pr-1 border-l border-[#1E293B] ml-[21px]">
               {accountItems.map((acc) => {
                 const isActive = location.pathname === acc.to;
                 return (
@@ -595,7 +576,7 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
                     onClick={(e) => handleLinkClick(e, acc.to)}
                     className={`
                       h-8 flex items-center text-[11px] font-semibold transition-colors
-                      ${isActive ? 'text-[#0EA5E9]' : 'text-zinc-400 hover:text-white'}
+                      ${isActive ? 'text-orange-400 font-bold' : 'text-slate-400 hover:text-white'}
                     `}
                   >
                     {acc.label}
@@ -608,10 +589,10 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
       </div>
 
       {isCollapsed && (
-        <div className="h-12 border-t border-zinc-900/60 flex items-center justify-center p-2 shrink-0 bg-[#0B1625]/20">
+        <div className="h-12 border-t border-[#1E293B] flex items-center justify-center p-2 shrink-0 bg-[#0E1524]">
           <button
             onClick={() => setIsCollapsed(false)}
-            className="w-8 h-8 rounded-[6px] hover:bg-zinc-900 flex items-center justify-center text-zinc-400 hover:text-white transition-colors outline-none cursor-pointer"
+            className="w-8 h-8 rounded-[6px] hover:bg-[#18233C] flex items-center justify-center text-slate-400 hover:text-white transition-colors outline-none cursor-pointer"
             aria-label="Expand Sidebar"
           >
             <ChevronRight className="w-4 h-4" />
@@ -625,7 +606,7 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
     <>
       <aside
         className={`
-          hidden md:flex flex-col h-full shrink-0 select-none border-r border-zinc-900/60 transition-all duration-200 ease-in-out
+          hidden md:flex flex-col h-full shrink-0 select-none border-r border-[#1E293B] transition-all duration-200 ease-in-out
           ${isCollapsed ? 'w-[72px]' : 'w-[250px]'}
         `}
       >
@@ -636,7 +617,7 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
         <div className="fixed inset-0 z-50 flex md:hidden">
           <div
             onClick={onCloseMobile}
-            className="fixed inset-0 bg-black/40 backdrop-blur-3xs transition-opacity duration-200"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-200"
           />
           <div className="relative flex flex-col w-[250px] max-w-[80vw] h-full shadow-2xl animate-slideRight">
             {sidebarContent}

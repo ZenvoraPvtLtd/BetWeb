@@ -39,9 +39,9 @@ export const SportsFlyout: React.FC<SportsFlyoutProps> = ({ isOpen, onClose, onI
   return (
     <div
       ref={flyoutRef}
-      className="absolute left-[70px] top-0 w-52 bg-zinc-950 border border-zinc-800 rounded-[6px] shadow-lg py-1.5 z-50 text-xs text-zinc-400 select-none max-h-[calc(100vh-120px)] overflow-y-auto"
+      className="absolute left-[70px] top-0 w-52 bg-[#131B2E] border border-[#233252] rounded-[10px] shadow-2xl py-1.5 z-50 text-xs text-slate-300 select-none max-h-[calc(100vh-120px)] overflow-y-auto backdrop-blur-md"
     >
-      <div className="px-3.5 py-1.5 border-b border-zinc-900 text-white font-semibold text-[11px] uppercase tracking-wider mb-1">
+      <div className="px-3.5 py-2 border-b border-[#1E293B] text-white font-semibold text-[11px] uppercase tracking-wider mb-1">
         Sports Exchange
       </div>
       <ul className="flex flex-col gap-0.5">
@@ -57,11 +57,11 @@ export const SportsFlyout: React.FC<SportsFlyoutProps> = ({ isOpen, onClose, onI
                   if (onItemClick) onItemClick();
                 }}
                 className={`
-                  w-full px-3.5 py-2 hover:bg-zinc-900/60 hover:text-white transition-colors flex items-center gap-2.5 cursor-pointer
-                  ${isActive ? 'bg-zinc-900/40 text-indigo-400 font-semibold' : ''}
+                  w-full px-3.5 py-2 hover:bg-[#18233C] hover:text-white transition-colors flex items-center gap-2.5 cursor-pointer
+                  ${isActive ? 'bg-orange-500/15 text-orange-400 font-semibold' : 'text-slate-300'}
                 `}
               >
-                <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-indigo-400' : 'text-zinc-500'}`} />
+                <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-orange-400' : 'text-slate-400'}`} />
                 <span>{sport.name}</span>
               </Link>
             </li>

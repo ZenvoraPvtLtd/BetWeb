@@ -20,21 +20,21 @@ export const ReportsHeader: React.FC<ReportsHeaderProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-3 select-none text-left">
+    <div className="flex flex-col gap-3 select-none text-left font-sans">
       <Breadcrumbs items={breadcrumbs} />
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-zinc-900">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-[#1E293B]">
         <div>
-          <h2 className="text-xl font-extrabold text-white uppercase tracking-wider">{title}</h2>
-          <p className="text-xs text-zinc-450 mt-1 font-semibold">{description}</p>
+          <h2 className="text-xl font-extrabold text-slate-100 uppercase tracking-wider font-mono">{title}</h2>
+          <p className="text-xs text-slate-400 mt-1 font-semibold">{description}</p>
         </div>
 
         {showExport && (
           <button
             onClick={handleExport}
-            className="flex items-center gap-1.5 px-3 h-9 rounded-[8px] bg-[#111F30] border border-slate-700/15 hover:bg-[#16283D] text-xs font-bold text-white transition-colors cursor-pointer outline-none self-start sm:self-auto"
+            className="flex items-center gap-1.5 px-3.5 h-9 rounded-[8px] bg-[#18233C] border border-[#2B3C60] hover:bg-[#223050] text-xs font-bold text-slate-100 transition-colors cursor-pointer outline-none self-start sm:self-auto font-mono shadow-sm"
           >
-            <Download className="w-3.5 h-3.5 text-[#0EA5E9]" />
+            <Download className="w-3.5 h-3.5 text-orange-400" />
             <span>Export CSV</span>
           </button>
         )}

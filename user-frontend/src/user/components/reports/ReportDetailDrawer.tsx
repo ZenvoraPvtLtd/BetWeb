@@ -9,9 +9,9 @@ interface DetailPairProps {
 }
 
 const DetailPair: React.FC<DetailPairProps> = ({ label, value, color }) => (
-  <div className="flex items-center justify-between py-2.5 border-b border-zinc-900 last:border-0">
-    <span className="text-[10px] font-bold uppercase tracking-wider text-[#94A3B8]">{label}</span>
-    <span className={`text-xs font-bold ${color || 'text-white'}`}>{value}</span>
+  <div className="flex items-center justify-between py-2.5 border-b border-[#1E293B] last:border-0 font-mono">
+    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">{label}</span>
+    <span className={`text-xs font-bold ${color || 'text-slate-100'}`}>{value}</span>
   </div>
 );
 
@@ -46,16 +46,16 @@ export const ReportDetailDrawer: React.FC<ReportDetailDrawerProps> = ({
   };
 
   const drawerBody = (
-    <div className="flex-1 flex flex-col h-full bg-[#111F30] text-white select-none text-left">
+    <div className="flex-1 flex flex-col h-full bg-[#131B2E] text-white select-none text-left font-sans">
       {/* Drawer Header */}
-      <div className="bg-[#0D1B2A] h-14 border-b border-zinc-800/60 px-5 flex items-center justify-between shrink-0">
+      <div className="bg-[#0E1524] h-14 border-b border-[#1E293B] px-5 flex items-center justify-between shrink-0 font-mono">
         <div className="flex items-center gap-2">
-          <ClipboardCheck className="w-4 h-4 text-[#0EA5E9]" />
-          <h4 className="text-xs font-extrabold uppercase tracking-widest text-white">Details Log</h4>
+          <ClipboardCheck className="w-4 h-4 text-orange-400" />
+          <h4 className="text-xs font-extrabold uppercase tracking-widest text-slate-100">Details Log</h4>
         </div>
         <button
           onClick={onClose}
-          className="p-1 hover:bg-zinc-800 rounded text-zinc-400 hover:text-white transition-colors cursor-pointer outline-none"
+          className="p-1 hover:bg-[#18233C] rounded text-slate-400 hover:text-white transition-colors cursor-pointer outline-none"
         >
           <X className="w-4.5 h-4.5" />
         </button>
@@ -64,21 +64,21 @@ export const ReportDetailDrawer: React.FC<ReportDetailDrawerProps> = ({
       {/* Details list */}
       <div className="flex-1 overflow-y-auto p-5 flex flex-col gap-4 scrollbar-thin">
         {/* Badge details */}
-        <div className="p-4 bg-zinc-950/20 border border-zinc-900 rounded-[10px] flex items-center justify-between">
-          <span className="text-[10px] font-extrabold tracking-widest uppercase text-zinc-500">
+        <div className="p-4 bg-[#090E17] border border-[#1E293B] rounded-[10px] flex items-center justify-between font-mono">
+          <span className="text-[10px] font-extrabold tracking-widest uppercase text-slate-400">
             ID: #{data.id}
           </span>
           <StatusBadge status={data.status || 'Settled'} />
         </div>
 
         {/* Main detail properties */}
-        <div className="bg-zinc-950/10 border border-zinc-900 rounded-[12px] px-4 py-1.5">
+        <div className="bg-[#090E17] border border-[#1E293B] rounded-[12px] px-4 py-1.5">
           <DetailPair label="Fixture / Title" value={data.matchName || data.gameName || 'System Statement'} />
           {data.marketName && <DetailPair label="Bet Market" value={data.marketName} />}
           {data.selectionName && <DetailPair label="Outcome Pick" value={data.selectionName} />}
           {data.odds && <DetailPair label="Bet Rate / Odds" value={data.odds} />}
           {data.stake !== undefined && (
-            <DetailPair label="Staked Amount" value={`₹${data.stake.toLocaleString()}`} color="text-[#0EA5E9]" />
+            <DetailPair label="Staked Amount" value={`₹${data.stake.toLocaleString()}`} color="text-orange-400" />
           )}
           {data.potentialReturn !== undefined && (
             <DetailPair label="Pot. Return" value={`₹${data.potentialReturn.toLocaleString()}`} />
@@ -87,39 +87,39 @@ export const ReportDetailDrawer: React.FC<ReportDetailDrawerProps> = ({
             <DetailPair
               label="Profit / Loss"
               value={formatPL(data.profitLoss)}
-              color={data.profitLoss >= 0 ? 'text-[#22C55E]' : 'text-[#F43F5E]'}
+              color={data.profitLoss >= 0 ? 'text-emerald-400' : 'text-rose-400'}
             />
           )}
           {data.debit !== undefined && (
-            <DetailPair label="Debited Out" value={`-₹${data.debit.toLocaleString()}`} color="text-[#F43F5E]" />
+            <DetailPair label="Debited Out" value={`-₹${data.debit.toLocaleString()}`} color="text-rose-400" />
           )}
           {data.credit !== undefined && (
-            <DetailPair label="Credited In" value={`+₹${data.credit.toLocaleString()}`} color="text-[#22C55E]" />
+            <DetailPair label="Credited In" value={`+₹${data.credit.toLocaleString()}`} color="text-emerald-400" />
           )}
           {data.balance !== undefined && (
-            <DetailPair label="Running Balance" value={`₹${data.balance.toLocaleString()}`} color="text-emerald-400" />
+            <DetailPair label="Running Balance" value={`₹${data.balance.toLocaleString()}`} color="text-amber-400" />
           )}
-          {data.deletedBy && <DetailPair label="Cancelled By" value={data.deletedBy} color="text-rose-450" />}
+          {data.deletedBy && <DetailPair label="Cancelled By" value={data.deletedBy} color="text-rose-300" />}
           {data.reason && <DetailPair label="Cancel Reason" value={data.reason} color="text-rose-300" />}
         </div>
 
         {/* Time stamps */}
-        <div className="bg-zinc-950/10 border border-zinc-900 rounded-[12px] p-4 flex flex-col gap-2">
+        <div className="bg-[#090E17] border border-[#1E293B] rounded-[12px] p-4 flex flex-col gap-2 font-mono">
           {data.placedAt && (
-            <div className="flex items-center gap-2 text-[10px] text-zinc-500 font-bold uppercase">
+            <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold uppercase">
               <Clock className="w-3.5 h-3.5" />
               <span>Placed: {data.placedAt}</span>
             </div>
           )}
           {data.settledAt && (
-            <div className="flex items-center gap-2 text-[10px] text-zinc-500 font-bold uppercase">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+            <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold uppercase">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               <span>Settled: {data.settledAt}</span>
             </div>
           )}
           {data.deletedAt && (
-            <div className="flex items-center gap-2 text-[10px] text-zinc-500 font-bold uppercase">
-              <ShieldCheck className="w-3.5 h-3.5 text-rose-500" />
+            <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold uppercase">
+              <ShieldCheck className="w-3.5 h-3.5 text-rose-400" />
               <span>Cancelled: {data.deletedAt}</span>
             </div>
           )}
@@ -131,7 +131,7 @@ export const ReportDetailDrawer: React.FC<ReportDetailDrawerProps> = ({
   return (
     <div className="fixed inset-0 z-[1000] flex justify-end">
       {/* Backdrop */}
-      <div onClick={onClose} className="fixed inset-0 bg-black/40 backdrop-blur-3xs" />
+      <div onClick={onClose} className="fixed inset-0 bg-black/60 backdrop-blur-xs" />
 
       {/* Desktop view drawer */}
       <div className="relative w-[380px] max-w-full h-full shadow-2xl animate-slideLeft z-50">

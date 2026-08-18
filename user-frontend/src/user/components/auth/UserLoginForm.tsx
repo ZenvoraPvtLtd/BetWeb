@@ -47,7 +47,7 @@ export const UserLoginForm: React.FC = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6">
+    <div className="w-full flex flex-col gap-6 font-mono">
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         {error && <ErrorMessage message={error} />}
 
@@ -76,14 +76,14 @@ export const UserLoginForm: React.FC = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="h-[52px] w-full bg-[#0EA5E9] hover:bg-[#0284c7] active:bg-[#0369a1] text-white text-sm font-semibold rounded-[10px] transition-colors flex items-center justify-center gap-2 outline-none focus:ring-2 focus:ring-[#0EA5E9]/40 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="h-[52px] w-full bg-gradient-to-r from-[#FF5722] to-[#F97316] hover:from-[#F4511E] hover:to-[#EA580C] text-white text-sm font-bold rounded-[10px] transition-all flex items-center justify-center gap-2 outline-none focus:ring-2 focus:ring-orange-500/40 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-orange-950/40 uppercase tracking-wider"
         >
           {isLoading ? (
             <span>Loading...</span>
           ) : (
             <>
-              <span>Login</span>
-              <ArrowRight className="w-4 h-4 stroke-[2.2]" />
+              <span>Login to Account</span>
+              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </>
           )}
         </button>
@@ -93,14 +93,14 @@ export const UserLoginForm: React.FC = () => {
       <button
         onClick={handleDemoLogin}
         disabled={isLoading}
-        className="h-[52px] w-full bg-white border border-[#E2E8F0] hover:bg-zinc-50 active:bg-zinc-100 text-zinc-700 text-sm font-semibold rounded-[10px] transition-all flex items-center justify-center gap-2 outline-none focus:ring-2 focus:ring-zinc-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        className="h-[52px] w-full bg-[#18233C] border border-[#2B3C60] hover:bg-[#223050] hover:border-orange-500/40 text-slate-100 text-sm font-bold rounded-[10px] transition-all flex items-center justify-center gap-2 outline-none focus:ring-2 focus:ring-orange-500/20 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider shadow-sm"
       >
         <span>Login with Demo ID</span>
       </button>
 
       {/* Security alert footnote */}
-      <div className="flex items-center justify-center gap-2 text-zinc-500 text-[11px] font-medium mt-1 select-none">
-        <ShieldCheck className="w-4 h-4 text-[#0EA5E9] stroke-[2.2]" />
+      <div className="flex items-center justify-center gap-2 text-slate-400 text-[11px] font-medium mt-1 select-none font-sans">
+        <ShieldCheck className="w-4 h-4 text-emerald-400 stroke-[2.2]" />
         <span>Secure login. Your account credentials are protected.</span>
       </div>
     </div>

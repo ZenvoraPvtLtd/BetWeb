@@ -13,8 +13,8 @@ export const Logo: React.FC<LogoProps> = ({
   theme = 'light',
   showLeftSeparator = false,
 }) => {
-  const fillColor = theme === 'light' ? 'white' : '#18181B';
-  const playColor = '#6366F1'; // Accent indigo play button arrow
+  const fillColor = theme === 'light' ? '#F8FAFC' : '#18181B';
+  const playColor = '#FF5722'; // Sunset Orange Play Button Accent
 
   const logoSvg = (
     <svg
@@ -65,7 +65,7 @@ export const Logo: React.FC<LogoProps> = ({
   if (showLeftSeparator) {
     return (
       <div className={`flex items-center gap-3.5 select-none ${className}`}>
-        <div className={`w-[2.5px] h-[34px] ${theme === 'light' ? 'bg-white/50' : 'bg-zinc-300'}`} />
+        <div className={`w-[2.5px] h-[34px] ${theme === 'light' ? 'bg-orange-500/50' : 'bg-slate-700'}`} />
         {logoSvg}
       </div>
     );

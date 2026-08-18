@@ -33,22 +33,22 @@ export const Teenpatti20x20Page: React.FC = () => {
     <SuperAdminLayout>
       <div className="flex flex-col text-left select-none animate-fadeIn">
         {/* Breadcrumb Path */}
-        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-5">
-          <Link to="/admin/market-analysis" className="hover:text-zinc-955 transition-colors">
+        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-5">
+          <Link to="/admin/market-analysis" className="hover:text-orange-400 transition-colors">
             Super Admin
           </Link>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-400">Live Casino</span>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-950">20-20 Teenpatti</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-slate-500">Live Casino</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-orange-400">20-20 Teenpatti</span>
         </nav>
 
         {/* Page Title */}
         <div className="mb-6">
-          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-955 leading-none">
+          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100 leading-none">
             20-20 Teenpatti
           </h1>
-          <p className="text-xs text-zinc-550 mt-1.5">
+          <p className="text-xs text-slate-400 mt-1.5">
             Operational dashboard and betting ledger for the 20-20 Teenpatti live casino table.
           </p>
         </div>
@@ -56,7 +56,7 @@ export const Teenpatti20x20Page: React.FC = () => {
         {/* Column Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           {/* Main game viewport block (2/3 width) */}
-          <div className="lg:col-span-2 flex flex-col">
+          <div className="lg:col-span-2 flex flex-col shadow-xl">
             <TeenpattiGameHeader />
             <TeenpattiGameStage />
             <TeenpattiControls />

@@ -24,29 +24,29 @@ export const SportPage: React.FC = () => {
 
         {/* Reusable Header */}
         <div className="mb-6 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center border border-zinc-200/60">
-            <Icon className="w-4.5 h-4.5 text-zinc-900" />
+          <div className="w-10 h-10 rounded-full bg-orange-500/15 flex items-center justify-center border border-orange-500/30">
+            <Icon className="w-5 h-5 text-orange-400" />
           </div>
           <div>
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 leading-none">
+            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100 leading-none">
               {sport.name}
             </h1>
-            <p className="text-xs text-zinc-500 mt-1.5">
+            <p className="text-xs text-slate-400 mt-1.5">
               Live odds, card books, and limit configurations for {sport.name}.
             </p>
           </div>
         </div>
 
-        {/* Premium Empty State Workspace */}
-        <div className="flex flex-col items-center justify-center min-h-[350px] text-center p-6 md:p-8 bg-white border border-zinc-200 rounded-[8px] shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-zinc-50 flex items-center justify-center border border-zinc-200/60 mb-5">
-            <Icon className="w-5 h-5 text-zinc-400" />
+        {/* Workspace Card */}
+        <div className="flex flex-col items-center justify-center min-h-[350px] text-center p-6 md:p-8 bg-[#131B2E] border border-[#233252] rounded-[12px] shadow-2xl">
+          <div className="w-14 h-14 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/30 mb-5">
+            <Icon className="w-6 h-6 text-orange-400" />
           </div>
 
-          <h2 className="text-base font-semibold text-zinc-900 mb-1.5">
+          <h2 className="text-base font-bold text-slate-100 mb-1.5">
             {sport.name} Markets Panel
           </h2>
-          <p className="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-sm">
+          <p className="text-xs md:text-sm text-slate-400 leading-relaxed max-w-sm">
             Market and event management for {sport.name} will appear here. Full configuration options are pending visual layout specifications.
           </p>
         </div>

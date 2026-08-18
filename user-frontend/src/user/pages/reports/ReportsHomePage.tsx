@@ -6,10 +6,10 @@ import { ArrowRight, Receipt, FileText, PlayCircle, Trash2, ShieldCheck, Trendin
 
 export const ReportsHomePage: React.FC = () => {
   const summaryCards = [
-    { label: 'Total Bets Logged', value: 12, color: 'text-white' },
-    { label: 'Active Open Bets', value: 2, color: 'text-[#0EA5E9]' },
+    { label: 'Total Bets Logged', value: 12, color: 'text-slate-100' },
+    { label: 'Active Open Bets', value: 2, color: 'text-orange-400' },
     { label: 'Settled Outcomes', value: 8, color: 'text-emerald-400' },
-    { label: 'Total Staked Points', value: '₹15,400.00', color: 'text-white' },
+    { label: 'Total Staked Points', value: '₹15,400.00', color: 'text-slate-100' },
   ];
 
   const quickLinks = [
@@ -27,7 +27,7 @@ export const ReportsHomePage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <ReportsHeader
           title="Account Activity Reports"
           description="Access account summaries, profit ledgers, statement balances, and mock transaction files."
@@ -38,7 +38,7 @@ export const ReportsHomePage: React.FC = () => {
         <ReportSummaryCards cards={summaryCards} />
 
         <div className="flex flex-col gap-3">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-[#94A3B8] mb-1">
+          <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 font-mono">
             Reports Directory
           </h3>
 
@@ -49,19 +49,19 @@ export const ReportsHomePage: React.FC = () => {
                 <a
                   key={link.title}
                   href={link.to}
-                  className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-5 flex flex-col justify-between hover:bg-[#16283D] transition-colors shadow-xs group"
+                  className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-5 flex flex-col justify-between hover:bg-[#18233C] hover:border-orange-500/40 transition-all shadow-md group"
                 >
                   <div className="flex items-start justify-between mb-3">
-                    <div className="w-10 h-10 rounded-[8px] bg-zinc-900/30 border border-zinc-800/80 flex items-center justify-center text-zinc-400 group-hover:text-white transition-colors">
-                      <Icon className="w-4.5 h-4.5 text-[#0EA5E9]" />
+                    <div className="w-10 h-10 rounded-[8px] bg-[#090E17] border border-[#233252] flex items-center justify-center text-slate-400 group-hover:text-orange-400 transition-colors">
+                      <Icon className="w-4.5 h-4.5 text-orange-400" />
                     </div>
-                    <ArrowRight className="w-4 h-4 text-zinc-650 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all" />
                   </div>
                   <div className="flex flex-col">
-                    <h4 className="text-sm font-extrabold text-white uppercase tracking-wide group-hover:text-[#0EA5E9] transition-colors">
+                    <h4 className="text-sm font-extrabold text-slate-100 uppercase tracking-wide group-hover:text-orange-400 transition-colors font-mono">
                       {link.title}
                     </h4>
-                    <p className="text-[11px] text-zinc-450 mt-1.5 leading-relaxed font-semibold">
+                    <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed font-medium">
                       {link.description}
                     </p>
                   </div>

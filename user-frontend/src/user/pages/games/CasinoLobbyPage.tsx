@@ -77,23 +77,23 @@ export const CasinoLobbyPage: React.FC<CasinoLobbyPageProps> = ({ type }) => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <Breadcrumbs items={breadcrumbItems} />
 
-        <div className="flex items-center gap-2 pb-4 border-b border-zinc-900">
-          <Sparkles className="w-5 h-5 text-[#38BDF8]" />
+        <div className="flex items-center gap-2 pb-4 border-b border-[#1E293B]">
+          <Sparkles className="w-5 h-5 text-orange-400" />
           <div>
-            <h2 className="text-xl font-extrabold text-white uppercase tracking-wider">
+            <h2 className="text-xl font-extrabold text-slate-100 uppercase tracking-wider font-mono">
               {title}
             </h2>
-            <p className="text-xs text-zinc-450 mt-0.5 font-semibold">
+            <p className="text-xs text-slate-400 mt-0.5 font-semibold">
               {desc}
             </p>
           </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-6 items-start">
-          <div className="w-full lg:w-56 bg-[#0B1320] border border-slate-700/10 rounded-[12px] p-2.5 flex flex-row lg:flex-col gap-1 overflow-x-auto scrollbar-none shrink-0">
+          <div className="w-full lg:w-56 bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-2.5 flex flex-row lg:flex-col gap-1 overflow-x-auto scrollbar-none shrink-0 shadow-md">
             {getSidebarProviders().map((prov) => {
               const Icon = prov.icon;
               const isActive = activeProvider === prov.id;
@@ -102,11 +102,11 @@ export const CasinoLobbyPage: React.FC<CasinoLobbyPageProps> = ({ type }) => {
                   key={prov.id}
                   onClick={() => handleProviderChange(prov.id)}
                   className={`
-                    flex items-center gap-2.5 px-3.5 py-2.5 rounded-[8px] text-[11px] font-bold uppercase tracking-wider transition-all outline-none shrink-0 cursor-pointer text-left w-full
+                    flex items-center gap-2.5 px-3.5 py-2.5 rounded-[8px] text-[11px] font-bold uppercase tracking-wider transition-all outline-none shrink-0 cursor-pointer text-left w-full font-mono
                     ${
                       isActive
-                        ? 'bg-[#0EA5E9] text-white shadow-md shadow-[#0EA5E9]/15'
-                        : 'text-zinc-455 hover:text-white hover:bg-zinc-900/40'
+                        ? 'bg-gradient-to-r from-[#FF5722] to-[#F97316] text-white shadow-md shadow-orange-950/40'
+                        : 'text-slate-400 hover:text-white hover:bg-[#18233C]'
                     }
                   `}
                 >
@@ -119,8 +119,8 @@ export const CasinoLobbyPage: React.FC<CasinoLobbyPageProps> = ({ type }) => {
 
           <div className="flex-1 w-full flex flex-col gap-6">
             {filteredGames.length === 0 ? (
-              <div className="py-20 text-center flex flex-col items-center justify-center gap-2 border border-slate-700/10 rounded-[12px] bg-[#0B1320]">
-                <span className="text-xs font-bold text-zinc-550 uppercase tracking-widest">No Games Available</span>
+              <div className="py-20 text-center flex flex-col items-center justify-center gap-2 border border-[#1E293B] rounded-[12px] bg-[#131B2E]">
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest font-mono">No Games Available</span>
               </div>
             ) : (
               <>
@@ -139,21 +139,21 @@ export const CasinoLobbyPage: React.FC<CasinoLobbyPageProps> = ({ type }) => {
                   })}
                 </div>
 
-                <div className="flex flex-col items-center gap-3.5 mt-4 p-4 border border-white/5 rounded-[12px] bg-[#0B1320]/40 max-w-sm mx-auto">
-                  <div className="w-full h-1 bg-zinc-900 rounded-full overflow-hidden">
+                <div className="flex flex-col items-center gap-3.5 mt-4 p-4 border border-[#1E293B] rounded-[12px] bg-[#131B2E]/60 max-w-sm mx-auto shadow-md">
+                  <div className="w-full h-1.5 bg-[#090E17] rounded-full overflow-hidden">
                     <div
                       style={{ width: `${(displayedGames.length / filteredGames.length) * 100}%` }}
-                      className="h-full bg-[#0EA5E9] transition-all duration-300"
+                      className="h-full bg-gradient-to-r from-[#FF5722] to-[#F97316] transition-all duration-300"
                     />
                   </div>
-                  <span className="text-[10px] font-bold text-zinc-550 uppercase tracking-wider">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">
                     Showing {displayedGames.length} of {filteredGames.length} Games
                   </span>
 
                   {visibleCount < filteredGames.length && (
                     <button
                       onClick={handleLoadMore}
-                      className="px-6 py-2 rounded-[8px] bg-zinc-900 hover:bg-zinc-850 border border-slate-700/20 hover:border-slate-700/50 text-[#38BDF8] text-[10px] font-bold uppercase tracking-widest transition-all outline-none cursor-pointer flex items-center gap-1.5"
+                      className="px-6 py-2 rounded-[8px] bg-[#18233C] hover:bg-[#223050] border border-[#2B3C60] hover:border-orange-500/40 text-orange-400 text-[10px] font-bold uppercase tracking-widest transition-all outline-none cursor-pointer flex items-center gap-1.5 font-mono shadow-sm"
                     >
                       <span>Load More Games</span>
                       <ChevronDown className="w-3.5 h-3.5" />

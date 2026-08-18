@@ -21,7 +21,7 @@ export const SettingsHomePage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Account Settings & Preferences"
           description="Configure your sports bookmaker markets, view inbox announcements, select transaction wire gateways, and adjust layout features."
@@ -31,7 +31,7 @@ export const SettingsHomePage: React.FC = () => {
         {isLoading ? (
           <SettingsSkeleton />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 font-mono">
             <SettingsCard
               title="Block Markets"
               description="Manage and filter out specific betting markets or odds categories from showing up on match panels."
@@ -47,7 +47,7 @@ export const SettingsHomePage: React.FC = () => {
                 icon={Mail}
               />
               {unreadMessagesCount > 0 && (
-                <span className="absolute top-4 right-4 bg-rose-500 border border-zinc-950 text-white text-[9px] font-bold px-2 py-0.5 rounded-full animate-bounce">
+                <span className="absolute top-4 right-4 bg-red-500 border border-[#0B0F19] text-white text-[9px] font-bold px-2 py-0.5 rounded-full animate-bounce">
                   {unreadMessagesCount} Unread
                 </span>
               )}

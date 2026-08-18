@@ -51,22 +51,22 @@ export const GameReports: React.FC = () => {
     <SuperAdminLayout>
       <div className="flex flex-col text-left select-none animate-fadeIn">
         {/* Breadcrumb path */}
-        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-5">
-          <Link to="/admin/market-analysis" className="hover:text-zinc-955 transition-colors">
+        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-5">
+          <Link to="/admin/market-analysis" className="hover:text-orange-400 transition-colors">
             Super Admin
           </Link>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-400">Reports</span>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-955">Game Reports</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-slate-500">Reports</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-orange-400">Game Reports</span>
         </nav>
 
         {/* Page Title */}
         <div className="mb-6">
-          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-955 leading-none">
+          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100 leading-none">
             Game Reports
           </h1>
-          <p className="text-xs text-zinc-550 mt-1.5">
+          <p className="text-xs text-slate-400 mt-1.5">
             Summarized ledger exposure amounts grouped by game titles and betting channels.
           </p>
         </div>

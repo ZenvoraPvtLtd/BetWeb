@@ -39,27 +39,27 @@ export const SecurityAuthPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Security Auth Verification"
           description="Protect your account settlements by enabling two-factor verification methods."
           breadcrumbs={breadcrumbs}
         />
 
-        <div className="flex flex-col gap-6 max-w-md w-full">
-          <div className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-6 text-left flex flex-col gap-4">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-[#94A3B8] flex items-center gap-2 border-b border-zinc-900 pb-3">
-              <ShieldCheck className="w-4 h-4 text-[#0EA5E9]" />
+        <div className="flex flex-col gap-6 max-w-md w-full font-mono">
+          <div className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-6 text-left flex flex-col gap-4 shadow-md">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-300 flex items-center gap-2 border-b border-[#1E293B] pb-3">
+              <ShieldCheck className="w-4 h-4 text-orange-400" />
               <span>Status Information</span>
             </h3>
 
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Authentication status</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Authentication status</span>
                 <span className={`text-[9px] font-extrabold uppercase mt-1.5 px-2 py-0.5 border rounded-full self-start ${
                   authEnabled
-                    ? 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20'
-                    : 'text-rose-500 bg-rose-500/10 border-rose-500/20'
+                    ? 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30'
+                    : 'text-rose-400 bg-rose-500/15 border-rose-500/30'
                 }`}>
                   {authEnabled ? 'Enabled' : 'Not Enabled'}
                 </span>
@@ -68,11 +68,11 @@ export const SecurityAuthPage: React.FC = () => {
               <button
                 onClick={handleToggleAuth}
                 className={`
-                  px-4 h-9 rounded-[8px] text-[10px] font-bold uppercase tracking-wider transition-colors outline-none cursor-pointer border
+                  px-4 h-9 rounded-[8px] text-[10px] font-bold uppercase tracking-wider transition-all outline-none cursor-pointer border shadow-sm
                   ${
                     authEnabled
-                      ? 'bg-rose-500/10 hover:bg-rose-500/15 border-rose-500/20 text-rose-500'
-                      : 'bg-[#0EA5E9] hover:bg-[#0284c7] border-[#0EA5E9] text-white'
+                      ? 'bg-rose-500/15 hover:bg-rose-500/25 border-rose-500/30 text-rose-400'
+                      : 'bg-gradient-to-r from-[#FF5722] to-[#F97316] hover:from-[#F4511E] hover:to-[#EA580C] border-orange-500 text-white'
                   }
                 `}
               >
@@ -81,9 +81,9 @@ export const SecurityAuthPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-6 text-left flex flex-col gap-4">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-[#94A3B8] flex items-center gap-2 border-b border-zinc-900 pb-3">
-              <ShieldAlert className="w-4 h-4 text-[#0EA5E9]" />
+          <div className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-6 text-left flex flex-col gap-4 shadow-md">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-300 flex items-center gap-2 border-b border-[#1E293B] pb-3">
+              <ShieldAlert className="w-4 h-4 text-orange-400" />
               <span>Verification Method</span>
             </h3>
 
@@ -100,13 +100,13 @@ export const SecurityAuthPage: React.FC = () => {
                     w-full p-3.5 rounded-[8px] border text-left flex flex-col gap-1 outline-none transition-all cursor-pointer
                     ${
                       method === m.id
-                        ? 'bg-[#0ea5e9]/5 border-[#0EA5E9]'
-                        : 'bg-zinc-950/20 border-zinc-800/80 hover:bg-zinc-900/10'
+                        ? 'bg-orange-500/10 border-orange-500/60 ring-1 ring-orange-500/20'
+                        : 'bg-[#090E17] border-[#233252] hover:bg-[#18233C]'
                     }
                   `}
                 >
-                  <span className="text-[11px] font-bold text-white uppercase">{m.label}</span>
-                  <span className="text-[9px] text-zinc-550 leading-normal font-semibold">{m.desc}</span>
+                  <span className="text-[11px] font-bold text-slate-100 uppercase">{m.label}</span>
+                  <span className="text-[9px] text-slate-400 leading-normal font-semibold">{m.desc}</span>
                 </button>
               ))}
             </div>

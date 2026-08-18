@@ -7,8 +7,8 @@ interface SportStatusBadgeProps {
 export const SportStatusBadge: React.FC<SportStatusBadgeProps> = ({ status }) => {
   if (status === 'Live') {
     return (
-      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-500/10 border border-red-500/20 text-red-500 animate-pulse">
-        <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-500/15 border border-red-500/30 text-red-400 animate-pulse">
+        <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
         Live Demo
       </span>
     );
@@ -16,14 +16,14 @@ export const SportStatusBadge: React.FC<SportStatusBadgeProps> = ({ status }) =>
 
   if (status === 'Completed') {
     return (
-      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-zinc-500/10 border border-zinc-500/20 text-zinc-400">
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-800 border border-slate-700 text-slate-400">
         Completed
       </span>
     );
   }
 
   return (
-    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-500/15 border border-orange-500/30 text-orange-400">
       Upcoming
     </span>
   );

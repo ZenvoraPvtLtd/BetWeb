@@ -39,14 +39,14 @@ export const SuperAdminSidebar: React.FC<SuperAdminSidebarProps> = ({
   return (
     <aside
       className={`
-        bg-[#0A0A0C] border-r border-zinc-900 text-white flex flex-col h-full shrink-0
+        bg-[#090D16] border-r border-[#1E293B] text-slate-200 flex flex-col h-full shrink-0
         transition-all duration-200 ease-in-out select-none relative
         ${isCollapsed ? 'w-[var(--sidebar-collapsed-width)]' : 'w-[var(--sidebar-expanded-width)]'}
         ${className}
       `}
     >
       {/* Sidebar Header Logo Panel */}
-      <div className="flex items-center justify-between px-4 h-[56px] border-b border-zinc-900 shrink-0">
+      <div className="flex items-center justify-between px-4 h-[56px] border-b border-[#1E293B] shrink-0 bg-[#090D16]">
         <div className="flex items-center shrink-0">
           <Logo isCompact={isCollapsed} theme="light" width={110} />
         </div>
@@ -54,7 +54,7 @@ export const SuperAdminSidebar: React.FC<SuperAdminSidebarProps> = ({
         {!isCollapsed && !onItemClick && (
           <button
             onClick={() => setIsCollapsed(true)}
-            className="p-1 hover:bg-zinc-800 rounded text-zinc-400 hover:text-white transition-colors focus:outline-none cursor-pointer hidden md:block"
+            className="p-1.5 hover:bg-[#18233C] rounded-lg text-slate-400 hover:text-white transition-colors focus:outline-none cursor-pointer hidden md:block"
             aria-label="Collapse sidebar"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -64,7 +64,7 @@ export const SuperAdminSidebar: React.FC<SuperAdminSidebarProps> = ({
         {onItemClick && (
           <button
             onClick={onItemClick}
-            className="p-1 hover:bg-zinc-800 rounded text-zinc-400 hover:text-white transition-colors focus:outline-none cursor-pointer md:hidden"
+            className="p-1.5 hover:bg-[#18233C] rounded-lg text-slate-400 hover:text-white transition-colors focus:outline-none cursor-pointer md:hidden"
             aria-label="Close menu"
           >
             <X className="w-4 h-4" />
@@ -74,7 +74,7 @@ export const SuperAdminSidebar: React.FC<SuperAdminSidebarProps> = ({
         {isCollapsed && (
           <button
             onClick={() => setIsCollapsed(false)}
-            className="p-1 hover:bg-zinc-850 rounded text-zinc-400 hover:text-white transition-colors focus:outline-none cursor-pointer hidden md:block absolute right-[-14px] top-[15px] bg-[#0A0A0C] border border-zinc-800 rounded-full z-40 w-7 h-7 flex items-center justify-center shadow-md"
+            className="p-1 hover:bg-[#18233C] rounded text-slate-400 hover:text-white transition-colors focus:outline-none cursor-pointer hidden md:block absolute right-[-14px] top-[15px] bg-[#0E1524] border border-[#1E293B] rounded-full z-40 w-7 h-7 flex items-center justify-center shadow-lg"
             aria-label="Expand sidebar"
           >
             <ChevronRight className="w-4 h-4" />
@@ -112,7 +112,7 @@ export const SuperAdminSidebar: React.FC<SuperAdminSidebarProps> = ({
         {hasPermission('sports.view') && (
           <>
             {/* Separator Divider line */}
-            <div className="h-[1px] bg-zinc-900/60 my-3.5 mx-2 shrink-0" />
+            <div className="h-[1px] bg-[#1E293B] my-3.5 mx-2 shrink-0" />
 
             {/* Sports Submenu */}
             {isCollapsed ? (
@@ -121,14 +121,14 @@ export const SuperAdminSidebar: React.FC<SuperAdminSidebarProps> = ({
                 <button
                   onClick={() => setIsSportsFlyoutOpen(!isSportsFlyoutOpen)}
                   className={`
-                    w-full h-11 flex items-center justify-center rounded-[6px] text-xs font-semibold
+                    w-full h-11 flex items-center justify-center rounded-[8px] text-xs font-semibold
                     transition-all duration-150 relative group outline-none cursor-pointer
                     ${
                       isSportActive
-                        ? 'bg-zinc-800 text-white font-semibold shadow-sm'
-                        : 'text-zinc-400 hover:text-white hover:bg-zinc-900/60'
+                        ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30 font-semibold shadow-sm'
+                        : 'text-slate-400 hover:text-white hover:bg-[#131B2E]'
                     }
-                    focus-visible:ring-1 focus-visible:ring-zinc-700
+                    focus-visible:ring-1 focus-visible:ring-orange-500
                   `}
                   aria-label="Sports Menu"
                   aria-haspopup="true"
@@ -136,17 +136,17 @@ export const SuperAdminSidebar: React.FC<SuperAdminSidebarProps> = ({
                 >
                   <Trophy
                     className={`w-[19px] h-[19px] shrink-0 transition-colors ${
-                      isSportActive ? 'text-indigo-400' : 'text-zinc-500 group-hover:text-zinc-300'
+                      isSportActive ? 'text-orange-400' : 'text-slate-400 group-hover:text-orange-300'
                     }`}
                   />
                   {isSportActive && (
-                    <span className="absolute right-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                    <span className="absolute right-2.5 w-1.5 h-1.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500" />
                   )}
                 </button>
 
                 {/* Hover Tooltip when Collapsed */}
                 {!isSportsFlyoutOpen && (
-                  <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-zinc-950 text-white text-[11px] rounded-[4px] border border-zinc-800 shadow-md font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap z-50">
+                  <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] rounded-[6px] border border-[#233252] shadow-xl font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap z-50">
                     Sports Menu
                   </div>
                 )}

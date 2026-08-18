@@ -8,17 +8,17 @@ interface MyBetPanelProps {
 
 export const MyBetPanel: React.FC<MyBetPanelProps> = ({ bets }) => {
   return (
-    <div className="bg-white border border-zinc-200 rounded-[8px] p-4 shadow-sm select-none text-left flex flex-col gap-3">
+    <div className="bg-[#131B2E] border border-[#1E293B] rounded-[10px] p-4 shadow-xl select-none text-left flex flex-col gap-3">
       {/* Panel Header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-900 font-mono">
-          My Bet
+        <h3 className="text-xs font-bold uppercase tracking-wider text-slate-100 font-mono">
+          My Bets
         </h3>
         
         {/* View All accessible action */}
         <button
           onClick={() => alert('View All bets details history panel is pending confirmation.')}
-          className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 hover:text-indigo-800 transition-colors focus:outline-none cursor-pointer"
+          className="text-[10px] font-bold uppercase tracking-wider text-orange-400 hover:text-orange-300 transition-colors focus:outline-none cursor-pointer"
           aria-label="View all bets"
         >
           View All

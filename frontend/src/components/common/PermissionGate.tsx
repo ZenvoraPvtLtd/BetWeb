@@ -20,16 +20,16 @@ export const PermissionGate: React.FC<PermissionGateProps> = ({
       return <>{fallback}</>;
     }
 
-    // Default "Access Denied" premium view
+    // Default "Access Denied" view
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] p-6 text-center bg-white border border-zinc-200 rounded-[8px] shadow-sm select-none font-sans animate-fadeIn">
-        <div className="w-12 h-12 rounded-full bg-zinc-50 flex items-center justify-center border border-zinc-200/60 mb-5 text-red-500">
-          <ShieldAlert className="w-6 h-6" />
+      <div className="flex flex-col items-center justify-center min-h-[400px] p-6 text-center bg-[#131B2E] border border-[#233252] rounded-[12px] shadow-2xl select-none font-sans animate-fadeIn">
+        <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/30 mb-5 text-red-400">
+          <ShieldAlert className="w-7 h-7" />
         </div>
-        <h2 className="text-base font-bold text-zinc-900 mb-1.5 uppercase tracking-wide">
+        <h2 className="text-base font-bold text-slate-100 mb-1.5 uppercase tracking-wide">
           Access Denied
         </h2>
-        <p className="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-sm">
+        <p className="text-xs md:text-sm text-slate-400 leading-relaxed max-w-sm">
           Your account role does not have permission to view this workspace. Please contact your administrator if you believe this is an error.
         </p>
       </div>

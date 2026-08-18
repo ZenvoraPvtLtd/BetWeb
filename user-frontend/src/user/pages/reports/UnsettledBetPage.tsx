@@ -102,7 +102,7 @@ export const UnsettledBetPage: React.FC = () => {
           type="checkbox"
           checked={bets.length > 0 && selectedIds.length === bets.length}
           onChange={(e) => handleSelectAll(e.target.checked)}
-          className="rounded border-zinc-850 bg-zinc-950/20 text-[#0EA5E9] focus:ring-0 outline-none"
+          className="rounded border-[#233252] bg-[#090E17] text-orange-500 focus:ring-0 outline-none cursor-pointer"
         />
       ),
       key: 'checkbox',
@@ -111,7 +111,7 @@ export const UnsettledBetPage: React.FC = () => {
           type="checkbox"
           checked={selectedIds.includes(row.id)}
           onChange={() => toggleSelect(row.id)}
-          className="rounded border-zinc-850 bg-zinc-950/20 text-[#0EA5E9] focus:ring-0 outline-none"
+          className="rounded border-[#233252] bg-[#090E17] text-orange-500 focus:ring-0 outline-none cursor-pointer"
         />
       )
     },
@@ -126,10 +126,10 @@ export const UnsettledBetPage: React.FC = () => {
       renderCell: (row: UnsettledBet) => {
         const isBack = row.type === 'BACK';
         return (
-          <span className={`text-[9px] px-1.5 py-0.5 rounded font-extrabold uppercase border ${
+          <span className={`text-[9px] px-2 py-0.5 rounded font-extrabold uppercase border font-mono ${
             isBack
-              ? 'bg-[#0ea5e9]/10 border-[#0ea5e9]/20 text-[#0EA5E9]'
-              : 'bg-rose-500/10 border-rose-500/20 text-rose-500'
+              ? 'bg-blue-500/20 border-blue-500/30 text-blue-400'
+              : 'bg-pink-500/20 border-pink-500/30 text-pink-400'
           }`}>
             {row.type}
           </span>
@@ -145,7 +145,7 @@ export const UnsettledBetPage: React.FC = () => {
     {
       header: 'Potential P/L',
       key: 'pl',
-      renderCell: (row: UnsettledBet) => <span className="text-[#22C55E] font-extrabold">+₹{row.pl.toLocaleString()}</span>
+      renderCell: (row: UnsettledBet) => <span className="text-emerald-400 font-extrabold">+₹{row.pl.toLocaleString()}</span>
     },
     { header: 'Place Date', key: 'date' },
     {
@@ -154,7 +154,7 @@ export const UnsettledBetPage: React.FC = () => {
       renderCell: (row: UnsettledBet) => (
         <button
           onClick={() => handleDeleteIndividual(row.id)}
-          className="p-1.5 hover:bg-zinc-900 rounded-[6px] text-zinc-400 hover:text-rose-500 transition-colors cursor-pointer outline-none"
+          className="p-1.5 hover:bg-[#18233C] rounded-[6px] text-slate-400 hover:text-rose-400 transition-colors cursor-pointer outline-none"
           aria-label="Delete unsettled bet"
         >
           <Trash2 className="w-3.5 h-3.5" />
@@ -176,25 +176,25 @@ export const UnsettledBetPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Unsettled Bet"
           description="View and cancel unmatched or currently active unsettled betting exposures."
           breadcrumbs={breadcrumbs}
         />
 
-        <div className="flex flex-col sm:flex-row gap-3 items-center justify-between bg-[#111F30] border border-slate-700/15 rounded-[12px] p-4">
+        <div className="flex flex-col sm:flex-row gap-3 items-center justify-between bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-4 shadow-sm">
           <input
             placeholder="Search by event or sport..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full sm:w-64 h-9 px-3 bg-zinc-950/20 border border-zinc-800 rounded-[8px] text-xs font-bold text-white placeholder-zinc-550 outline-none focus:border-[#0EA5E9]"
+            className="w-full sm:w-64 h-9 px-3 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs font-bold text-slate-100 placeholder-slate-500 outline-none focus:border-orange-500 font-mono transition-colors"
           />
 
           {selectedIds.length > 0 && (
             <button
               onClick={handleDeleteSelected}
-              className="flex items-center gap-1.5 px-4 h-9 rounded-[8px] bg-rose-500/10 hover:bg-rose-500/15 border border-rose-500/20 text-rose-500 text-[10px] font-bold uppercase tracking-wider transition-colors outline-none cursor-pointer"
+              className="flex items-center gap-1.5 px-4 h-9 rounded-[8px] bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-400 text-[10px] font-bold uppercase tracking-wider transition-colors outline-none cursor-pointer font-mono shadow-sm"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Cancel Selected ({selectedIds.length})</span>

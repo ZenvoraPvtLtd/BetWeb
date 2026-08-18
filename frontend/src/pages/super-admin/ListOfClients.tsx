@@ -85,10 +85,10 @@ export const ListOfClients: React.FC = () => {
       <div className="flex flex-col text-left select-none relative animate-fadeIn">
         {/* Notification Toast Alert */}
         {toastMessage && (
-          <div className="fixed top-20 right-6 z-50 flex items-center gap-2 bg-zinc-900 border border-zinc-800 text-white text-xs font-semibold px-4 py-3 rounded-lg shadow-xl animate-slideRight">
+          <div className="fixed top-20 right-6 z-50 flex items-center gap-2 bg-[#131B2E] border border-emerald-500/40 text-emerald-300 text-xs font-semibold px-4 py-3 rounded-lg shadow-2xl animate-slideRight backdrop-blur-md">
             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>{toastMessage}</span>
-            <button onClick={() => setToastMessage(null)} className="ml-2 hover:text-zinc-400 cursor-pointer">
+            <button onClick={() => setToastMessage(null)} className="ml-2 text-slate-400 hover:text-white cursor-pointer">
               <X className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -96,21 +96,21 @@ export const ListOfClients: React.FC = () => {
 
         {/* 1. Page Header */}
         <div className="mb-6">
-          <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-400">
+          <span className="text-[11px] uppercase font-bold tracking-wider text-orange-400">
             {user?.role === 'SUPER_ADMIN' ? 'Super Admin' : user?.role || 'Admin'} / Clients
           </span>
-          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 mt-1">
+          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100 mt-1">
             Account List
           </h1>
         </div>
 
         {/* 2. Top Action Toolbar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-zinc-200/80 pb-5">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-[#1E293B] pb-5">
           {/* Left Actions Group */}
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsLogoutModalOpen(true)}
-              className="h-[36px] px-3.5 rounded-[6px] border border-red-200 text-red-650 bg-red-50/20 text-xs font-semibold hover:bg-red-50 hover:text-red-700 transition-colors flex items-center gap-1.5 focus:outline-none cursor-pointer"
+              className="h-[36px] px-3.5 rounded-[8px] border border-red-500/30 text-red-400 bg-red-950/30 text-xs font-semibold hover:bg-red-900/40 hover:text-red-300 transition-colors flex items-center gap-1.5 focus:outline-none cursor-pointer shadow-sm"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Logout All Users</span>
@@ -118,23 +118,23 @@ export const ListOfClients: React.FC = () => {
 
             <button
               onClick={handleExcelExport}
-              className="h-[36px] px-3.5 rounded-[6px] border border-zinc-200 text-zinc-650 bg-white text-xs font-semibold hover:bg-zinc-50 hover:text-zinc-800 transition-colors flex items-center gap-1.5 focus:outline-none cursor-pointer"
+              className="h-[36px] px-3.5 rounded-[8px] border border-[#233252] text-slate-300 bg-[#131B2E] text-xs font-semibold hover:bg-[#18233C] hover:text-white transition-colors flex items-center gap-1.5 focus:outline-none cursor-pointer shadow-sm"
             >
-              <Download className="w-3.5 h-3.5 text-zinc-450" />
+              <Download className="w-3.5 h-3.5 text-orange-400" />
               <span>Excel</span>
             </button>
 
             <button
               onClick={handlePDFExport}
-              className="h-[36px] px-3.5 rounded-[6px] border border-zinc-200 text-zinc-650 bg-white text-xs font-semibold hover:bg-zinc-50 hover:text-zinc-800 transition-colors flex items-center gap-1.5 focus:outline-none cursor-pointer"
+              className="h-[36px] px-3.5 rounded-[8px] border border-[#233252] text-slate-300 bg-[#131B2E] text-xs font-semibold hover:bg-[#18233C] hover:text-white transition-colors flex items-center gap-1.5 focus:outline-none cursor-pointer shadow-sm"
             >
-              <FileText className="w-3.5 h-3.5 text-zinc-450" />
+              <FileText className="w-3.5 h-3.5 text-amber-400" />
               <span>PDF</span>
             </button>
           </div>
 
           {/* Right Add Action Trigger */}
-          <div className="w-[140px]">
+          <div className="w-[145px]">
             <Button
               onClick={() => setIsAddModalOpen(true)}
               className="flex items-center justify-center gap-1.5"
@@ -148,23 +148,23 @@ export const ListOfClients: React.FC = () => {
         {/* 3. Search input and Status Tab Select */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
           {/* Active / Deactive Tab Selection */}
-          <div className="flex bg-zinc-100 p-0.5 rounded-[8px] self-start border border-zinc-200/45">
+          <div className="flex bg-[#0E1524] p-1 rounded-[10px] self-start border border-[#1E293B]">
             <button
               onClick={() => setActiveTab('active')}
-              className={`px-4 py-1.5 text-xs font-semibold rounded-[6px] transition-all cursor-pointer ${
+              className={`px-4 py-1.5 text-xs font-semibold rounded-[7px] transition-all cursor-pointer ${
                 activeTab === 'active'
-                  ? 'bg-white text-zinc-950 shadow-xs'
-                  : 'text-zinc-500 hover:text-zinc-850'
+                  ? 'bg-gradient-to-r from-[#FF5722] to-[#F97316] text-white shadow-md shadow-orange-950/40'
+                  : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               Active
             </button>
             <button
               onClick={() => setActiveTab('deactive')}
-              className={`px-4 py-1.5 text-xs font-semibold rounded-[6px] transition-all cursor-pointer ${
+              className={`px-4 py-1.5 text-xs font-semibold rounded-[7px] transition-all cursor-pointer ${
                 activeTab === 'deactive'
-                  ? 'bg-white text-zinc-950 shadow-xs'
-                  : 'text-zinc-500 hover:text-zinc-850'
+                  ? 'bg-gradient-to-r from-[#FF5722] to-[#F97316] text-white shadow-md shadow-orange-950/40'
+                  : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               Deactive
@@ -173,18 +173,18 @@ export const ListOfClients: React.FC = () => {
 
           {/* User Name Search input */}
           <div className="relative w-full sm:max-w-xs">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
             <input
               type="text"
               placeholder="Search client username..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-[36px] pl-9 pr-8 bg-white border border-zinc-250 rounded-[6px] text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700/80 text-zinc-900 placeholder-zinc-450 transition-all shadow-2xs"
+              className="w-full h-[36px] pl-9 pr-8 bg-[#0E1524] border border-[#233252] rounded-[8px] text-xs focus:outline-none focus:border-orange-500 text-slate-100 placeholder-slate-500 transition-all shadow-inner"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-650 focus:outline-none cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white focus:outline-none cursor-pointer"
                 aria-label="Clear Search"
               >
                 <X className="w-3.5 h-3.5" />
@@ -222,24 +222,24 @@ export const ListOfClients: React.FC = () => {
 
         {/* User Detail Placeholder Modal */}
         {detailUsername && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs select-none">
-            <div className="w-full max-w-md bg-white border border-zinc-200 rounded-[8px] shadow-lg p-6 text-left animate-fadeIn">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs select-none">
+            <div className="w-full max-w-md bg-[#131B2E] border border-[#233252] rounded-[12px] shadow-2xl p-6 text-left animate-fadeIn">
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2 text-zinc-900 font-bold text-base">
-                  <User className="w-5 h-5 text-indigo-500 shrink-0" />
+                <div className="flex items-center gap-2 text-slate-100 font-bold text-base">
+                  <User className="w-5 h-5 text-orange-400 shrink-0" />
                   <span>Account Details</span>
                 </div>
                 <button
                   onClick={() => setDetailUsername(null)}
-                  className="p-1 hover:bg-zinc-100 rounded text-zinc-400 hover:text-zinc-600 focus:outline-none cursor-pointer"
+                  className="p-1 hover:bg-[#18233C] rounded-lg text-slate-400 hover:text-white focus:outline-none cursor-pointer"
                   aria-label="Close"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="py-4 border-t border-b border-zinc-100 text-xs md:text-sm text-zinc-500 leading-relaxed mb-6">
-                Detail analysis workspace for client <strong>{detailUsername}</strong> will be
+              <div className="py-4 border-t border-b border-[#1E293B] text-xs md:text-sm text-slate-400 leading-relaxed mb-6">
+                Detail analysis workspace for client <strong className="text-orange-400">{detailUsername}</strong> will be
                 implemented once visual layout specifications are provided.
               </div>
 

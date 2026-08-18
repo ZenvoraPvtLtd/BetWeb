@@ -15,7 +15,7 @@ export const userPromotions: PromotionSlide[] = [
     subtitle: 'Premium Live Gaming Experience',
     badge: 'VIP Club',
     gradientFrom: '#311042',
-    gradientTo: '#0B1728',
+    gradientTo: '#0B0F19',
     actionText: 'Explore Now'
   },
   {
@@ -23,8 +23,8 @@ export const userPromotions: PromotionSlide[] = [
     title: '100% SPORTS BONUS',
     subtitle: 'Mock play-money matching rewards daily',
     badge: 'Sports Promo',
-    gradientFrom: '#0B3B60',
-    gradientTo: '#07111F',
+    gradientFrom: '#1E293B',
+    gradientTo: '#0B0F19',
     actionText: 'Claim Bonus'
   },
   {
@@ -32,8 +32,8 @@ export const userPromotions: PromotionSlide[] = [
     title: 'WEEKLY DRAW JACKPOT',
     subtitle: 'Get lucky lottery ticket tokens automatically',
     badge: 'Lottery Draw',
-    gradientFrom: '#5A1B29',
-    gradientTo: '#07111F',
+    gradientFrom: '#4A1D24',
+    gradientTo: '#0B0F19',
     actionText: 'Enter Draw'
   }
 ];

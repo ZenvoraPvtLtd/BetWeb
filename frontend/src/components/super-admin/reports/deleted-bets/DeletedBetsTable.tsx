@@ -37,25 +37,26 @@ export const DeletedBetsTable: React.FC<DeletedBetsTableProps> = ({
   const getEventTypeBadge = (type: string) => {
     if (type.toLowerCase() === 'back') {
       return (
-        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-sky-50 text-sky-700 border border-sky-100/60 font-mono">
+        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30 font-mono">
           Back
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-pink-50 text-pink-705 border border-pink-100/60 font-mono">
+      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-pink-500/20 text-pink-400 border border-pink-500/30 font-mono">
         Lay
       </span>
     );
   };
 
   const getPLColor = (val: number) => {
-    if (val < 0) return 'text-red-655 font-medium';
-    if (val > 0) return 'text-emerald-600 font-medium';
-    return 'text-zinc-600';
+    if (val < 0) return 'text-red-400 font-semibold';
+    if (val > 0) return 'text-emerald-400 font-semibold';
+    return 'text-slate-400';
   };
 
-  const formatDate = (isoString: string) => {
+  const formatDate = (isoString?: string) => {
+    if (!isoString) return '-';
     try {
       const date = new Date(isoString);
       const yyyy = date.getFullYear();
@@ -71,19 +72,19 @@ export const DeletedBetsTable: React.FC<DeletedBetsTableProps> = ({
   };
 
   return (
-    <div className="w-full bg-white border border-zinc-200 rounded-[8px] shadow-sm select-none relative overflow-hidden">
+    <div className="w-full bg-[#131B2E] border border-[#1E293B] rounded-[10px] shadow-xl select-none relative overflow-hidden">
       <div className="overflow-x-auto w-full">
-        <table className="w-full text-left border-collapse min-w-[1250px]">
+        <table className="w-full text-left border-collapse min-w-[1100px]">
           {/* Table Headers */}
           <thead>
-            <tr className="bg-zinc-50/50 border-b border-zinc-200 text-zinc-500 uppercase text-[9px] font-semibold tracking-wider">
+            <tr className="bg-[#0E1524] border-b border-[#1E293B] text-slate-400 uppercase text-[9px] font-bold tracking-wider">
               <th className="py-3.5 px-4 text-center w-12">
                 <input
                   type="checkbox"
                   ref={headerCheckboxRef}
                   checked={isAllSelected}
                   onChange={(e) => onSelectAll(e.target.checked)}
-                  className="rounded border-zinc-300 text-indigo-650 focus:ring-indigo-500 cursor-pointer h-3.5 w-3.5"
+                  className="rounded border-[#233252] text-orange-500 focus:ring-orange-500 cursor-pointer h-3.5 w-3.5 bg-[#090E17]"
                   aria-label="Select all bets on this page"
                 />
               </th>
@@ -97,134 +98,106 @@ export const DeletedBetsTable: React.FC<DeletedBetsTableProps> = ({
               <th className="py-3.5 px-4 text-right w-28">Amount</th>
               <th className="py-3.5 px-4 text-right w-28">P/L</th>
               <th className="py-3.5 px-4">Place Date</th>
-              <th className="py-3.5 px-4 text-center w-24">Action</th>
+              <th className="py-3.5 px-4 text-center w-24">Status</th>
             </tr>
           </thead>
 
           <tbody>
             {isLoading ? (
-              /* Skeleton Loader layout */
               Array.from({ length: 4 }).map((_, idx) => (
-                <tr key={idx} className="animate-pulse border-b border-zinc-100">
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-4 mx-auto" />
+                <tr key={idx} className="animate-pulse border-b border-[#1E293B]">
+                  <td className="py-4 px-4 text-center">
+                    <div className="h-4 w-4 bg-[#18233C] rounded mx-auto" />
                   </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-16" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-20" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-32" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-20" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-12" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-16" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-12 ml-auto" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-16 ml-auto" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-16 ml-auto" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-32" />
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="h-4 bg-zinc-100 rounded w-12 mx-auto" />
-                  </td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-20" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-24" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-36" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-28" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-16" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-14" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-12 ml-auto" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-16 ml-auto" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-16 ml-auto" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-28" /></td>
+                  <td className="py-4 px-4"><div className="h-4 bg-[#18233C] rounded w-16 mx-auto" /></td>
                 </tr>
               ))
             ) : bets.length === 0 ? (
-              /* Empty Results Row */
               <tr>
                 <td
                   colSpan={12}
-                  className="py-14 px-6 text-center text-xs md:text-sm text-zinc-500 font-normal"
+                  className="py-14 px-6 text-center text-xs md:text-sm text-slate-400 font-normal"
                 >
                   {emptyStateText}
                 </td>
               </tr>
             ) : (
-              /* Rows render */
               bets.map((bet) => {
                 const isSelected = selectedIds.includes(bet.id);
                 return (
                   <tr
                     key={bet.id}
                     className={`
-                      border-b border-zinc-100 text-xs transition-colors hover:bg-zinc-50/40
-                      ${isSelected ? 'bg-indigo-50/15' : ''}
+                      border-b border-[#1E293B] text-xs transition-colors
+                      ${isSelected ? 'bg-orange-500/10' : 'hover:bg-[#18233C]/60'}
                     `}
                   >
-                    {/* Select Checkbox */}
+                    {/* Select Row Checkbox */}
                     <td className="py-3 px-4 text-center">
                       <input
                         type="checkbox"
                         checked={isSelected}
                         onChange={(e) => onSelectRow(bet.id, e.target.checked)}
-                        className="rounded border-zinc-300 text-indigo-650 focus:ring-indigo-500 cursor-pointer h-3.5 w-3.5"
+                        className="rounded border-[#233252] text-orange-500 focus:ring-orange-500 cursor-pointer h-3.5 w-3.5 bg-[#090E17]"
                         aria-label={`Select bet ${bet.id}`}
                       />
                     </td>
 
                     {/* Uplevel */}
-                    <td className="py-3 px-4 text-zinc-500 font-bold font-mono">{bet.uplevel}</td>
+                    <td className="py-3 px-4 text-slate-400 font-mono text-[11px]">{bet.uplevel}</td>
 
                     {/* User Name */}
-                    <td className="py-3 px-4 text-zinc-900 font-semibold">{bet.username}</td>
+                    <td className="py-3 px-4 font-semibold text-slate-200">{bet.username}</td>
 
                     {/* Event Name */}
-                    <td className="py-3 px-4 text-zinc-700 font-medium">{bet.eventName}</td>
+                    <td className="py-3 px-4 font-semibold text-slate-100 max-w-[200px] truncate">
+                      {bet.eventName}
+                    </td>
 
                     {/* Nation */}
-                    <td className="py-3 px-4 text-zinc-600 font-medium">{bet.nation}</td>
+                    <td className="py-3 px-4 text-slate-300 font-medium">{bet.nation}</td>
 
-                    {/* Event Type (Back/Lay) */}
+                    {/* Event Type */}
                     <td className="py-3 px-4">{getEventTypeBadge(bet.eventType)}</td>
 
-                    {/* Type */}
-                    <td className="py-3 px-4 text-zinc-500 font-medium">{bet.type}</td>
+                    {/* Market Type */}
+                    <td className="py-3 px-4 text-slate-300 font-medium">{bet.type}</td>
 
                     {/* Rate */}
-                    <td className="py-3 px-4 text-right tabular-nums text-zinc-900 font-semibold font-mono">
+                    <td className="py-3 px-4 text-right tabular-nums font-mono font-semibold text-slate-200">
                       {bet.rate.toFixed(2)}
                     </td>
 
                     {/* Amount */}
-                    <td className="py-3 px-4 text-right tabular-nums text-zinc-650 font-semibold font-mono">
+                    <td className="py-3 px-4 text-right tabular-nums font-mono text-slate-200">
                       {formatFinancial(bet.amount)}
                     </td>
 
                     {/* P/L */}
-                    <td className={`py-3 px-4 text-right tabular-nums ${getPLColor(bet.pnl)}`}>
-                      {bet.pnl > 0 ? `+${formatFinancial(bet.pnl)}` : formatFinancial(bet.pnl)}
+                    <td className={`py-3 px-4 text-right tabular-nums font-mono ${getPLColor(bet.pnl)}`}>
+                      {formatFinancial(bet.pnl)}
                     </td>
 
                     {/* Place Date */}
-                    <td className="py-3 px-4 tabular-nums text-zinc-500 font-semibold font-mono">
+                    <td className="py-3 px-4 text-slate-400 font-mono text-[10.5px]">
                       {formatDate(bet.placeDate)}
                     </td>
 
-                    {/* Actions Column (View details placeholder dialog) */}
+                    {/* Status Column badge */}
                     <td className="py-3 px-4 text-center">
-                      <button
-                        className="px-2 py-0.5 rounded bg-zinc-100 hover:bg-zinc-900 hover:text-white border border-zinc-200 hover:border-zinc-900 text-[10px] font-semibold transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-zinc-600"
-                        onClick={() =>
-                          alert(`Action details are pending configuration details for deleted bet ${bet.id}`)
-                        }
-                      >
-                        View
-                      </button>
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-red-500/15 text-red-400 border border-red-500/30 font-mono">
+                        Deleted
+                      </span>
                     </td>
                   </tr>
                 );

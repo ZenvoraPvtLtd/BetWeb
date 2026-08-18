@@ -29,9 +29,9 @@ export const DateRangeFilter: React.FC<DateRangeFilterProps> = ({
   ];
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center gap-3 select-none text-left w-full sm:w-auto">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-3 select-none text-left w-full sm:w-auto font-mono">
       {/* Quick filters selection */}
-      <div className="flex bg-[#111F30] border border-slate-700/10 rounded-[8px] p-1 self-start">
+      <div className="flex bg-[#090E17] border border-[#233252] rounded-[8px] p-1 self-start">
         {options.map((opt) => (
           <button
             key={opt.value}
@@ -40,8 +40,8 @@ export const DateRangeFilter: React.FC<DateRangeFilterProps> = ({
               px-3 py-1 rounded-[6px] text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer transition-all
               ${
                 selectedOption === opt.value
-                  ? 'bg-[#0EA5E9] text-white shadow'
-                  : 'text-[#94A3B8] hover:text-white'
+                  ? 'bg-gradient-to-r from-[#FF5722] to-[#F97316] text-white shadow-md'
+                  : 'text-slate-400 hover:text-white'
               }
             `}
           >
@@ -58,19 +58,19 @@ export const DateRangeFilter: React.FC<DateRangeFilterProps> = ({
               type="date"
               value={fromDate}
               onChange={(e) => onChangeFromDate(e.target.value)}
-              className="h-8 pl-8 pr-2.5 bg-[#111F30] border border-zinc-850 rounded-[8px] text-[10px] font-bold text-white outline-none focus:border-[#0EA5E9] cursor-pointer"
+              className="h-8 pl-8 pr-2.5 bg-[#090E17] border border-[#233252] rounded-[8px] text-[10px] font-bold text-slate-100 outline-none focus:border-orange-500 cursor-pointer"
             />
-            <Calendar className="w-3.5 h-3.5 text-zinc-505 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Calendar className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
-          <span className="text-[10px] font-bold uppercase text-zinc-500">to</span>
+          <span className="text-[10px] font-bold uppercase text-slate-500">to</span>
           <div className="relative">
             <input
               type="date"
               value={toDate}
               onChange={(e) => onChangeToDate(e.target.value)}
-              className="h-8 pl-8 pr-2.5 bg-[#111F30] border border-zinc-850 rounded-[8px] text-[10px] font-bold text-white outline-none focus:border-[#0EA5E9] cursor-pointer"
+              className="h-8 pl-8 pr-2.5 bg-[#090E17] border border-[#233252] rounded-[8px] text-[10px] font-bold text-slate-100 outline-none focus:border-orange-500 cursor-pointer"
             />
-            <Calendar className="w-3.5 h-3.5 text-zinc-505 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Calendar className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
       )}

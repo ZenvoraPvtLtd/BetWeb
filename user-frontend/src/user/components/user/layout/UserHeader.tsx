@@ -81,12 +81,12 @@ export const UserHeader: React.FC<UserHeaderProps> = ({ onToggleSidebar }) => {
   ];
 
   return (
-    <header className="sticky top-0 h-16 w-full bg-[#0D1B2A] border-b border-zinc-800/60 flex items-center justify-between px-4 md:px-6 select-none shrink-0 z-40">
+    <header className="sticky top-0 h-16 w-full bg-[#0E1524] border-b border-[#1E293B] flex items-center justify-between px-4 md:px-6 select-none shrink-0 z-40 shadow-md">
       {/* Left: Mobile menu toggle + Search bar */}
       <div className="flex items-center gap-3 flex-1 max-w-xs md:max-w-md">
         <button
           onClick={onToggleSidebar}
-          className="p-2 hover:bg-zinc-800 rounded-md text-zinc-400 hover:text-white transition-colors md:hidden outline-none cursor-pointer"
+          className="p-2 hover:bg-[#18233C] rounded-lg text-slate-400 hover:text-white transition-colors md:hidden outline-none cursor-pointer"
           aria-label="Toggle Navigation Drawer"
         >
           <Menu className="w-5 h-5" />
@@ -96,28 +96,28 @@ export const UserHeader: React.FC<UserHeaderProps> = ({ onToggleSidebar }) => {
       </div>
 
       {/* Right: Rules, Balance, Exposure, Dropdown */}
-      <div className="flex items-center gap-2 sm:gap-4 text-white">
+      <div className="flex items-center gap-2 sm:gap-3 text-white">
         {/* Rules button */}
         <a
           href="/rules"
-          className="flex items-center gap-1.5 px-3 h-9 rounded-[8px] bg-[#111F30] border border-zinc-800 hover:bg-[#16283D] transition-colors text-xs font-semibold text-zinc-300 hover:text-white cursor-pointer outline-none"
+          className="flex items-center gap-1.5 px-3 h-9 rounded-[8px] bg-[#18233C] border border-[#2B3C60] hover:bg-[#223050] transition-colors text-xs font-semibold text-slate-300 hover:text-white cursor-pointer outline-none"
         >
-          <BookOpen className="w-3.5 h-3.5 text-[#0EA5E9]" />
+          <BookOpen className="w-3.5 h-3.5 text-orange-400" />
           <span className="hidden sm:inline">Rules</span>
         </a>
 
         {/* Balance badge */}
         <a
           href="/reports/account-statement"
-          className="flex items-center gap-2 px-3 h-9 rounded-[8px] bg-[#111F30] border border-zinc-800 text-xs font-bold text-emerald-400 hover:bg-[#16283D] transition-colors"
+          className="flex items-center gap-2 px-3 h-9 rounded-[8px] bg-[#18233C] border border-[#2B3C60] text-xs font-bold text-emerald-400 hover:bg-[#223050] transition-colors font-mono"
         >
-          <Coins className="w-3.5 h-3.5" />
+          <Coins className="w-3.5 h-3.5 text-amber-400" />
           <span>{balanceVisible ? `₹${accountConfig.balance.toLocaleString('en-IN')}` : '₹••••••'}</span>
         </a>
 
         {/* Exposure badge */}
-        <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-[8px] bg-[#111F30] border border-zinc-800 text-xs font-bold text-amber-500">
-          <ShieldAlert className="w-3.5 h-3.5" />
+        <div className="hidden sm:flex items-center gap-1.5 px-3 h-9 rounded-[8px] bg-[#18233C] border border-[#2B3C60] text-xs font-bold text-orange-400 font-mono">
+          <ShieldAlert className="w-3.5 h-3.5 text-orange-400" />
           <span>{exposureVisible ? `Exp: ₹${accountConfig.exposure}` : 'Exp: ₹••••'}</span>
         </div>
 
@@ -125,12 +125,12 @@ export const UserHeader: React.FC<UserHeaderProps> = ({ onToggleSidebar }) => {
         <div className="relative">
           <button
             onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-            className="w-9 h-9 rounded-[8px] bg-[#111F30] border border-zinc-800 hover:bg-[#16283D] text-zinc-300 hover:text-white flex items-center justify-center relative cursor-pointer outline-none"
+            className="w-9 h-9 rounded-[8px] bg-[#18233C] border border-[#2B3C60] hover:bg-[#223050] text-slate-300 hover:text-white flex items-center justify-center relative cursor-pointer outline-none"
             aria-label="Toggle Notifications Menu"
           >
-            <Bell className="w-4.5 h-4.5" />
+            <Bell className="w-4 h-4" />
             {unreadMessagesCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-rose-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full shrink-0">
+              <span className="absolute -top-1 -right-1 bg-[#FF5722] text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full shrink-0 animate-pulse">
                 {unreadMessagesCount}
               </span>
             )}
@@ -145,28 +145,28 @@ export const UserHeader: React.FC<UserHeaderProps> = ({ onToggleSidebar }) => {
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-2 h-9 px-2 rounded-[8px] hover:bg-[#111F30] text-zinc-300 hover:text-white transition-colors cursor-pointer outline-none"
+            className="flex items-center gap-2 h-9 px-2.5 rounded-[8px] hover:bg-[#18233C] text-slate-200 hover:text-white transition-colors cursor-pointer outline-none"
           >
-            <div className="w-6 h-6 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
+            <div className="w-6 h-6 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 font-bold text-xs">
               <User className="w-3.5 h-3.5" />
             </div>
             <span className="text-xs font-bold uppercase hidden md:inline">{user?.username || 'User'}</span>
-            <ChevronDown className="w-3 h-3 text-zinc-500" />
+            <ChevronDown className="w-3 h-3 text-slate-400" />
           </button>
 
           {/* Desktop Dropdown Panel */}
           {isDropdownOpen && (
-            <div className="hidden md:block absolute right-0 mt-2 w-64 bg-[#0B1726] border border-slate-700/15 rounded-[12px] shadow-2xl py-2.5 z-50 animate-fadeIn text-left select-none max-h-[500px] overflow-y-auto scrollbar-thin">
+            <div className="hidden md:block absolute right-0 mt-2 w-64 bg-[#131B2E] border border-[#233252] rounded-[12px] shadow-2xl py-2.5 z-50 animate-fadeIn text-left select-none max-h-[500px] overflow-y-auto scrollbar-thin">
               {/* Header stats */}
-              <div className="px-4 py-2 border-b border-zinc-900 mb-1 flex flex-col gap-1">
-                <span className="text-[10px] font-bold text-zinc-400 uppercase">Account: {user?.username}</span>
-                <div className="flex justify-between items-center text-[11px] font-bold mt-1">
-                  <span className="text-zinc-500">Balance:</span>
+              <div className="px-4 py-2 border-b border-[#1E293B] mb-1 flex flex-col gap-1">
+                <span className="text-[10px] font-bold text-slate-400 uppercase font-mono">Account: {user?.username}</span>
+                <div className="flex justify-between items-center text-[11px] font-bold mt-1 font-mono">
+                  <span className="text-slate-400">Balance:</span>
                   <span className="text-emerald-400">{balanceVisible ? `₹${accountConfig.balance.toLocaleString('en-IN')}` : '₹••••'}</span>
                 </div>
-                <div className="flex justify-between items-center text-[11px] font-bold">
-                  <span className="text-zinc-500">Exposure:</span>
-                  <span className="text-amber-500">{exposureVisible ? `₹${accountConfig.exposure}` : '₹••••'}</span>
+                <div className="flex justify-between items-center text-[11px] font-bold font-mono">
+                  <span className="text-slate-400">Exposure:</span>
+                  <span className="text-orange-400">{exposureVisible ? `₹${accountConfig.exposure}` : '₹••••'}</span>
                 </div>
               </div>
 
@@ -178,45 +178,45 @@ export const UserHeader: React.FC<UserHeaderProps> = ({ onToggleSidebar }) => {
                     key={item.label}
                     href={item.to}
                     onClick={() => setIsDropdownOpen(false)}
-                    className="px-4 py-2 text-xs font-semibold text-zinc-300 hover:bg-[#111F30] hover:text-white transition-colors flex items-center gap-2.5 outline-none"
+                    className="px-4 py-2 text-xs font-semibold text-slate-300 hover:bg-[#18233C] hover:text-orange-400 transition-colors flex items-center gap-2.5 outline-none"
                   >
-                    <Icon className="w-4 h-4 text-zinc-400 shrink-0" />
+                    <Icon className="w-4 h-4 text-slate-400 shrink-0" />
                     <span>{item.label}</span>
                   </a>
                 );
               })}
 
-              <div className="h-[1px] bg-zinc-900 my-1" />
+              <div className="h-[1px] bg-[#1E293B] my-1" />
 
               {/* Balance Visibility Toggle */}
               <button
                 onClick={() => setBalanceVisible(!balanceVisible)}
-                className="w-full px-4 py-2 text-left text-xs font-semibold text-zinc-300 hover:bg-[#111F30] hover:text-white transition-colors flex items-center justify-between outline-none cursor-pointer"
+                className="w-full px-4 py-2 text-left text-xs font-semibold text-slate-300 hover:bg-[#18233C] hover:text-white transition-colors flex items-center justify-between outline-none cursor-pointer"
               >
                 <div className="flex items-center gap-2.5">
-                  <Coins className="w-4 h-4 text-zinc-450 shrink-0" />
+                  <Coins className="w-4 h-4 text-slate-400 shrink-0" />
                   <span>Show Balance</span>
                 </div>
-                <div className="w-3.5 h-3.5 rounded border border-zinc-800 flex items-center justify-center bg-zinc-950/20 shrink-0">
-                  {balanceVisible && <div className="w-2 h-2 bg-[#0EA5E9] rounded-[2px]" />}
+                <div className="w-4 h-4 rounded border border-[#233252] flex items-center justify-center bg-[#090E17] shrink-0">
+                  {balanceVisible && <div className="w-2.5 h-2.5 bg-orange-500 rounded-[2px]" />}
                 </div>
               </button>
 
               {/* Exposure Visibility Toggle */}
               <button
                 onClick={() => setExposureVisible(!exposureVisible)}
-                className="w-full px-4 py-2 text-left text-xs font-semibold text-zinc-300 hover:bg-[#111F30] hover:text-white transition-colors flex items-center justify-between outline-none cursor-pointer"
+                className="w-full px-4 py-2 text-left text-xs font-semibold text-slate-300 hover:bg-[#18233C] hover:text-white transition-colors flex items-center justify-between outline-none cursor-pointer"
               >
                 <div className="flex items-center gap-2.5">
-                  <ShieldAlert className="w-4 h-4 text-zinc-455 shrink-0" />
+                  <ShieldAlert className="w-4 h-4 text-slate-400 shrink-0" />
                   <span>Show Exposure</span>
                 </div>
-                <div className="w-3.5 h-3.5 rounded border border-zinc-800 flex items-center justify-center bg-zinc-950/20 shrink-0">
-                  {exposureVisible && <div className="w-2 h-2 bg-[#0EA5E9] rounded-[2px]" />}
+                <div className="w-4 h-4 rounded border border-[#233252] flex items-center justify-center bg-[#090E17] shrink-0">
+                  {exposureVisible && <div className="w-2.5 h-2.5 bg-orange-500 rounded-[2px]" />}
                 </div>
               </button>
 
-              <div className="h-[1px] bg-zinc-900 my-1" />
+              <div className="h-[1px] bg-[#1E293B] my-1" />
 
               {/* Signout Button */}
               <button
@@ -224,9 +224,9 @@ export const UserHeader: React.FC<UserHeaderProps> = ({ onToggleSidebar }) => {
                   setIsDropdownOpen(false);
                   logout();
                 }}
-                className="w-full px-4 py-2 text-left text-xs font-bold text-rose-400 hover:bg-[#111F30] hover:text-rose-300 transition-colors flex items-center gap-2.5 outline-none cursor-pointer"
+                className="w-full px-4 py-2 text-left text-xs font-bold text-red-400 hover:bg-[#18233C] hover:text-red-300 transition-colors flex items-center gap-2.5 outline-none cursor-pointer"
               >
-                <LogOut className="w-4 h-4 shrink-0" />
+                <LogOut className="w-4 h-4 shrink-0 text-red-400" />
                 <span>SIGNOUT</span>
               </button>
             </div>
@@ -238,20 +238,20 @@ export const UserHeader: React.FC<UserHeaderProps> = ({ onToggleSidebar }) => {
               {/* Backdrop close lock */}
               <div
                 onClick={() => setIsDropdownOpen(false)}
-                className="absolute inset-0 bg-black/60 backdrop-blur-2xs animate-fadeIn"
+                className="absolute inset-0 bg-black/70 backdrop-blur-xs animate-fadeIn"
               />
               {/* Drawer Sheet */}
-              <div className="relative w-full bg-[#0D1B2A] border-t border-slate-700/15 rounded-t-[20px] p-5 max-h-[85vh] overflow-y-auto scrollbar-none z-50 text-left animate-slideUp">
-                <div className="flex justify-between items-center pb-3 border-b border-zinc-900/60 mb-3">
+              <div className="relative w-full bg-[#131B2E] border-t border-[#233252] rounded-t-[20px] p-5 max-h-[85vh] overflow-y-auto scrollbar-none z-50 text-left animate-slideUp">
+                <div className="flex justify-between items-center pb-3 border-b border-[#1E293B] mb-3">
                   <div className="flex flex-col">
-                    <span className="text-xs font-bold uppercase text-white">Account: {user?.username}</span>
-                    <span className="text-[10px] text-zinc-500 font-semibold mt-1">
+                    <span className="text-xs font-bold uppercase text-slate-100 font-mono">Account: {user?.username}</span>
+                    <span className="text-[10px] text-slate-400 font-semibold mt-1 font-mono">
                       {balanceVisible ? `Balance: ₹${accountConfig.balance.toLocaleString('en-IN')}` : 'Balance: Hidden'}
                     </span>
                   </div>
                   <button
                     onClick={() => setIsDropdownOpen(false)}
-                    className="text-xs font-bold text-zinc-550 hover:text-white uppercase tracking-wider"
+                    className="text-xs font-bold text-orange-400 hover:text-white uppercase tracking-wider"
                   >
                     Close
                   </button>
@@ -265,45 +265,45 @@ export const UserHeader: React.FC<UserHeaderProps> = ({ onToggleSidebar }) => {
                         key={item.label}
                         href={item.to}
                         onClick={() => setIsDropdownOpen(false)}
-                        className="py-3 px-3 text-xs font-bold text-zinc-300 hover:bg-zinc-900/20 active:bg-zinc-900/35 rounded-lg flex items-center gap-3 outline-none"
+                        className="py-2.5 px-3 text-xs font-bold text-slate-300 hover:bg-[#18233C] active:bg-[#18233C] rounded-lg flex items-center gap-3 outline-none"
                       >
-                        <Icon className="w-4.5 h-4.5 text-zinc-450 shrink-0" />
+                        <Icon className="w-4.5 h-4.5 text-slate-400 shrink-0" />
                         <span>{item.label}</span>
                       </a>
                     );
                   })}
 
-                  <div className="h-[1px] bg-zinc-900/80 my-2" />
+                  <div className="h-[1px] bg-[#1E293B] my-2" />
 
                   {/* Mobile Balance Switch */}
                   <button
                     onClick={() => setBalanceVisible(!balanceVisible)}
-                    className="w-full py-3 px-3 text-left text-xs font-bold text-zinc-300 hover:bg-zinc-900/20 rounded-lg flex items-center justify-between outline-none"
+                    className="w-full py-2.5 px-3 text-left text-xs font-bold text-slate-300 hover:bg-[#18233C] rounded-lg flex items-center justify-between outline-none"
                   >
                     <div className="flex items-center gap-3">
-                      <Coins className="w-4.5 h-4.5 text-zinc-450 shrink-0" />
+                      <Coins className="w-4.5 h-4.5 text-slate-400 shrink-0" />
                       <span>Show Balance</span>
                     </div>
-                    <div className="w-4.5 h-4.5 rounded border border-zinc-800 flex items-center justify-center bg-zinc-950/20 shrink-0">
-                      {balanceVisible && <div className="w-2.5 h-2.5 bg-[#0EA5E9] rounded-[2px]" />}
+                    <div className="w-4.5 h-4.5 rounded border border-[#233252] flex items-center justify-center bg-[#090E17] shrink-0">
+                      {balanceVisible && <div className="w-2.5 h-2.5 bg-orange-500 rounded-[2px]" />}
                     </div>
                   </button>
 
                   {/* Mobile Exposure Switch */}
                   <button
                     onClick={() => setExposureVisible(!exposureVisible)}
-                    className="w-full py-3 px-3 text-left text-xs font-bold text-zinc-300 hover:bg-zinc-900/20 rounded-lg flex items-center justify-between outline-none"
+                    className="w-full py-2.5 px-3 text-left text-xs font-bold text-slate-300 hover:bg-[#18233C] rounded-lg flex items-center justify-between outline-none"
                   >
                     <div className="flex items-center gap-3">
-                      <ShieldAlert className="w-4.5 h-4.5 text-zinc-455 shrink-0" />
+                      <ShieldAlert className="w-4.5 h-4.5 text-slate-400 shrink-0" />
                       <span>Show Exposure</span>
                     </div>
-                    <div className="w-4.5 h-4.5 rounded border border-zinc-800 flex items-center justify-center bg-zinc-950/20 shrink-0">
-                      {exposureVisible && <div className="w-2.5 h-2.5 bg-[#0EA5E9] rounded-[2px]" />}
+                    <div className="w-4.5 h-4.5 rounded border border-[#233252] flex items-center justify-center bg-[#090E17] shrink-0">
+                      {exposureVisible && <div className="w-2.5 h-2.5 bg-orange-500 rounded-[2px]" />}
                     </div>
                   </button>
 
-                  <div className="h-[1px] bg-zinc-900/80 my-2" />
+                  <div className="h-[1px] bg-[#1E293B] my-2" />
 
                   {/* Mobile Signout */}
                   <button
@@ -311,9 +311,9 @@ export const UserHeader: React.FC<UserHeaderProps> = ({ onToggleSidebar }) => {
                       setIsDropdownOpen(false);
                       logout();
                     }}
-                    className="w-full py-3 px-3 text-left text-xs font-extrabold text-rose-400 hover:bg-zinc-900/20 rounded-lg flex items-center gap-3 outline-none"
+                    className="w-full py-2.5 px-3 text-left text-xs font-extrabold text-red-400 hover:bg-[#18233C] rounded-lg flex items-center gap-3 outline-none"
                   >
-                    <LogOut className="w-4.5 h-4.5 text-rose-500 shrink-0" />
+                    <LogOut className="w-4.5 h-4.5 text-red-500 shrink-0" />
                     <span>SIGNOUT</span>
                   </button>
                 </div>

@@ -204,54 +204,54 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       {children}
 
       {/* 1. Global Toast Notifications Stack overlay */}
-      <div className="fixed top-6 right-6 z-[2000] flex flex-col gap-3 select-none pointer-events-none max-w-sm w-full">
+      <div className="fixed top-6 right-6 z-[2000] flex flex-col gap-3 select-none pointer-events-none max-w-sm w-full font-mono">
         {toasts.map((toast) => (
           <div
             key={toast.id}
             className={`
-              p-4 rounded-[12px] border flex items-start gap-3 shadow-xl pointer-events-auto animate-slideLeft
+              p-4 rounded-[12px] border flex items-start gap-3 shadow-xl pointer-events-auto animate-slideLeft backdrop-blur-md
               ${
                 toast.type === 'success'
-                  ? 'bg-zinc-950/90 border-[#22C55E]/30 text-[#22C55E]'
+                  ? 'bg-[#131B2E]/95 border-emerald-500/30 text-emerald-400'
                   : toast.type === 'error'
-                  ? 'bg-zinc-950/90 border-[#F43F5E]/30 text-[#F43F5E]'
-                  : 'bg-zinc-950/90 border-[#0EA5E9]/30 text-[#0EA5E9]'
+                  ? 'bg-[#131B2E]/95 border-rose-500/30 text-rose-400'
+                  : 'bg-[#131B2E]/95 border-orange-500/30 text-orange-400'
               }
             `}
           >
             {toast.type === 'success' && <CheckCircle className="w-5 h-5 shrink-0 mt-0.5" />}
             {toast.type === 'error' && <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" />}
             {toast.type === 'info' && <Info className="w-5 h-5 shrink-0 mt-0.5" />}
-            <span className="text-xs font-bold text-white leading-relaxed">{toast.message}</span>
+            <span className="text-xs font-bold text-slate-100 leading-relaxed font-sans">{toast.message}</span>
           </div>
         ))}
       </div>
 
       {/* 2. Global Custom Confirmation Dialog Modal overlay */}
       {dialogOpen && confirmDialog && (
-        <div className="fixed inset-0 z-[1999] flex items-center justify-center p-4 select-none">
+        <div className="fixed inset-0 z-[1999] flex items-center justify-center p-4 select-none font-mono">
           <div
             onClick={() => setDialogOpen(false)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-2xs animate-fadeIn"
+            className="fixed inset-0 bg-black/70 backdrop-blur-xs animate-fadeIn"
           />
-          <div className="relative w-full max-w-sm bg-[#0D1B2A] border border-slate-700/15 rounded-[16px] p-6 shadow-2xl z-50 text-left animate-scaleUp">
-            <h3 className="text-sm font-extrabold uppercase tracking-wide text-white flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-amber-500" />
+          <div className="relative w-full max-w-sm bg-[#0E1524] border border-[#1E293B] rounded-[16px] p-6 shadow-2xl z-50 text-left animate-scaleUp">
+            <h3 className="text-sm font-extrabold uppercase tracking-wide text-slate-100 flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-amber-400" />
               <span>{confirmDialog.title}</span>
             </h3>
-            <p className="text-xs font-semibold text-zinc-400 mt-2.5 leading-relaxed">
+            <p className="text-xs font-medium text-slate-300 mt-2.5 leading-relaxed font-sans">
               {confirmDialog.description}
             </p>
             <div className="flex gap-3 justify-end mt-6">
               <button
                 onClick={() => setDialogOpen(false)}
-                className="px-4 h-9 rounded-[8px] bg-[#111F30] border border-slate-700/10 hover:bg-[#16283D] text-zinc-400 hover:text-white text-xs font-bold uppercase tracking-wider outline-none transition-colors cursor-pointer"
+                className="px-4 h-9 rounded-[8px] bg-[#18233C] border border-[#2B3C60] hover:bg-[#223050] text-slate-300 hover:text-white text-xs font-bold uppercase tracking-wider outline-none transition-colors cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirm}
-                className="px-4 h-9 rounded-[8px] bg-[#F43F5E] hover:bg-[#e11d48] text-white text-xs font-bold uppercase tracking-wider outline-none transition-colors cursor-pointer"
+                className="px-4 h-9 rounded-[8px] bg-gradient-to-r from-[#FF5722] to-[#F97316] hover:from-[#F4511E] hover:to-[#EA580C] text-white text-xs font-bold uppercase tracking-wider outline-none transition-all cursor-pointer shadow-md shadow-orange-950/40"
               >
                 {confirmDialog.confirmText}
               </button>
@@ -270,3 +270,4 @@ export const useSettings = () => {
   }
   return context;
 };
+export default SettingsProvider;

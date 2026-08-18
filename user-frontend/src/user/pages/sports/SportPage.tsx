@@ -58,33 +58,33 @@ export const SportPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6">
+      <div className="p-4 md:p-6 flex flex-col gap-6">
         {/* Breadcrumbs */}
         <Breadcrumbs items={breadcrumbItems} />
 
         {/* Dynamic header title */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 select-none pb-4 border-b border-zinc-900">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 select-none pb-4 border-b border-[#1E293B]">
           <div>
-            <h2 className="text-xl font-extrabold text-white uppercase tracking-wider">
+            <h2 className="text-xl font-extrabold text-slate-100 uppercase tracking-wider font-mono">
               {sportInfo.name} Exchange
             </h2>
-            <p className="text-xs text-zinc-400 mt-1 font-semibold">
+            <p className="text-xs text-slate-400 mt-1 font-semibold">
               Live odds and back/lay trading points on major events.
             </p>
           </div>
 
           {/* Quick Filter tabs */}
-          <div className="flex bg-[#111F30] border border-slate-700/10 rounded-[8px] p-1 self-start sm:self-auto">
+          <div className="flex bg-[#131B2E] border border-[#233252] rounded-[8px] p-1 self-start sm:self-auto">
             {(['all', 'live', 'upcoming'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`
-                  px-4 py-1.5 rounded-[6px] text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer transition-all
+                  px-4 py-1.5 rounded-[6px] text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer transition-all font-mono
                   ${
                     activeTab === tab
-                      ? 'bg-[#0EA5E9] text-white shadow'
-                      : 'text-[#94A3B8] hover:text-white'
+                      ? 'bg-gradient-to-r from-[#FF5722] to-[#F97316] text-white shadow-md'
+                      : 'text-slate-400 hover:text-white'
                   }
                 `}
               >

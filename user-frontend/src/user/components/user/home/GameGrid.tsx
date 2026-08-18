@@ -12,9 +12,9 @@ const HomeGameCard: React.FC<HomeGameCardProps> = ({ game }) => {
   return (
     <a
       href={game.route}
-      className="group relative bg-[#101C2C] border border-white/5 rounded-[12px] overflow-hidden hover:-translate-y-1 hover:border-[#38BDF8]/30 transition-all duration-200 shadow-md hover:shadow-[#38BDF8]/5"
+      className="group relative bg-[#131B2E] border border-[#1E293B] rounded-[12px] overflow-hidden hover:-translate-y-1 hover:border-orange-500/50 transition-all duration-200 shadow-md hover:shadow-orange-950/20"
     >
-      <div className="aspect-[4/3] w-full overflow-hidden bg-zinc-950/40 relative">
+      <div className="aspect-[4/3] w-full overflow-hidden bg-[#090E17] relative">
         {showFallback ? (
           <img
             src="/R.jpg"
@@ -30,14 +30,14 @@ const HomeGameCard: React.FC<HomeGameCardProps> = ({ game }) => {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1320] via-[#0B1320]/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#131B2E] via-transparent to-transparent" />
       </div>
 
-      <div className="p-3 bg-[#0B1320] border-t border-white/5">
-        <span className="text-[11px] font-bold text-zinc-350 group-hover:text-white transition-colors truncate block">
+      <div className="p-3 bg-[#131B2E] border-t border-[#1E293B]">
+        <span className="text-[11px] font-bold text-slate-200 group-hover:text-orange-400 transition-colors truncate block">
           {game.name}
         </span>
-        <span className="text-[8px] font-bold text-zinc-550 uppercase tracking-widest block mt-0.5">
+        <span className="text-[8px] font-bold text-orange-400 uppercase tracking-widest block mt-0.5 font-mono">
           {game.category}
         </span>
       </div>
@@ -48,7 +48,7 @@ const HomeGameCard: React.FC<HomeGameCardProps> = ({ game }) => {
 export const GameGrid: React.FC = () => {
   return (
     <div className="flex flex-col gap-4 text-left select-none">
-      <h3 className="text-sm font-extrabold uppercase tracking-wider text-white">
+      <h3 className="text-sm font-extrabold uppercase tracking-wider text-slate-100 font-mono">
         Premium Casino & Teenpatti Lobby
       </h3>
 

@@ -20,13 +20,13 @@ export function DataTable<T extends { id: string }>({
   renderMobileCard,
 }: DataTableProps<T>) {
   return (
-    <div className="w-full flex flex-col select-none">
+    <div className="w-full flex flex-col select-none font-sans">
       {/* 1. Desktop Tabular View */}
-      <div className="hidden md:block w-full bg-[#111F30] border border-slate-700/15 rounded-[12px] overflow-hidden shadow-xs">
+      <div className="hidden md:block w-full bg-[#131B2E] border border-[#1E293B] rounded-[12px] overflow-hidden shadow-md">
         <div className="w-full overflow-x-auto scrollbar-thin">
           <table className="w-full border-collapse text-left min-w-[700px]">
             <thead>
-              <tr className="border-b border-zinc-900/80 bg-[#0D1B2A] text-[10px] uppercase font-bold text-[#94A3B8] tracking-widest sticky top-0 z-10">
+              <tr className="border-b border-[#1E293B] bg-[#0E1524] text-[10px] uppercase font-bold text-slate-400 tracking-widest sticky top-0 z-10 font-mono">
                 {columns.map((col) => (
                   <th key={col.key} className="py-3.5 px-4 first:pl-5 last:pr-5">
                     {col.header}
@@ -35,11 +35,11 @@ export function DataTable<T extends { id: string }>({
                 {onViewDetails && <th className="py-3.5 px-4 text-right pr-5">Action</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-900/30 text-xs font-semibold text-zinc-300">
+            <tbody className="divide-y divide-[#1E293B] text-xs font-semibold text-slate-300">
               {data.map((row) => (
-                <tr key={row.id} className="hover:bg-zinc-900/20 transition-colors">
+                <tr key={row.id} className="hover:bg-[#18233C]/60 transition-colors">
                   {columns.map((col) => (
-                    <td key={col.key} className="py-3 px-4 first:pl-5 last:pr-5">
+                    <td key={col.key} className="py-3 px-4 first:pl-5 last:pr-5 font-mono">
                       {col.renderCell ? col.renderCell(row) : (row as any)[col.key]}
                     </td>
                   ))}
@@ -47,7 +47,7 @@ export function DataTable<T extends { id: string }>({
                     <td className="py-3 px-4 text-right pr-5">
                       <button
                         onClick={() => onViewDetails(row)}
-                        className="text-[10px] font-bold text-[#0EA5E9] hover:text-[#38BDF8] hover:underline uppercase tracking-wider outline-none cursor-pointer"
+                        className="text-[10px] font-bold text-orange-400 hover:text-orange-300 hover:underline uppercase tracking-wider outline-none cursor-pointer font-mono"
                       >
                         View Details
                       </button>
@@ -71,28 +71,28 @@ export function DataTable<T extends { id: string }>({
           return (
             <div
               key={row.id}
-              className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-4 flex flex-col gap-2.5 text-left text-xs"
+              className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-4 flex flex-col gap-2.5 text-left text-xs shadow-md"
             >
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
-                <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+              <div className="flex items-center justify-between border-b border-[#1E293B] pb-2 font-mono">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                   ID: #{row.id}
                 </span>
                 {onViewDetails && (
                   <button
                     onClick={() => onViewDetails(row)}
-                    className="text-[10px] font-bold text-[#0EA5E9] hover:text-[#38BDF8] uppercase tracking-wider outline-none"
+                    className="text-[10px] font-bold text-orange-400 hover:text-orange-300 uppercase tracking-wider outline-none"
                   >
                     Details
                   </button>
                 )}
               </div>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 font-mono">
                 {columns.map((col) => (
                   <div key={col.key} className="flex justify-between items-center text-[11px]">
-                    <span className="font-bold text-[#94A3B8] uppercase tracking-wider text-[9px]">
+                    <span className="font-bold text-slate-400 uppercase tracking-wider text-[9px]">
                       {col.header}
                     </span>
-                    <span className="font-bold text-white">
+                    <span className="font-bold text-slate-100">
                       {col.renderCell ? col.renderCell(row) : (row as any)[col.key]}
                     </span>
                   </div>

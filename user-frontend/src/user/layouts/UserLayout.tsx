@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Button } from '../components/common/Button';
+import { Logo } from '../components/common/Logo';
+import { LogOut } from 'lucide-react';
 
 interface UserLayoutProps {
   children: React.ReactNode;
@@ -10,19 +11,26 @@ export const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
   const { user, logout } = useAuth();
 
   return (
-    <div className="w-full min-h-screen bg-zinc-900 text-white flex flex-col">
-      {/* Simple Header */}
-      <header className="h-16 bg-zinc-950 border-b border-zinc-800 flex items-center justify-between px-6">
-        <span className="font-bold text-sm tracking-wider text-indigo-400">
-          PLAY MONEY EXCHANGE
-        </span>
-        <div className="flex items-center gap-4">
-          <span className="text-xs text-zinc-400">
-            Welcome, <strong>{user?.username}</strong>
+    <div className="w-full min-h-screen bg-[#0B0F19] text-[#F8FAFC] flex flex-col font-sans">
+      {/* Top App Header */}
+      <header className="h-16 bg-[#0E1524] border-b border-[#1E293B] flex items-center justify-between px-6 shrink-0 shadow-md">
+        <div className="flex items-center gap-3">
+          <Logo theme="light" width={120} />
+          <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-orange-500/15 border border-orange-500/30 text-orange-400 rounded-full font-mono">
+            User Exchange
           </span>
-          <Button onClick={logout} className="h-8 px-3 text-xs bg-zinc-800 hover:bg-zinc-700">
-            Logout
-          </Button>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-xs text-slate-300">
+            Welcome, <strong className="text-orange-400 font-bold">{user?.username}</strong>
+          </span>
+          <button
+            onClick={logout}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#18233C] hover:bg-[#223050] text-slate-300 hover:text-white border border-[#2B3C60] rounded-[6px] text-xs font-semibold tracking-wide transition-all focus:outline-none cursor-pointer"
+          >
+            <LogOut className="w-3.5 h-3.5 text-orange-400" />
+            <span>Logout</span>
+          </button>
         </div>
       </header>
 
@@ -33,3 +41,4 @@ export const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
     </div>
   );
 };
+export default UserLayout;

@@ -73,7 +73,7 @@ export const GameReportsPage: React.FC = () => {
     {
       label: 'Total Net P/L',
       value: `${totalPL >= 0 ? '+' : ''}₹${totalPL.toLocaleString()}`,
-      color: totalPL >= 0 ? 'text-[#22C55E]' : 'text-[#F43F5E]'
+      color: totalPL >= 0 ? 'text-emerald-400' : 'text-rose-400'
     }
   ];
 
@@ -82,47 +82,47 @@ export const GameReportsPage: React.FC = () => {
       header: 'Game Name',
       key: 'gameName',
       renderCell: (row) => (
-        <div className="flex flex-col text-left">
-          <span className="text-white font-extrabold">{row.gameName}</span>
-          <span className="text-[9px] text-zinc-500 font-bold uppercase tracking-wider mt-0.5">{row.sportCategory}</span>
+        <div className="flex flex-col text-left font-mono">
+          <span className="text-slate-100 font-extrabold">{row.gameName}</span>
+          <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">{row.sportCategory}</span>
         </div>
       )
     },
-    { header: 'Round / Session', key: 'roundId', renderCell: (row) => <span className="font-semibold text-zinc-400">{row.roundId}</span> },
-    { header: 'Placed Bets', key: 'betsCount', renderCell: (row) => <span className="font-bold text-white">{row.betsCount}</span> },
+    { header: 'Round / Session', key: 'roundId', renderCell: (row) => <span className="font-semibold text-slate-300 font-mono">{row.roundId}</span> },
+    { header: 'Placed Bets', key: 'betsCount', renderCell: (row) => <span className="font-bold text-slate-100 font-mono">{row.betsCount}</span> },
     {
       header: 'Stake',
       key: 'stake',
-      renderCell: (row) => <span className="text-[#0EA5E9] font-bold">₹{row.stake.toLocaleString()}</span>
+      renderCell: (row) => <span className="text-orange-400 font-bold font-mono">₹{row.stake.toLocaleString()}</span>
     },
-    { header: 'Outcome Result', key: 'result', renderCell: (row) => <span className="text-zinc-300 font-bold text-left block text-[11px] max-w-[150px] truncate">{row.result}</span> },
+    { header: 'Outcome Result', key: 'result', renderCell: (row) => <span className="text-slate-200 font-bold text-left block text-[11px] max-w-[150px] truncate">{row.result}</span> },
     {
       header: 'P/L',
       key: 'profitLoss',
       renderCell: (row) => {
         const isPositive = row.profitLoss >= 0;
         return (
-          <span className={`font-extrabold ${isPositive ? 'text-[#22C55E]' : 'text-[#F43F5E]'}`}>
+          <span className={`font-extrabold font-mono ${isPositive ? 'text-emerald-400' : 'text-rose-400'}`}>
             {isPositive ? '+' : ''}₹{row.profitLoss.toLocaleString()}
           </span>
         );
       }
     },
-    { header: 'Time Date', key: 'date', renderCell: (row) => <span className="text-zinc-500 text-[11px] font-medium">{row.date}</span> },
+    { header: 'Time Date', key: 'date', renderCell: (row) => <span className="text-slate-400 text-[11px] font-medium font-mono">{row.date}</span> },
     { header: 'Status', key: 'status', renderCell: (row) => <StatusBadge status={row.status} /> }
   ];
 
   const renderMobileCard = (row: GameReportEntry) => {
     return (
-      <div className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-4 flex flex-col gap-3 text-left text-xs">
-        <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+      <div className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-4 flex flex-col gap-3 text-left text-xs shadow-md font-mono">
+        <div className="flex items-center justify-between border-b border-[#1E293B] pb-2">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold text-zinc-550 uppercase tracking-widest">#{row.id}</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">#{row.id}</span>
             <StatusBadge status={row.status} />
           </div>
           <button
             onClick={() => setSelectedRow(row)}
-            className="text-[10px] font-bold text-[#0EA5E9] uppercase tracking-wider outline-none"
+            className="text-[10px] font-bold text-orange-400 hover:text-orange-300 uppercase tracking-wider outline-none"
           >
             Details
           </button>
@@ -130,20 +130,20 @@ export const GameReportsPage: React.FC = () => {
 
         <div className="flex flex-col gap-1.5">
           <div className="flex justify-between items-start">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Game</span>
-            <span className="font-extrabold text-white">{row.gameName}</span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Game</span>
+            <span className="font-extrabold text-slate-100">{row.gameName}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Round ID</span>
-            <span className="font-semibold text-zinc-400">{row.roundId}</span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Round ID</span>
+            <span className="font-semibold text-slate-300">{row.roundId}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Bets / Stake</span>
-            <span className="font-bold text-white">{row.betsCount} / <span className="text-[#0EA5E9]">₹{row.stake.toLocaleString()}</span></span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Bets / Stake</span>
+            <span className="font-bold text-slate-100">{row.betsCount} / <span className="text-orange-400">₹{row.stake.toLocaleString()}</span></span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">P/L</span>
-            <span className={`font-extrabold ${row.profitLoss >= 0 ? 'text-[#22C55E]' : 'text-[#F43F5E]'}`}>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">P/L</span>
+            <span className={`font-extrabold ${row.profitLoss >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
               {row.profitLoss >= 0 ? '+' : ''}₹{row.profitLoss.toLocaleString()}
             </span>
           </div>
@@ -159,7 +159,7 @@ export const GameReportsPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <ReportsHeader
           title="Live Casino Game Sessions"
           description="Reports of casino rounds and table history with detailed outcome results."

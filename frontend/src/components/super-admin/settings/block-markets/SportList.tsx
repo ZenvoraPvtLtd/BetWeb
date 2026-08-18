@@ -4,8 +4,7 @@ import { sportMarketConfig } from '../../../../config/superAdmin/blockMarkets';
 
 export const SportList: React.FC = () => {
   return (
-    <div className="w-full bg-white border border-zinc-200 rounded-[8px] shadow-sm overflow-hidden flex flex-col">
-      {/* Map sports configurations dynamically */}
+    <div className="w-full bg-[#131B2E] border border-[#1E293B] rounded-[10px] shadow-xl overflow-hidden flex flex-col">
       {sportMarketConfig.map((sport) => (
         <SportListItem key={sport.id} sport={sport} />
       ))}

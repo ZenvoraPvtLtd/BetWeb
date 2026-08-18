@@ -86,14 +86,14 @@ export const SidebarNavItem: React.FC<SidebarNavItemProps> = ({
   };
 
   const navItemClass = `
-    w-full h-11 flex items-center gap-3 px-4 rounded-[6px] text-xs font-semibold
+    w-full h-11 flex items-center gap-3 px-3.5 rounded-[8px] text-xs font-semibold
     transition-all duration-150 relative group outline-none select-none cursor-pointer
     ${
       isActive
-        ? 'bg-zinc-800 text-white font-semibold shadow-sm'
-        : 'text-zinc-400 hover:text-white hover:bg-zinc-900/60'
+        ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30 font-semibold shadow-sm'
+        : 'text-slate-400 hover:text-white hover:bg-[#131B2E] border border-transparent'
     }
-    focus-visible:ring-1 focus-visible:ring-zinc-700
+    focus-visible:ring-1 focus-visible:ring-orange-500
   `;
 
   // 1. Direct Navigation Link
@@ -108,8 +108,8 @@ export const SidebarNavItem: React.FC<SidebarNavItemProps> = ({
         >
           <div className={`flex items-center justify-center w-5 h-5 shrink-0 ${isCollapsed ? 'mx-auto' : ''}`}>
             <Icon
-              className={`w-[19px] h-[19px] shrink-0 ${
-                isActive ? 'text-indigo-400' : 'text-zinc-500 group-hover:text-zinc-300'
+              className={`w-[19px] h-[19px] shrink-0 transition-colors ${
+                isActive ? 'text-orange-400' : 'text-slate-400 group-hover:text-orange-300'
               }`}
             />
           </div>
@@ -117,13 +117,13 @@ export const SidebarNavItem: React.FC<SidebarNavItemProps> = ({
           {!isCollapsed && <span className="truncate flex-1 text-left">{label}</span>}
 
           {isActive && !isCollapsed && (
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500 shrink-0" />
           )}
         </NavLink>
 
         {/* Hover Tooltip when Collapsed */}
         {isCollapsed && (
-          <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-zinc-950 text-white text-[11px] rounded-[4px] border border-zinc-800 shadow-md font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap z-50">
+          <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] rounded-[6px] border border-[#233252] shadow-xl font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap z-50">
             {label}
           </div>
         )}
@@ -146,8 +146,8 @@ export const SidebarNavItem: React.FC<SidebarNavItemProps> = ({
       >
         <div className="flex items-center justify-center w-5 h-5 shrink-0">
           <Icon
-            className={`w-[19px] h-[19px] shrink-0 ${
-              isActive ? 'text-indigo-400' : 'text-zinc-500 group-hover:text-zinc-300'
+            className={`w-[19px] h-[19px] shrink-0 transition-colors ${
+              isActive ? 'text-orange-400' : 'text-slate-400 group-hover:text-orange-300'
             }`}
           />
         </div>
@@ -156,15 +156,15 @@ export const SidebarNavItem: React.FC<SidebarNavItemProps> = ({
 
         {!isCollapsed && dropdownItems && (
           <ChevronDown
-            className={`w-3.5 h-3.5 text-zinc-500 transition-transform duration-200 shrink-0 ${
-              isDropdownOpen ? 'rotate-180 text-white' : ''
+            className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 shrink-0 ${
+              isDropdownOpen ? 'rotate-180 text-orange-400' : ''
             }`}
           />
         )}
 
         {/* Hover Tooltip when Collapsed */}
         {isCollapsed && !isFlyoutOpen && (
-          <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-zinc-950 text-white text-[11px] rounded-[4px] border border-zinc-800 shadow-md font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap z-50">
+          <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-[#131B2E] text-white text-[11px] rounded-[6px] border border-[#233252] shadow-xl font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap z-50">
             {label}
           </div>
         )}
@@ -181,11 +181,11 @@ export const SidebarNavItem: React.FC<SidebarNavItemProps> = ({
                   to={item.to}
                   onClick={onItemClick}
                   className={`
-                    block w-full text-left py-1.5 px-3 rounded text-[11px] font-semibold transition-colors cursor-pointer
+                    block w-full text-left py-2 px-3 rounded-[6px] text-[11px] font-semibold transition-colors cursor-pointer
                     ${
                       isSubActive
-                        ? 'text-white bg-zinc-900/60 font-semibold'
-                        : 'text-zinc-555 hover:text-white hover:bg-zinc-900/30'
+                        ? 'text-orange-400 bg-orange-500/15 font-semibold border-l-2 border-orange-500'
+                        : 'text-slate-400 hover:text-white hover:bg-[#131B2E]'
                     }
                   `}
                 >
@@ -199,8 +199,8 @@ export const SidebarNavItem: React.FC<SidebarNavItemProps> = ({
 
       {/* Flyout Popover List (Collapsed Mode) */}
       {isCollapsed && isFlyoutOpen && dropdownItems && (
-        <div className="absolute left-full ml-3 top-0 w-44 bg-zinc-950 border border-zinc-800 rounded-[6px] shadow-lg py-1.5 z-50 text-xs text-zinc-400 flex flex-col max-h-[calc(100vh-80px)]">
-          <div className="px-3.5 py-1.5 border-b border-zinc-900 text-white font-semibold text-[11px] uppercase tracking-wider select-none mb-1 shrink-0">
+        <div className="absolute left-full ml-3 top-0 w-48 bg-[#131B2E] border border-[#233252] rounded-[10px] shadow-2xl py-1.5 z-50 text-xs text-slate-300 flex flex-col max-h-[calc(100vh-80px)] backdrop-blur-md">
+          <div className="px-3.5 py-2 border-b border-[#1E293B] text-white font-semibold text-[11px] uppercase tracking-wider select-none mb-1 shrink-0">
             {label}
           </div>
           <ul className="flex flex-col gap-0.5 overflow-y-auto overflow-x-hidden scrollbar-thin flex-1 pr-1">
@@ -215,8 +215,8 @@ export const SidebarNavItem: React.FC<SidebarNavItemProps> = ({
                       if (onItemClick) onItemClick();
                     }}
                     className={`
-                      block w-full text-left px-3.5 py-2 hover:bg-zinc-900/60 hover:text-white transition-colors cursor-pointer
-                      ${isSubActive ? 'bg-zinc-900/40 text-indigo-400 font-semibold' : ''}
+                      block w-full text-left px-3.5 py-2 hover:bg-[#18233C] hover:text-white transition-colors cursor-pointer
+                      ${isSubActive ? 'bg-orange-500/15 text-orange-400 font-semibold' : 'text-slate-300'}
                     `}
                   >
                     {item.label}

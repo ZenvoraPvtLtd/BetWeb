@@ -63,38 +63,38 @@ export const RulesPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Betting Rules"
           description="Read general exchange rules and guidelines for sports and live dealer casino."
           breadcrumbs={breadcrumbs}
         />
 
-        <div className="max-w-3xl flex flex-col gap-3">
+        <div className="max-w-3xl flex flex-col gap-3 font-mono">
           {ruleSections.map((section) => {
             const isExpanded = expandedSection === section.id;
             return (
               <div
                 key={section.id}
-                className="bg-[#111F30] border border-slate-700/15 rounded-[12px] overflow-hidden"
+                className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] overflow-hidden shadow-sm"
               >
                 <button
                   onClick={() => toggleSection(section.id)}
-                  className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-zinc-900/10 cursor-pointer outline-none transition-colors"
+                  className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-[#18233C] cursor-pointer outline-none transition-colors"
                 >
-                  <span className="text-xs font-extrabold uppercase text-white flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-[#0EA5E9]" />
+                  <span className="text-xs font-extrabold uppercase text-slate-100 flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-orange-400" />
                     <span>{section.title}</span>
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 text-zinc-500 transition-transform duration-300 ${
-                      isExpanded ? 'rotate-180 text-white' : ''
+                    className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${
+                      isExpanded ? 'rotate-180 text-orange-400' : ''
                     }`}
                   />
                 </button>
 
                 {isExpanded && (
-                  <div className="px-5 pb-5 pt-1 border-t border-zinc-900/30 text-xs font-semibold text-zinc-400 leading-relaxed whitespace-pre-line">
+                  <div className="px-5 pb-5 pt-2 border-t border-[#1E293B] text-xs font-medium text-slate-300 leading-relaxed whitespace-pre-line bg-[#0E1524]/50">
                     {section.content}
                   </div>
                 )}

@@ -26,7 +26,6 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
     const updated = { ...draftFilters, [field]: val };
     setDraftFilters(updated);
 
-    // Validate datetime range constraints
     if (field === 'startDateTime' || field === 'endDateTime') {
       const start = updated.startDateTime ? new Date(updated.startDateTime).getTime() : null;
       const end = updated.endDateTime ? new Date(updated.endDateTime).getTime() : null;
@@ -61,32 +60,32 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white border border-zinc-200 rounded-[8px] p-5 shadow-sm mb-6 select-none"
+      className="bg-[#131B2E] border border-[#1E293B] rounded-[10px] p-5 shadow-xl mb-6 select-none"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 items-end">
         {/* User filter */}
         <div className="flex flex-col text-left">
           <label
             htmlFor="user-filter"
-            className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2 font-mono"
+            className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 font-mono"
           >
             User
           </label>
           <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-450 pointer-events-none" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
             <input
               id="user-filter"
               type="text"
               placeholder="Search User"
               value={draftFilters.user}
               onChange={(e) => handleInputChange('user', e.target.value)}
-              className="w-full h-[38px] pl-9 pr-8 bg-white border border-zinc-200 rounded-[6px] text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700 text-zinc-900 placeholder-zinc-400 transition-all"
+              className="w-full h-[38px] pl-9 pr-8 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs focus:outline-none focus:border-orange-500 text-slate-100 placeholder-slate-500 transition-all"
             />
             {draftFilters.user && (
               <button
                 type="button"
                 onClick={() => handleInputChange('user', '')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-650 focus:outline-none cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white focus:outline-none cursor-pointer"
                 aria-label="Clear user search"
               >
                 <X className="w-3.5 h-3.5" />
@@ -99,7 +98,7 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
         <div className="flex flex-col text-left">
           <label
             htmlFor="name-filter"
-            className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2 font-mono"
+            className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 font-mono"
           >
             Search By Name
           </label>
@@ -110,13 +109,13 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
               placeholder="Search By Name"
               value={draftFilters.searchByName}
               onChange={(e) => handleInputChange('searchByName', e.target.value)}
-              className="w-full h-[38px] px-3 bg-white border border-zinc-200 rounded-[6px] text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700 text-zinc-900 placeholder-zinc-400 transition-all"
+              className="w-full h-[38px] px-3 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs focus:outline-none focus:border-orange-500 text-slate-100 placeholder-slate-500 transition-all"
             />
             {draftFilters.searchByName && (
               <button
                 type="button"
                 onClick={() => handleInputChange('searchByName', '')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-650 focus:outline-none cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white focus:outline-none cursor-pointer"
                 aria-label="Clear search by name"
               >
                 <X className="w-3.5 h-3.5" />
@@ -129,7 +128,7 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
         <div className="flex flex-col text-left">
           <label
             htmlFor="sport-filter"
-            className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2 font-mono"
+            className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 font-mono"
           >
             Sport
           </label>
@@ -137,7 +136,7 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
             id="sport-filter"
             value={draftFilters.sport}
             onChange={(e) => handleInputChange('sport', e.target.value)}
-            className="w-full h-[38px] px-3 bg-white border border-zinc-200 rounded-[6px] text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700 text-zinc-900 cursor-pointer outline-none"
+            className="w-full h-[38px] px-3 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs focus:outline-none focus:border-orange-500 text-slate-100 cursor-pointer outline-none"
           >
             <option value="All">Select Sport</option>
             {sportsConfig.map((sport) => (
@@ -152,7 +151,7 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
         <div className="flex flex-col text-left">
           <label
             htmlFor="start-date-time"
-            className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2 font-mono"
+            className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 font-mono"
           >
             Start Date
           </label>
@@ -161,7 +160,7 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
             type="datetime-local"
             value={draftFilters.startDateTime}
             onChange={(e) => handleInputChange('startDateTime', e.target.value)}
-            className="w-full h-[38px] px-3 bg-white border border-zinc-200 rounded-[6px] text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700 text-zinc-900 cursor-pointer"
+            className="w-full h-[38px] px-3 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs focus:outline-none focus:border-orange-500 text-slate-100 cursor-pointer"
           />
         </div>
 
@@ -169,7 +168,7 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
         <div className="flex flex-col text-left">
           <label
             htmlFor="end-date-time"
-            className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2 font-mono"
+            className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 font-mono"
           >
             End Date
           </label>
@@ -178,7 +177,7 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
             type="datetime-local"
             value={draftFilters.endDateTime}
             onChange={(e) => handleInputChange('endDateTime', e.target.value)}
-            className="w-full h-[38px] px-3 bg-white border border-zinc-200 rounded-[6px] text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700 text-zinc-900 cursor-pointer"
+            className="w-full h-[38px] px-3 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs focus:outline-none focus:border-orange-500 text-slate-100 cursor-pointer"
           />
         </div>
 
@@ -188,11 +187,11 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
             type="submit"
             disabled={!!dateError}
             className={`
-              flex-1 h-[38px] rounded-[6px] text-xs font-semibold select-none transition-all focus:outline-none focus:ring-1 focus:ring-zinc-700
+              flex-1 h-[38px] rounded-[8px] text-xs font-semibold select-none transition-all focus:outline-none shadow-md
               ${
                 dateError
-                  ? 'bg-zinc-150 border border-zinc-200 text-zinc-400 cursor-not-allowed'
-                  : 'bg-zinc-900 border border-zinc-900 text-white hover:bg-zinc-800 cursor-pointer active:brightness-95'
+                  ? 'bg-slate-800 border border-[#233252] text-slate-500 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-[#FF5722] to-[#F97316] hover:from-[#F4511E] hover:to-[#EA580C] text-white cursor-pointer active:scale-95 shadow-orange-950/40'
               }
             `}
           >
@@ -202,7 +201,7 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
           <button
             type="button"
             onClick={handleReset}
-            className="h-[38px] px-3 text-xs font-semibold text-zinc-500 hover:text-zinc-850 hover:bg-zinc-50 border border-zinc-200 rounded-[6px] transition-colors focus:outline-none cursor-pointer"
+            className="h-[38px] px-3 text-xs font-semibold text-slate-400 hover:text-white hover:bg-[#18233C] border border-[#233252] rounded-[8px] transition-colors focus:outline-none cursor-pointer"
             aria-label="Reset filters"
           >
             Reset
@@ -210,9 +209,8 @@ export const CurrentBetsFilters: React.FC<CurrentBetsFiltersProps> = ({
         </div>
       </div>
 
-      {/* Date-Time validation warning banner */}
       {dateError && (
-        <p className="text-[10.5px] text-red-650 font-semibold mt-3.5 text-left font-mono">
+        <p className="text-[10.5px] text-red-400 font-semibold mt-3.5 text-left font-mono">
           {dateError}
         </p>
       )}

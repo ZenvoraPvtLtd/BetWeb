@@ -44,12 +44,12 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
   return (
     <div
       ref={dropdownRef}
-      className="absolute right-0 mt-2.5 w-80 bg-[#111F30] border border-slate-700/15 rounded-[12px] shadow-2xl z-50 text-left overflow-hidden animate-slideDown select-none"
+      className="absolute right-0 mt-2.5 w-80 bg-[#131B2E] border border-[#233252] rounded-[12px] shadow-2xl z-50 text-left overflow-hidden animate-slideDown select-none"
     >
       {/* Header */}
-      <div className="bg-[#0D1B2A] px-4 py-3 border-b border-zinc-900/60 flex items-center justify-between">
-        <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#94A3B8] flex items-center gap-1.5">
-          <Bell className="w-3.5 h-3.5 text-[#0EA5E9]" />
+      <div className="bg-[#0E1524] px-4 py-3 border-b border-[#1E293B] flex items-center justify-between">
+        <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-300 flex items-center gap-1.5 font-mono">
+          <Bell className="w-3.5 h-3.5 text-orange-400" />
           <span>Notifications</span>
         </span>
       </div>
@@ -66,19 +66,19 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
                   if (isUnread) markMessageRead(msg.id);
                 }}
                 className={`
-                  p-3.5 border-b border-zinc-900/30 flex gap-3 cursor-pointer hover:bg-zinc-900/10 transition-colors last:border-0
-                  ${isUnread ? 'bg-[#0ea5e9]/5' : ''}
+                  p-3.5 border-b border-[#1E293B] flex gap-3 cursor-pointer hover:bg-[#18233C]/60 transition-colors last:border-0
+                  ${isUnread ? 'bg-orange-500/5' : ''}
                 `}
               >
-                <div className={`mt-0.5 ${isUnread ? 'text-[#0EA5E9]' : 'text-zinc-550'}`}>
+                <div className={`mt-0.5 ${isUnread ? 'text-orange-400' : 'text-slate-500'}`}>
                   {isUnread ? <Mail className="w-3.5 h-3.5" /> : <MailOpen className="w-3.5 h-3.5" />}
                 </div>
 
                 <div className="flex flex-col text-left flex-1">
-                  <span className={`text-[11px] font-bold uppercase tracking-wide leading-tight ${isUnread ? 'text-white' : 'text-zinc-400'}`}>
+                  <span className={`text-[11px] font-bold uppercase tracking-wide leading-tight ${isUnread ? 'text-slate-100' : 'text-slate-400'}`}>
                     {msg.title}
                   </span>
-                  <p className="text-[10px] text-zinc-500 font-semibold mt-1 line-clamp-2 leading-relaxed">
+                  <p className="text-[10px] text-slate-400 font-medium mt-1 line-clamp-2 leading-relaxed">
                     {msg.description}
                   </p>
                 </div>
@@ -86,7 +86,7 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
             );
           })
         ) : (
-          <div className="py-8 text-center text-[10px] uppercase font-bold text-zinc-550 tracking-wider">
+          <div className="py-8 text-center text-[10px] uppercase font-bold text-slate-500 tracking-wider">
             No notification alerts
           </div>
         )}
@@ -96,7 +96,7 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
       <a
         href="/settings/messages"
         onClick={onClose}
-        className="block text-center py-2.5 bg-[#0D1B2A] border-t border-zinc-900/60 text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-[#16283D] transition-colors"
+        className="block text-center py-2.5 bg-[#0E1524] border-t border-[#1E293B] text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-orange-400 hover:bg-[#18233C] transition-colors"
       >
         <span className="flex items-center justify-center gap-1">
           <span>View All Messages</span>

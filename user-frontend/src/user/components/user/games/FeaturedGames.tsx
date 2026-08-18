@@ -7,8 +7,8 @@ export const FeaturedGames: React.FC = () => {
   return (
     <div className="flex flex-col gap-4 select-none">
       <div className="flex items-center gap-2 mb-1">
-        <Sparkles className="w-4 h-4 text-amber-400" />
-        <h3 className="text-xs font-bold uppercase tracking-widest text-[#94A3B8]">
+        <Sparkles className="w-4 h-4 text-orange-400" />
+        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-300 font-mono">
           Featured Casino Games
         </h3>
       </div>

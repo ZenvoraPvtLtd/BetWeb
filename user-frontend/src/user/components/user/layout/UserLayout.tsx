@@ -14,7 +14,7 @@ export const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <div className="w-full h-screen flex bg-[#07111F] text-white overflow-hidden relative">
+    <div className="w-full h-screen flex bg-[#0B0F19] text-[#F8FAFC] overflow-hidden relative font-sans">
       {/* Collapsible/Expandable Left Sidebar Drawer */}
       <UserSidebar
         isCollapsed={isCollapsed}
@@ -35,8 +35,8 @@ export const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
         <MatchTicker />
 
         {/* Content canvas container */}
-        <div className="flex-1 overflow-y-auto relative min-h-0 bg-[#07111F] flex flex-col justify-between">
-          <div className="flex-1">
+        <div className="flex-1 overflow-y-auto relative min-h-0 bg-[#0B0F19] flex flex-col justify-between">
+          <div className="flex-1 p-4 md:p-6">
             {children}
           </div>
           <UserFooter />

@@ -37,7 +37,7 @@ export const CasinoSettingsPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Casino Category Settings"
           description="Enable or disable specific casino, poker, or teenpatti variations from your lobby directory."
@@ -45,25 +45,25 @@ export const CasinoSettingsPage: React.FC = () => {
         />
 
         {/* Filters */}
-        <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center bg-zinc-950/20 border border-zinc-900 p-4 rounded-[12px]">
+        <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center bg-[#131B2E] border border-[#1E293B] p-4 rounded-[12px] shadow-sm font-mono">
           <div className="relative flex-1">
             <input
               placeholder="Search casino game variations..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-9 pl-9 pr-3 bg-[#111F30] border border-zinc-850 rounded-[8px] text-xs font-bold text-white placeholder-zinc-500 outline-none focus:border-[#0EA5E9]"
+              className="w-full h-9 pl-9 pr-3 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs font-bold text-slate-100 placeholder-slate-500 outline-none focus:border-orange-500 transition-colors"
             />
-            <Search className="w-4 h-4 text-zinc-505 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
           </div>
 
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="h-9 px-3 bg-[#111F30] border border-zinc-850 rounded-[8px] text-xs font-bold text-white outline-none cursor-pointer focus:border-[#0EA5E9]"
+            className="h-9 px-3 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs font-bold text-slate-100 outline-none cursor-pointer focus:border-orange-500 transition-colors"
           >
             <option value="ALL">All Categories</option>
             {categories.map((cat) => (
-              <option key={cat} value={cat}>
+              <option key={cat} value={cat} className="bg-[#131B2E]">
                 {cat}
               </option>
             ))}
@@ -74,26 +74,26 @@ export const CasinoSettingsPage: React.FC = () => {
         {isLoading ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 animate-pulse">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-44 bg-[#111F30] rounded-[12px] border border-slate-700/10" />
+              <div key={i} className="h-44 bg-[#131B2E] rounded-[12px] border border-[#1E293B]" />
             ))}
           </div>
         ) : filteredGames.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 font-mono">
             {filteredGames.map((game) => {
               const isEnabled = game.status === 'ENABLED';
               return (
                 <div
                   key={game.id}
-                  className="bg-[#111F30] border border-slate-700/15 rounded-[12px] overflow-hidden flex flex-col justify-between shadow-xs group"
+                  className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] overflow-hidden flex flex-col justify-between shadow-md group"
                 >
                   {/* Aspect image placeholder with category badge */}
-                  <div className="relative aspect-video bg-zinc-900 border-b border-zinc-900 overflow-hidden flex items-center justify-center">
+                  <div className="relative aspect-video bg-[#090E17] border-b border-[#1E293B] overflow-hidden flex items-center justify-center">
                     <img
                       src={game.image}
                       alt={game.gameName}
                       className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-300"
                     />
-                    <span className="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-zinc-950/80 border border-zinc-800 text-[8px] font-bold text-zinc-400 uppercase tracking-widest">
+                    <span className="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-[#090E17]/80 border border-[#233252] text-[8px] font-bold text-orange-400 uppercase tracking-widest">
                       {game.category}
                     </span>
                   </div>
@@ -101,12 +101,12 @@ export const CasinoSettingsPage: React.FC = () => {
                   {/* Body description */}
                   <div className="p-3 text-left flex flex-col flex-1 justify-between gap-3">
                     <div className="flex flex-col">
-                      <h4 className={`text-xs font-extrabold uppercase tracking-wide truncate ${isEnabled ? 'text-white' : 'text-zinc-500 line-through'}`}>
+                      <h4 className={`text-xs font-extrabold uppercase tracking-wide truncate ${isEnabled ? 'text-slate-100' : 'text-slate-500 line-through'}`}>
                         {game.gameName}
                       </h4>
                       <div className="flex items-center gap-1.5 mt-1.5">
                         <span className={`w-1.5 h-1.5 rounded-full ${isEnabled ? 'bg-emerald-500' : 'bg-rose-500'}`} />
-                        <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-500">
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">
                           {isEnabled ? 'Enabled' : 'Disabled'}
                         </span>
                       </div>
@@ -118,8 +118,8 @@ export const CasinoSettingsPage: React.FC = () => {
                         w-full h-8 rounded-[6px] text-[10px] font-bold uppercase tracking-wider outline-none transition-colors cursor-pointer
                         ${
                           isEnabled
-                            ? 'bg-rose-500/10 border border-rose-500/20 text-[#F43F5E] hover:bg-rose-500 hover:text-white'
-                            : 'bg-emerald-500/10 border border-emerald-500/20 text-[#22C55E] hover:bg-emerald-500 hover:text-white'
+                            ? 'bg-rose-500/15 border border-rose-500/30 text-rose-400 hover:bg-rose-500 hover:text-white'
+                            : 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500 hover:text-white'
                         }
                       `}
                     >

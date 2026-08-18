@@ -104,103 +104,105 @@ export const SportsExchangePage: React.FC = () => {
             return evt;
           }
 
-          // 2. Adjust live event progress
+          // 2. Progression for live events
           if (evt.status === 'Live') {
-            const updatedMeta = { ...evt.meta };
-            const updatedScore = evt.score ? { ...evt.score } : { status: 'Live' };
-            const homeParticipant = { ...evt.participants.home };
-            const awayParticipant = { ...evt.participants.away };
-            let currentStatus: SportEvent['status'] = evt.status;
+            const updated = { ...evt };
 
-            if (updatedMeta.timer !== undefined) {
-              updatedMeta.timer += 3;
+            if (evt.sportType === 'soccer' || evt.sportType === 'futsal') {
+              const currentTimer = (evt.meta?.timer || 0) + 15;
+              const shouldScore = Math.random() < 0.08;
+              let homeScore = Number(evt.participants.home.score || 0);
+              let awayScore = Number(evt.participants.away.score || 0);
+
+              if (shouldScore) {
+                if (Math.random() > 0.5) homeScore++;
+                else awayScore++;
+              }
+
+              if (currentTimer >= 90 * 60) {
+                return {
+                  ...evt,
+                  status: 'Completed',
+                  startTime: 'Finished',
+                  participants: {
+                    home: { ...evt.participants.home, score: homeScore },
+                    away: { ...evt.participants.away, score: awayScore },
+                  },
+                };
+              }
+
+              return {
+                ...evt,
+                participants: {
+                  home: { ...evt.participants.home, score: homeScore },
+                  away: { ...evt.participants.away, score: awayScore },
+                },
+                meta: {
+                  ...evt.meta,
+                  timer: currentTimer,
+                  half: currentTimer > 45 * 60 ? '2nd' : '1st',
+                },
+              };
             }
 
             if (evt.sportType === 'cricket') {
-              let overs = parseFloat((updatedMeta.overs || 0).toFixed(1));
-              let balls = Math.round((overs * 10) % 10) + 1;
-              let overNum = Math.floor(overs);
+              const runsAdded = Math.random() < 0.5 ? Math.floor(Math.random() * 5) : 0;
+              const isWicket = Math.random() < 0.04;
+              let currentOvers = parseFloat((evt.meta?.overs || 0).toFixed(1));
+              let balls = Math.round((currentOvers % 1) * 10);
+              let fullOvers = Math.floor(currentOvers);
+
+              balls++;
               if (balls >= 6) {
-                overNum += 1;
+                fullOvers++;
                 balls = 0;
               }
-              updatedMeta.overs = parseFloat(`${overNum}.${balls}`);
+              const newOvers = parseFloat(`${fullOvers}.${balls}`);
+              const newRuns = Number(evt.participants.home.score || 0) + runsAdded;
+              const newWickets = Math.min(
+                10,
+                Number(evt.participants.home.subScore || 0) + (isWicket ? 1 : 0)
+              );
 
-              if (Math.random() < 0.4) {
-                const runOptions = [0, 1, 2, 4, 6];
-                const gained = runOptions[Math.floor(Math.random() * runOptions.length)];
-                updatedMeta.runs = (updatedMeta.runs || 0) + gained;
-                homeParticipant.score = updatedMeta.runs;
-
-                if (updatedMeta.currentOverRuns) {
-                  updatedMeta.currentOverRuns = [...updatedMeta.currentOverRuns.slice(1), gained];
-                }
+              if (fullOvers >= 20 || newWickets >= 10) {
+                return {
+                  ...evt,
+                  status: 'Completed',
+                  startTime: 'Finished',
+                  score: {
+                    status: 'Completed',
+                    detail: `Innings complete: ${newRuns}/${newWickets} (${newOvers} ov)`,
+                  },
+                };
               }
 
-              if (Math.random() < 0.04) {
-                updatedMeta.wickets = (updatedMeta.wickets || 0) + 1;
-                homeParticipant.subScore = updatedMeta.wickets;
-              }
-
-              updatedScore.detail = `Overs: ${updatedMeta.overs}`;
-              updatedScore.scoreDisplay = `${updatedMeta.runs}/${updatedMeta.wickets} (${updatedMeta.overs} overs)`;
-
-              if (updatedMeta.overs >= 20.0) {
-                currentStatus = 'Completed';
-                updatedScore.detail = 'Match Completed';
-              }
-            } else if (evt.sportType === 'soccer' || evt.sportType === 'futsal') {
-              if (Math.random() < 0.02) {
-                if (Math.random() < 0.5) {
-                  homeParticipant.score = ((homeParticipant.score as number) || 0) + 1;
-                } else {
-                  awayParticipant.score = ((awayParticipant.score as number) || 0) + 1;
-                }
-              }
-
-              if (updatedMeta.timer >= 2700 && updatedMeta.half === '1st') {
-                updatedMeta.half = '2nd';
-                updatedMeta.timer = 2700;
-              } else if (updatedMeta.timer >= 5400) {
-                currentStatus = 'Completed';
-                updatedScore.detail = 'Full Time';
-              }
-
-              updatedScore.scoreDisplay = `${homeParticipant.score} - ${awayParticipant.score}`;
-            } else if (evt.sportType === 'basketball') {
-              if (Math.random() < 0.15) {
-                const pts = Math.random() < 0.6 ? 2 : 3;
-                if (Math.random() < 0.5) {
-                  homeParticipant.score = ((homeParticipant.score as number) || 0) + pts;
-                } else {
-                  awayParticipant.score = ((awayParticipant.score as number) || 0) + pts;
-                }
-              }
-
-              if (updatedMeta.timer >= 2400) {
-                currentStatus = 'Completed';
-                updatedScore.detail = 'Full Time';
-              }
-              updatedScore.scoreDisplay = `${homeParticipant.score} - ${awayParticipant.score}`;
+              return {
+                ...evt,
+                participants: {
+                  ...evt.participants,
+                  home: {
+                    ...evt.participants.home,
+                    score: newRuns,
+                    subScore: newWickets,
+                  },
+                },
+                meta: {
+                  ...evt.meta,
+                  overs: newOvers,
+                  currentOverRuns: [...(evt.meta?.currentOverRuns || []).slice(-5), runsAdded],
+                },
+              };
             }
 
+            // Fluctuate odds slightly
             const updatedSelections = evt.selections.map((sel) => {
-              const diff = (Math.random() - 0.5) * 0.04;
-              let newRate = parseFloat((sel.rate + diff).toFixed(2));
-              if (newRate < 1.05) newRate = 1.05;
-              if (newRate > 10.0) newRate = 10.0;
-              return { ...sel, rate: newRate };
+              const delta = (Math.random() - 0.5) * 0.04;
+              const newRate = Math.max(1.05, Math.min(15.0, sel.rate + delta));
+              return { ...sel, rate: parseFloat(newRate.toFixed(2)) };
             });
 
             return {
-              ...evt,
-              status: currentStatus,
-              participants: {
-                home: homeParticipant,
-                away: awayParticipant,
-              },
-              score: updatedScore,
-              meta: updatedMeta,
+              ...updated,
               selections: updatedSelections,
             };
           }
@@ -211,7 +213,7 @@ export const SportsExchangePage: React.FC = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [events]);
+  }, [events.length]);
 
   if (!config) {
     return <Navigate to="/admin/market-analysis" replace />;
@@ -225,48 +227,54 @@ export const SportsExchangePage: React.FC = () => {
     setSelected(null);
   };
 
-  const handleAddSelection = (pointsDeducted: number) => {
-    updateBalance(balance - pointsDeducted);
+  const handlePlaceBet = (points: number) => {
+    if (!selected) return;
+    const newBalance = balance - points;
+    updateBalance(newBalance);
+
+    // Confirmation Toast alert
+    alert(
+      `Demo Bet Placed Successfully!\n\nSelection: ${selected.selection.name} @ ${selected.selection.rate}\nEvent: ${selected.event.name}\nPoints Staked: ${points}\nRemaining Balance: ${newBalance}`
+    );
+
     setSelected(null);
   };
 
   return (
     <SuperAdminLayout>
       <div className="flex flex-col text-left select-none animate-fadeIn">
-        {/* Breadcrumb Path */}
-        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-5">
-          <Link to="/admin/market-analysis" className="hover:text-zinc-955 transition-colors">
-            Sports Exchange
+        {/* Dynamic Breadcrumbs */}
+        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-4 select-none">
+          <Link to="/admin/market-analysis" className="hover:text-orange-400 transition-colors">
+            Super Admin
           </Link>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-955">{config.title}</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-slate-500">Sports</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-orange-400">{config.name}</span>
         </nav>
 
-        {/* Header Block */}
-        <SportsHeader title={config.title} balance={balance} />
+        {/* Reusable Header Console */}
+        <SportsHeader title={config.name} balance={balance} />
 
-        {/* Dynamic Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Left Panel */}
-          <div className="lg:col-span-8 flex flex-col gap-4">
+        {/* 2-Column Responsive Workspace */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+          {/* Main events roster (Left 2 cols) */}
+          <div className="lg:col-span-2">
             <SportsEventList
               events={events}
-              selectedSelection={
-                selected
-                  ? { eventId: selected.event.id, selectionId: selected.selection.id }
-                  : null
-              }
+              selectedSelectionId={selected?.selection.id || null}
               onSelect={handleSelect}
             />
           </div>
 
-          {/* Right Panel */}
-          <div className="lg:col-span-4 sticky top-6">
+          {/* Persistent Selection Slip (Right 1 col) */}
+          <div className="lg:col-span-1 sticky top-6">
             <DemoSelectionSlip
-              selectedEvent={selected ? selected.event : null}
-              selectedSelection={selected ? selected.selection : null}
+              selectedEvent={selected?.event || null}
+              selectedSelection={selected?.selection || null}
               onClear={handleClearSelection}
-              onSubmit={handleAddSelection}
+              onSubmit={handlePlaceBet}
               balance={balance}
             />
           </div>

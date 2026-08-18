@@ -3,7 +3,7 @@ import React from 'react';
 interface LogoProps {
   className?: string;
   width?: number | string;
-  theme?: 'light' | 'dark'; // 'light' is white text for dark bg, 'dark' is dark zinc text for white bg
+  theme?: 'light' | 'dark';
   isCompact?: boolean;
 }
 
@@ -13,8 +13,8 @@ export const Logo: React.FC<LogoProps> = ({
   theme = 'light',
   isCompact = false,
 }) => {
-  const fillColor = theme === 'light' ? 'white' : 'var(--login-primary, #18181B)';
-  const playColor = '#6366F1'; // Premium Indigo accent play icon
+  const fillColor = theme === 'light' ? '#F8FAFC' : '#0F172A';
+  const playColor = '#FF5722'; // Sunset Orange accent
 
   if (isCompact) {
     return (
@@ -26,13 +26,12 @@ export const Logo: React.FC<LogoProps> = ({
           className="w-10 h-10 shrink-0"
           aria-label="XPLAY5 Icon"
         >
-          {/* Sleek rounded geometric block as the compact app icon */}
           <rect
             width="40"
             height="40"
             rx="8"
-            fill={theme === 'light' ? 'rgba(255,255,255,0.06)' : 'rgba(24,24,27,0.04)'}
-            stroke={theme === 'light' ? 'rgba(255,255,255,0.1)' : 'rgba(24,24,27,0.08)'}
+            fill="rgba(255,87,34,0.12)"
+            stroke="rgba(255,87,34,0.3)"
             strokeWidth="1"
           />
           <path

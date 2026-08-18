@@ -9,34 +9,34 @@ export const Home: React.FC = () => {
   return (
     <PageContainer>
       <div className="flex flex-col items-center justify-center py-20 text-center max-w-xl mx-auto">
-        <div className="w-16 h-16 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6 animate-pulse">
+        <div className="w-16 h-16 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 flex items-center justify-center mb-6 animate-pulse">
           <Sparkles className="w-8 h-8" />
         </div>
 
-        <h1 className="text-3xl font-extrabold tracking-tight text-white mb-2 leading-none uppercase">
+        <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 mb-2 leading-none uppercase font-mono">
           Welcome back, USER
         </h1>
-        <p className="text-sm text-zinc-400 font-medium mb-8">
-          Logged in as <strong className="text-indigo-400">{user?.username}</strong>
+        <p className="text-sm text-slate-400 font-medium mb-8">
+          Logged in as <strong className="text-orange-400 font-bold">{user?.username}</strong>
         </p>
 
-        <div className="w-full bg-zinc-950 border border-zinc-850 rounded-[12px] p-6 text-left mb-6">
+        <div className="w-full bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-6 text-left mb-6 shadow-xl">
           <div className="flex items-start gap-4">
-            <div className="p-2.5 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300">
+            <div className="p-2.5 bg-[#18233C] border border-[#2B3C60] rounded-lg text-orange-400">
               <Trophy className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-200">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-slate-100 font-mono">
                 Dashboard Portal Setup Complete
               </h4>
-              <p className="text-xs text-zinc-550 mt-1.5 leading-relaxed">
-                The User Frontend setup has been initialized. Further sections and views will be implemented matching visual specs and layouts as soon as screenshots are provided.
+              <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                The User Frontend setup has been initialized. Further sections and views are live with the complete Charcoal Slate & Sunset Orange dark theme.
               </p>
             </div>
           </div>
         </div>
 
-        <span className="text-[10px] uppercase font-bold tracking-widest text-zinc-600">
+        <span className="text-[10px] uppercase font-bold tracking-widest text-slate-500 font-mono">
           Independent workspace isolated from admin panel
         </span>
       </div>

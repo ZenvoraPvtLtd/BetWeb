@@ -11,16 +11,16 @@ export const TermsPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left max-w-3xl">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left max-w-3xl font-sans">
         <SettingsHeader
           title="Terms & Conditions"
           description="Please review our terms of use before placing wagers on the exchange."
           breadcrumbs={breadcrumbs}
         />
 
-        <div className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-6 text-zinc-400 text-xs font-semibold leading-relaxed flex flex-col gap-4">
-          <h3 className="text-sm font-bold text-white uppercase flex items-center gap-2 border-b border-zinc-900 pb-3">
-            <FileText className="w-4 h-4 text-[#0EA5E9]" />
+        <div className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-6 text-slate-300 text-xs font-medium leading-relaxed flex flex-col gap-4 shadow-md font-mono">
+          <h3 className="text-sm font-bold text-slate-100 uppercase flex items-center gap-2 border-b border-[#1E293B] pb-3">
+            <FileText className="w-4 h-4 text-orange-400" />
             <span>Exchange Terms of Use</span>
           </h3>
 

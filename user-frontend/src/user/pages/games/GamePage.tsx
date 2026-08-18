@@ -19,7 +19,6 @@ export const GamePage: React.FC = () => {
 
   const gameSlug = slug || teenpattiSlug;
 
-  // Search in both games databases
   let game = casinoGames.find(
     (g) =>
       g.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') === gameSlug ||
@@ -44,7 +43,6 @@ export const GamePage: React.FC = () => {
     );
   }
 
-  // Select rules to display based on title
   const getRules = () => {
     const titleLower = game.title.toLowerCase();
     if (titleLower.includes('teenpatti') || titleLower.includes('teen patti')) {
@@ -56,7 +54,6 @@ export const GamePage: React.FC = () => {
     return baccaratRules;
   };
 
-  // Selection list to display based on game type
   const getSelections = () => {
     const titleLower = game.title.toLowerCase();
     if (titleLower.includes('teenpatti') || titleLower.includes('teen patti')) {
@@ -110,38 +107,38 @@ export const GamePage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none font-sans">
         {/* Top breadcrumbs / back row */}
         <div className="flex items-center justify-between">
           <Breadcrumbs items={breadcrumbItems} />
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#111F30] border border-slate-700/15 rounded-[8px] text-[10px] font-bold text-zinc-350 hover:text-white transition-colors cursor-pointer outline-none"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#18233C] border border-[#2B3C60] rounded-[8px] text-[10px] font-bold text-slate-300 hover:text-white transition-colors cursor-pointer outline-none font-mono"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft className="w-3.5 h-3.5 text-orange-400" />
             <span>Back</span>
           </button>
         </div>
 
         {/* Game Info Panel */}
-        <div className="p-5 bg-gradient-to-r from-[#111F30] to-[#0D1B2A] border border-slate-700/15 rounded-[12px] flex flex-col md:flex-row md:items-center justify-between gap-4 text-left">
+        <div className="p-5 bg-[#131B2E] border border-[#1E293B] rounded-[12px] flex flex-col md:flex-row md:items-center justify-between gap-4 text-left shadow-lg">
           <div className="flex flex-col">
-            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              <div className="flex items-center gap-1 bg-[#22C55E]/10 border border-[#22C55E]/20 text-[#22C55E] px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-live-pulse" />
+            <div className="flex items-center gap-2 mb-1.5 flex-wrap font-mono">
+              <div className="flex items-center gap-1 bg-red-500/15 border border-red-500/30 text-red-400 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-live-pulse" />
                 <span>LIVE STREAMING</span>
               </div>
-              <span className="text-[10px] text-[#0EA5E9] font-bold uppercase tracking-wider">
+              <span className="text-[10px] text-orange-400 font-bold uppercase tracking-wider">
                 Round ID: #482193
               </span>
             </div>
 
-            <h2 className="text-base sm:text-xl font-extrabold text-white flex items-center gap-2">
-              <Tv className="w-5 h-5 text-[#0EA5E9]" />
+            <h2 className="text-base sm:text-xl font-extrabold text-slate-100 flex items-center gap-2">
+              <Tv className="w-5 h-5 text-orange-400" />
               <span>{game.title}</span>
             </h2>
 
-            <span className="text-[10px] text-[#94A3B8] font-bold mt-1 uppercase tracking-wider">
+            <span className="text-[10px] text-slate-400 font-bold mt-1 uppercase tracking-wider font-mono">
               Limits: Min ₹100 | Max ₹10,000
             </span>
           </div>
@@ -151,33 +148,32 @@ export const GamePage: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-6">
           <div className="flex-1 flex flex-col gap-6 text-left">
             {/* 1. Mock Game Video Container */}
-            <div className="relative w-full aspect-video rounded-[16px] overflow-hidden border border-slate-700/10 shadow-lg group">
+            <div className="relative w-full aspect-video rounded-[16px] overflow-hidden border border-[#1E293B] shadow-2xl group bg-[#090E17]">
               <div
                 style={{
-                  background: `linear-gradient(135deg, ${game.gradientFrom} 0%, ${game.gradientTo} 100%)`
+                  background: `linear-gradient(135deg, ${game.gradientFrom || '#0E1524'} 0%, ${game.gradientTo || '#18233C'} 100%)`
                 }}
                 className="absolute inset-0 flex items-center justify-center"
               />
-              <div className="absolute inset-0 bg-black/40 backdrop-blur-3xs" />
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-xs" />
 
               {/* Central play button overlay */}
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 z-20">
-                <div className="w-14 h-14 rounded-full bg-[#0EA5E9] hover:bg-[#0284c7] text-white flex items-center justify-center shadow-lg cursor-pointer transform hover:scale-105 transition-all">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-r from-[#FF5722] to-[#F97316] hover:from-[#F4511E] hover:to-[#EA580C] text-white flex items-center justify-center shadow-lg shadow-orange-950/50 cursor-pointer transform hover:scale-105 transition-all">
                   <Play className="w-6 h-6 fill-white ml-1" />
                 </div>
-                <span className="text-xs text-white font-bold tracking-widest uppercase">Click to open streaming channel</span>
+                <span className="text-xs text-slate-200 font-bold tracking-widest uppercase font-mono">Click to open streaming channel</span>
               </div>
             </div>
 
             {/* 2. Odds Trading Grid */}
-            <div className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-5 flex flex-col gap-4">
-              <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
-                <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
-                  <Coins className="w-4 h-4 text-[#0EA5E9]" />
+            <div className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-5 flex flex-col gap-4 shadow-md">
+              <div className="flex items-center justify-between border-b border-[#1E293B] pb-2">
+                <h4 className="text-xs font-bold text-slate-200 uppercase tracking-widest flex items-center gap-1.5 font-mono">
+                  <Coins className="w-4 h-4 text-orange-400" />
                   <span>Place Bets</span>
                 </h4>
-                <div className="flex gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-[#94A3B8]">
+                <div className="flex gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 font-mono">
                   <span className="w-14 text-center">Back</span>
                   <span className="w-14 text-center">Lay</span>
                 </div>
@@ -187,10 +183,10 @@ export const GamePage: React.FC = () => {
                 {selections.map((sel) => (
                   <div
                     key={sel.name}
-                    className="flex items-center justify-between h-[48px] px-4 bg-zinc-900/10 border border-zinc-900 rounded-[8px]"
+                    className="flex items-center justify-between h-[48px] px-4 bg-[#090E17] border border-[#1E293B] rounded-[8px]"
                   >
-                    <span className="text-xs font-extrabold text-white">{sel.name}</span>
-                    <div className="flex gap-1.5 shrink-0">
+                    <span className="text-xs font-extrabold text-slate-100">{sel.name}</span>
+                    <div className="flex gap-1.5 shrink-0 font-mono">
                       {/* BACK */}
                       <button
                         onClick={() => handleOddsClick(sel.name, sel.backPrice, 'BACK')}
@@ -198,8 +194,8 @@ export const GamePage: React.FC = () => {
                           w-14 h-9 font-extrabold text-xs rounded-[6px] border transition-all cursor-pointer outline-none
                           ${
                             activeSelection?.selectionName === sel.name && activeSelection?.type === 'BACK'
-                              ? 'bg-[#0EA5E9] text-white border-[#0EA5E9]'
-                              : 'bg-[#0EA5E9]/10 text-[#0EA5E9] border-[#0EA5E9]/25 hover:bg-[#0EA5E9]/20'
+                              ? 'bg-blue-600 text-white border-blue-500 ring-2 ring-blue-400'
+                              : 'bg-blue-500/20 text-blue-400 border-blue-500/30 hover:bg-blue-500/30'
                           }
                         `}
                       >
@@ -212,8 +208,8 @@ export const GamePage: React.FC = () => {
                           w-14 h-9 font-extrabold text-xs rounded-[6px] border transition-all cursor-pointer outline-none
                           ${
                             activeSelection?.selectionName === sel.name && activeSelection?.type === 'LAY'
-                              ? 'bg-[#F43F5E] text-white border-[#F43F5E]'
-                              : 'bg-[#F43F5E]/10 text-[#F43F5E] border-[#F43F5E]/25 hover:bg-[#F43F5E]/20'
+                              ? 'bg-pink-600 text-white border-pink-500 ring-2 ring-pink-400'
+                              : 'bg-pink-500/20 text-pink-400 border-pink-500/30 hover:bg-pink-500/30'
                           }
                         `}
                       >

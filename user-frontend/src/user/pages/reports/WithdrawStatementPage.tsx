@@ -29,7 +29,7 @@ export const WithdrawStatementPage: React.FC = () => {
     {
       header: 'Amount',
       key: 'amount',
-      renderCell: (row: any) => <span className="font-extrabold text-[#F43F5E]">₹{row.amount.toLocaleString()}</span>
+      renderCell: (row: any) => <span className="font-extrabold text-rose-400">₹{row.amount.toLocaleString()}</span>
     },
     { header: 'Payment Method', key: 'method' },
     {
@@ -38,10 +38,10 @@ export const WithdrawStatementPage: React.FC = () => {
       renderCell: (row: any) => {
         const isPending = row.status === 'PENDING';
         return (
-          <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase border ${
+          <span className={`text-[9px] px-2 py-0.5 rounded font-bold uppercase border font-mono ${
             isPending
-              ? 'bg-amber-500/10 border-amber-500/20 text-[#F59E0B]'
-              : 'bg-emerald-500/10 border-emerald-500/20 text-[#22C55E]'
+              ? 'bg-amber-500/15 border-amber-500/30 text-amber-400'
+              : 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400'
           }`}>
             {row.status}
           </span>
@@ -71,7 +71,7 @@ export const WithdrawStatementPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Withdraw Statement"
           description="View all of your processed balance withdrawal transactions ledger statement."

@@ -13,18 +13,18 @@ export const EmptyReportState: React.FC<EmptyReportStateProps> = ({
   onResetFilters,
 }) => {
   return (
-    <div className="w-full py-16 bg-[#111F30] border border-slate-700/10 rounded-[12px] flex flex-col items-center justify-center p-6 text-center select-none shadow-xs">
-      <FilterX className="w-12 h-12 text-[#94A3B8] mb-3 animate-pulse" />
-      <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+    <div className="w-full py-16 bg-[#131B2E] border border-[#1E293B] rounded-[12px] flex flex-col items-center justify-center p-6 text-center select-none shadow-md font-sans">
+      <FilterX className="w-12 h-12 text-slate-500 mb-3 animate-pulse" />
+      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-100 font-mono">
         {title}
       </h4>
-      <p className="text-xs text-[#94A3B8] font-medium mt-1.5 max-w-[280px]">
+      <p className="text-xs text-slate-400 font-medium mt-1.5 max-w-[280px]">
         {message}
       </p>
       {onResetFilters && (
         <button
           onClick={onResetFilters}
-          className="mt-5 px-4 h-9 rounded-[8px] bg-[#0EA5E9] hover:bg-[#0284c7] text-white text-xs font-bold uppercase tracking-wider transition-colors outline-none cursor-pointer"
+          className="mt-5 px-4 h-9 rounded-[8px] bg-gradient-to-r from-[#FF5722] to-[#F97316] hover:from-[#F4511E] hover:to-[#EA580C] text-white text-xs font-bold uppercase tracking-wider transition-all outline-none cursor-pointer font-mono shadow-md"
         >
           Reset Filters
         </button>

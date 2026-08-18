@@ -35,9 +35,9 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
   if (isLoading) {
     return (
-      <div className="w-screen h-screen flex items-center justify-center bg-zinc-950 text-white">
+      <div className="w-screen h-screen flex items-center justify-center bg-[#0B0F19] text-white">
         <svg
-          className="animate-spin h-7 w-7 text-indigo-500"
+          className="animate-spin h-7 w-7 text-orange-500"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"

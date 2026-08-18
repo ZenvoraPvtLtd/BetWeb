@@ -18,17 +18,17 @@ export const ChangePasswordPage: React.FC = () => {
 
   const getPasswordStrength = () => {
     if (!newPassword) return null;
-    if (newPassword.length < 6) return { label: 'Weak', color: 'text-rose-500 bg-rose-500/10 border-rose-500/20', width: 'w-1/3 bg-rose-500' };
+    if (newPassword.length < 6) return { label: 'Weak', color: 'text-rose-400 bg-rose-500/15 border-rose-500/30', width: 'w-1/3 bg-rose-500' };
 
     const hasLetters = /[a-zA-Z]/.test(newPassword);
     const hasNumbers = /[0-9]/.test(newPassword);
     const hasSymbols = /[^a-zA-Z0-9]/.test(newPassword);
 
     if (newPassword.length >= 8 && hasLetters && hasNumbers && hasSymbols) {
-      return { label: 'Strong', color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20', width: 'w-full bg-emerald-500' };
+      return { label: 'Strong', color: 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30', width: 'w-full bg-emerald-500' };
     }
 
-    return { label: 'Medium', color: 'text-amber-500 bg-amber-500/10 border-amber-500/20', width: 'w-2/3 bg-amber-500' };
+    return { label: 'Medium', color: 'text-amber-400 bg-amber-500/15 border-amber-500/30', width: 'w-2/3 bg-amber-500' };
   };
 
   const strength = getPasswordStrength();
@@ -70,41 +70,41 @@ export const ChangePasswordPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Change Password"
           description="Update your security passcode to keep your exchange account secure."
           breadcrumbs={breadcrumbs}
         />
 
-        <div className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-6 max-w-md w-full">
+        <div className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-6 max-w-md w-full shadow-md font-mono">
           <form onSubmit={handleUpdate} className="flex flex-col gap-4">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-[#94A3B8] flex items-center gap-2 border-b border-zinc-900 pb-3">
-              <Lock className="w-4 h-4 text-[#0EA5E9]" />
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-300 flex items-center gap-2 border-b border-[#1E293B] pb-3">
+              <Lock className="w-4 h-4 text-orange-400" />
               <span>Update Password</span>
             </h3>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider">Current Password</label>
+              <label className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Current Password</label>
               <div className="relative">
                 <input
                   type={showCurrent ? 'text' : 'password'}
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  className={`w-full h-10 px-3 pr-10 bg-zinc-950/20 border rounded-[8px] text-xs font-bold text-white outline-none focus:border-[#0EA5E9] ${
-                    errors.current ? 'border-rose-500/50' : 'border-zinc-800'
+                  className={`w-full h-10 px-3 pr-10 bg-[#090E17] border rounded-[8px] text-xs font-bold text-slate-100 outline-none focus:border-orange-500 transition-colors ${
+                    errors.current ? 'border-rose-500/50' : 'border-[#233252]'
                   }`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowCurrent(!showCurrent)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white cursor-pointer outline-none"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white cursor-pointer outline-none"
                 >
                   {showCurrent ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
               {errors.current && (
-                <span className="text-[9px] font-bold text-rose-500 flex items-center gap-1 mt-0.5 uppercase tracking-wide">
+                <span className="text-[9px] font-bold text-rose-400 flex items-center gap-1 mt-0.5 uppercase tracking-wide">
                   <AlertCircle className="w-3 h-3" />
                   <span>{errors.current}</span>
                 </span>
@@ -112,26 +112,26 @@ export const ChangePasswordPage: React.FC = () => {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider">New Password</label>
+              <label className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">New Password</label>
               <div className="relative">
                 <input
                   type={showNew ? 'text' : 'password'}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className={`w-full h-10 px-3 pr-10 bg-zinc-950/20 border rounded-[8px] text-xs font-bold text-white outline-none focus:border-[#0EA5E9] ${
-                    errors.new ? 'border-rose-500/50' : 'border-zinc-800'
+                  className={`w-full h-10 px-3 pr-10 bg-[#090E17] border rounded-[8px] text-xs font-bold text-slate-100 outline-none focus:border-orange-500 transition-colors ${
+                    errors.new ? 'border-rose-500/50' : 'border-[#233252]'
                   }`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowNew(!showNew)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white cursor-pointer outline-none"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white cursor-pointer outline-none"
                 >
                   {showNew ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
               {errors.new && (
-                <span className="text-[9px] font-bold text-rose-500 flex items-center gap-1 mt-0.5 uppercase tracking-wide">
+                <span className="text-[9px] font-bold text-rose-400 flex items-center gap-1 mt-0.5 uppercase tracking-wide">
                   <AlertCircle className="w-3 h-3" />
                   <span>{errors.new}</span>
                 </span>
@@ -140,12 +140,12 @@ export const ChangePasswordPage: React.FC = () => {
               {strength && (
                 <div className="flex flex-col gap-1.5 mt-1.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-bold uppercase text-zinc-500">Passcode Strength</span>
+                    <span className="text-[9px] font-bold uppercase text-slate-400">Passcode Strength</span>
                     <span className={`text-[8px] font-extrabold uppercase px-1.5 py-0.5 border rounded-full ${strength.color}`}>
                       {strength.label}
                     </span>
                   </div>
-                  <div className="w-full h-1 bg-zinc-900 rounded-full overflow-hidden">
+                  <div className="w-full h-1 bg-[#090E17] rounded-full overflow-hidden">
                     <div className={`h-full transition-all duration-300 ${strength.width}`} />
                   </div>
                 </div>
@@ -153,42 +153,42 @@ export const ChangePasswordPage: React.FC = () => {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[9px] font-bold text-zinc-550 uppercase tracking-wider">Confirm New Password</label>
+              <label className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Confirm New Password</label>
               <div className="relative">
                 <input
                   type={showConfirm ? 'text' : 'password'}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className={`w-full h-10 px-3 pr-10 bg-zinc-950/20 border rounded-[8px] text-xs font-bold text-white outline-none focus:border-[#0EA5E9] ${
-                    errors.confirm ? 'border-rose-500/50' : 'border-zinc-800'
+                  className={`w-full h-10 px-3 pr-10 bg-[#090E17] border rounded-[8px] text-xs font-bold text-slate-100 outline-none focus:border-orange-500 transition-colors ${
+                    errors.confirm ? 'border-rose-500/50' : 'border-[#233252]'
                   }`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white cursor-pointer outline-none"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white cursor-pointer outline-none"
                 >
                   {showConfirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
               {errors.confirm && (
-                <span className="text-[9px] font-bold text-rose-500 flex items-center gap-1 mt-0.5 uppercase tracking-wide">
+                <span className="text-[9px] font-bold text-rose-400 flex items-center gap-1 mt-0.5 uppercase tracking-wide">
                   <AlertCircle className="w-3 h-3" />
                   <span>{errors.confirm}</span>
                 </span>
               )}
             </div>
 
-            <div className="flex gap-3 justify-end mt-4 border-t border-zinc-900/60 pt-4">
+            <div className="flex gap-3 justify-end mt-4 border-t border-[#1E293B] pt-4">
               <a
                 href="/account/profile"
-                className="px-4 h-9 rounded-[8px] bg-zinc-900 border border-zinc-850 hover:bg-zinc-800 text-[10px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white transition-colors flex items-center justify-center outline-none"
+                className="px-4 h-9 rounded-[8px] bg-[#18233C] border border-[#2B3C60] hover:bg-[#223050] text-[10px] font-bold uppercase tracking-wider text-slate-300 hover:text-white transition-colors flex items-center justify-center outline-none"
               >
                 Cancel
               </a>
               <button
                 type="submit"
-                className="px-4 h-9 rounded-[8px] bg-[#0EA5E9] hover:bg-[#0284c7] text-white text-[10px] font-bold uppercase tracking-wider outline-none transition-colors cursor-pointer"
+                className="px-4 h-9 rounded-[8px] bg-gradient-to-r from-[#FF5722] to-[#F97316] hover:from-[#F4511E] hover:to-[#EA580C] text-white text-[10px] font-bold uppercase tracking-wider outline-none transition-all cursor-pointer shadow-md shadow-orange-950/40"
               >
                 Update Password
               </button>

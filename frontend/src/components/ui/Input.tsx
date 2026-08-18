@@ -12,13 +12,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className="w-full flex flex-col items-start">
-        {/* Premium visible typography label for SaaS forms */}
         <label
           htmlFor={inputId}
           className={
             hideLabel
               ? 'sr-only'
-              : 'block text-[11px] font-semibold text-zinc-500 mb-1.5 uppercase tracking-wider'
+              : 'block text-[11px] font-semibold text-slate-400 mb-1.5 uppercase tracking-wider'
           }
         >
           {label}
@@ -28,14 +27,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           id={inputId}
           className={`
             w-full h-[40px] px-3.5
-            bg-zinc-50/30 text-login-text text-sm
-            placeholder:text-login-placeholder
-            border border-login-border rounded-[6px]
-            shadow-[0_1px_2px_rgba(0,0,0,0.01)]
+            bg-[#0A0E17] text-slate-100 text-sm
+            placeholder:text-slate-500
+            border border-[#233252] rounded-[8px]
+            shadow-inner
             transition-all duration-200
-            hover:border-zinc-300 hover:bg-zinc-50/70
-            focus:outline-none focus:border-login-primary focus:bg-white focus:ring-2 focus:ring-zinc-900/5
-            disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed
+            hover:border-[#334670] hover:bg-[#0D1322]
+            focus:outline-none focus:border-orange-500 focus:bg-[#0E1526] focus:ring-2 focus:ring-orange-500/20
+            disabled:bg-slate-900 disabled:text-slate-600 disabled:cursor-not-allowed
             ${className}
           `}
           {...props}

@@ -46,45 +46,45 @@ export const MatchDetailPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none">
         {/* Navigation row */}
         <div className="flex items-center justify-between">
           <Breadcrumbs items={breadcrumbItems} />
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#111F30] border border-slate-700/15 rounded-[8px] text-[10px] font-bold text-zinc-350 hover:text-white transition-colors cursor-pointer outline-none"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#18233C] border border-[#2B3C60] rounded-[8px] text-[10px] font-bold text-slate-300 hover:text-white hover:bg-[#223050] transition-colors cursor-pointer outline-none font-mono"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft className="w-3.5 h-3.5 text-orange-400" />
             <span>Back</span>
           </button>
         </div>
 
         {/* Header Block details */}
-        <div className="p-5 bg-gradient-to-r from-[#111F30] to-[#0D1B2A] border border-slate-700/15 rounded-[12px] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-left">
+        <div className="p-5 bg-[#131B2E] border border-[#1E293B] rounded-[12px] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-left shadow-lg">
           <div className="flex flex-col">
-            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+            <div className="flex items-center gap-2 mb-1.5 flex-wrap font-mono">
               {match.isLive ? (
-                <div className="flex items-center gap-1 bg-[#22C55E]/10 border border-[#22C55E]/20 text-[#22C55E] px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-live-pulse" />
+                <div className="flex items-center gap-1 bg-red-500/15 border border-red-500/30 text-red-400 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-live-pulse" />
                   <span>LIVE</span>
                 </div>
               ) : (
-                <div className="flex items-center gap-1 bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-1 bg-[#18233C] border border-[#2B3C60] text-slate-400 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
                   <Calendar className="w-2.5 h-2.5" />
                   <span>Upcoming</span>
                 </div>
               )}
-              <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">
+              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
                 {match.competition}
               </span>
             </div>
 
-            <h2 className="text-base sm:text-xl font-extrabold text-white flex items-center gap-2">
-              <Swords className="w-5 h-5 text-[#0EA5E9]" />
+            <h2 className="text-base sm:text-xl font-extrabold text-slate-100 flex items-center gap-2">
+              <Swords className="w-5 h-5 text-orange-400" />
               <span>{match.teams}</span>
             </h2>
 
-            <span className="text-xs text-[#94A3B8] font-semibold mt-1">
+            <span className="text-xs text-slate-400 font-semibold mt-1 font-mono">
               {match.isLive ? `Live Score: ${match.scoreDisplay}` : `Starts at ${match.date} ${match.time}`}
             </span>
           </div>
@@ -95,13 +95,13 @@ export const MatchDetailPage: React.FC = () => {
           {/* Markets container */}
           <div className="flex-1 flex flex-col gap-6 text-left">
             {match.markets.map((market, idx) => (
-              <div key={idx} className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-5 flex flex-col gap-4">
-                <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
-                  <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
-                    <Zap className="w-4 h-4 text-[#0EA5E9]" />
+              <div key={idx} className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-5 flex flex-col gap-4 shadow-md">
+                <div className="flex items-center justify-between border-b border-[#1E293B] pb-2">
+                  <h4 className="text-xs font-bold text-slate-200 uppercase tracking-widest flex items-center gap-1.5 font-mono">
+                    <Zap className="w-4 h-4 text-orange-400" />
                     <span>{market.name}</span>
                   </h4>
-                  <div className="flex gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-[#94A3B8]">
+                  <div className="flex gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 font-mono">
                     <span className="w-14 text-center">Back</span>
                     <span className="w-14 text-center">Lay</span>
                   </div>
@@ -111,10 +111,10 @@ export const MatchDetailPage: React.FC = () => {
                   {market.selections.map((sel) => (
                     <div
                       key={sel.name}
-                      className="flex items-center justify-between h-[48px] px-4 bg-zinc-900/10 border border-zinc-900 rounded-[8px]"
+                      className="flex items-center justify-between h-[48px] px-4 bg-[#090E17] border border-[#1E293B] rounded-[8px]"
                     >
-                      <span className="text-xs font-extrabold text-white">{sel.name}</span>
-                      <div className="flex gap-1.5 shrink-0">
+                      <span className="text-xs font-extrabold text-slate-100">{sel.name}</span>
+                      <div className="flex gap-1.5 shrink-0 font-mono">
                         {/* BACK button */}
                         <button
                           disabled={sel.backPrice === '---'}
@@ -123,8 +123,8 @@ export const MatchDetailPage: React.FC = () => {
                             w-14 h-9 font-extrabold text-xs rounded-[6px] border transition-all cursor-pointer outline-none
                             ${
                               activeSelection?.selectionName === sel.name && activeSelection?.type === 'BACK'
-                                ? 'bg-[#0EA5E9] text-white border-[#0EA5E9]'
-                                : 'bg-[#0EA5E9]/10 text-[#0EA5E9] border-[#0EA5E9]/25 hover:bg-[#0EA5E9]/20'
+                                ? 'bg-blue-600 text-white border-blue-500 ring-2 ring-blue-400'
+                                : 'bg-blue-500/20 text-blue-400 border-blue-500/30 hover:bg-blue-500/30'
                             }
                             disabled:opacity-30 disabled:cursor-not-allowed
                           `}
@@ -139,8 +139,8 @@ export const MatchDetailPage: React.FC = () => {
                             w-14 h-9 font-extrabold text-xs rounded-[6px] border transition-all cursor-pointer outline-none
                             ${
                               activeSelection?.selectionName === sel.name && activeSelection?.type === 'LAY'
-                                ? 'bg-[#F43F5E] text-white border-[#F43F5E]'
-                                : 'bg-[#F43F5E]/10 text-[#F43F5E] border-[#F43F5E]/25 hover:bg-[#F43F5E]/20'
+                                ? 'bg-pink-600 text-white border-pink-500 ring-2 ring-pink-400'
+                                : 'bg-pink-500/20 text-pink-400 border-pink-500/30 hover:bg-pink-500/30'
                             }
                             disabled:opacity-30 disabled:cursor-not-allowed
                           `}
@@ -155,8 +155,8 @@ export const MatchDetailPage: React.FC = () => {
             ))}
 
             {/* Disclaimer */}
-            <div className="p-4 bg-zinc-900/10 border border-zinc-900 rounded-[12px] flex items-start gap-2.5 text-[11px] text-zinc-550 font-semibold leading-relaxed select-none">
-              <AlertCircle className="w-4 h-4 text-zinc-500 shrink-0 mt-0.5" />
+            <div className="p-4 bg-[#131B2E] border border-[#1E293B] rounded-[12px] flex items-start gap-2.5 text-[11px] text-slate-400 font-semibold leading-relaxed select-none">
+              <AlertCircle className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
               <span>
                 Mock Betting Disclaimer: Standard trade credits apply. This is a demonstration environment. No financial transactions or deposits are supported.
               </span>

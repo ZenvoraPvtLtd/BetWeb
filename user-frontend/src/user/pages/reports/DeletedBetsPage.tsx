@@ -62,7 +62,7 @@ export const DeletedBetsPage: React.FC = () => {
   );
 
   const summaryCards = [
-    { label: 'Total Cancelled Bets', value: mockDeletedBets.length, color: 'text-zinc-400' }
+    { label: 'Total Cancelled Bets', value: mockDeletedBets.length, color: 'text-slate-300' }
   ];
 
   const columns: TableColumn<DeletedBetEntry>[] = [
@@ -70,36 +70,36 @@ export const DeletedBetsPage: React.FC = () => {
       header: 'Match / Game',
       key: 'matchName',
       renderCell: (row) => (
-        <div className="flex flex-col text-left">
-          <span className="text-white font-extrabold">{row.matchName}</span>
-          <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider mt-0.5">{row.marketName}</span>
+        <div className="flex flex-col text-left font-mono">
+          <span className="text-slate-100 font-extrabold">{row.matchName}</span>
+          <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">{row.marketName}</span>
         </div>
       )
     },
-    { header: 'Selection', key: 'selectionName', renderCell: (row) => <span className="font-bold text-zinc-350">{row.selectionName}</span> },
-    { header: 'Odds', key: 'odds', renderCell: (row) => <span className="font-bold text-zinc-400">{row.odds}</span> },
+    { header: 'Selection', key: 'selectionName', renderCell: (row) => <span className="font-bold text-slate-200 font-mono">{row.selectionName}</span> },
+    { header: 'Odds', key: 'odds', renderCell: (row) => <span className="font-bold text-slate-400 font-mono">{row.odds}</span> },
     {
       header: 'Stake',
       key: 'stake',
-      renderCell: (row) => <span className="text-[#0EA5E9] font-bold">₹{row.stake.toLocaleString()}</span>
+      renderCell: (row) => <span className="text-orange-400 font-bold font-mono">₹{row.stake.toLocaleString()}</span>
     },
-    { header: 'Deleted By', key: 'deletedBy', renderCell: (row) => <span className="text-rose-400 font-bold text-[10px] uppercase tracking-wider">{row.deletedBy}</span> },
-    { header: 'Deleted Reason', key: 'reason', renderCell: (row) => <span className="text-zinc-500 font-semibold text-left block text-[11px] max-w-[150px] truncate">{row.reason}</span> },
-    { header: 'Deleted At', key: 'deletedAt', renderCell: (row) => <span className="text-zinc-500 font-medium text-[11px]">{row.deletedAt}</span> },
+    { header: 'Deleted By', key: 'deletedBy', renderCell: (row) => <span className="text-rose-400 font-bold text-[10px] uppercase tracking-wider font-mono">{row.deletedBy}</span> },
+    { header: 'Deleted Reason', key: 'reason', renderCell: (row) => <span className="text-slate-400 font-medium text-left block text-[11px] max-w-[150px] truncate">{row.reason}</span> },
+    { header: 'Deleted At', key: 'deletedAt', renderCell: (row) => <span className="text-slate-400 font-medium text-[11px] font-mono">{row.deletedAt}</span> },
     { header: 'Status', key: 'status', renderCell: (row) => <StatusBadge status={row.status} /> }
   ];
 
   const renderMobileCard = (row: DeletedBetEntry) => {
     return (
-      <div className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-4 flex flex-col gap-3 text-left text-xs">
-        <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+      <div className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-4 flex flex-col gap-3 text-left text-xs shadow-md font-mono">
+        <div className="flex items-center justify-between border-b border-[#1E293B] pb-2">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold text-zinc-550 uppercase tracking-widest">#{row.id}</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">#{row.id}</span>
             <StatusBadge status={row.status} />
           </div>
           <button
             onClick={() => setSelectedRow(row)}
-            className="text-[10px] font-bold text-[#0EA5E9] uppercase tracking-wider outline-none"
+            className="text-[10px] font-bold text-orange-400 hover:text-orange-300 uppercase tracking-wider outline-none"
           >
             Details
           </button>
@@ -107,20 +107,20 @@ export const DeletedBetsPage: React.FC = () => {
 
         <div className="flex flex-col gap-1.5">
           <div className="flex justify-between items-start">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Match</span>
-            <span className="font-extrabold text-white text-right">{row.matchName}</span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Match</span>
+            <span className="font-extrabold text-slate-100 text-right">{row.matchName}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Selection</span>
-            <span className="font-bold text-zinc-300">{row.selectionName} ({row.odds})</span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Selection</span>
+            <span className="font-bold text-slate-200">{row.selectionName} ({row.odds})</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Cancel Audit</span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Cancel Audit</span>
             <span className="font-bold text-rose-400 uppercase text-[9px]">{row.deletedBy} on {row.deletedAt}</span>
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Reason</span>
-            <span className="text-zinc-500 font-semibold leading-relaxed text-[11px]">{row.reason}</span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Reason</span>
+            <span className="text-slate-400 font-medium leading-relaxed text-[11px]">{row.reason}</span>
           </div>
         </div>
       </div>
@@ -134,7 +134,7 @@ export const DeletedBetsPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <ReportsHeader
           title="Cancelled Bets History"
           description="Log of cancelled and deleted mock trades with system audits and abandonment reasons."

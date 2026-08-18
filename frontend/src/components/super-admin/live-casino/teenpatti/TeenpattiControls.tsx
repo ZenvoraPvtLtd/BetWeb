@@ -11,12 +11,12 @@ export const TeenpattiControls: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-zinc-900 border border-zinc-850 rounded-b-[8px] p-4 flex flex-col gap-4 select-none">
+    <div className="w-full bg-[#131B2E] border border-[#1E293B] rounded-b-[10px] p-4 flex flex-col gap-4 select-none">
       {/* Top action row */}
       <div className="flex items-center justify-between">
         <button
           onClick={() => alert('Information deck is pending further instructions.')}
-          className="w-8 h-8 rounded-full bg-zinc-850 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-750 flex items-center justify-center transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-zinc-700"
+          className="w-8 h-8 rounded-full bg-[#18233C] hover:bg-[#223050] text-slate-400 hover:text-white border border-[#2B3C60] flex items-center justify-center transition-colors cursor-pointer focus:outline-none"
           aria-label="Game Info"
         >
           <Info className="w-4 h-4" />
@@ -24,7 +24,7 @@ export const TeenpattiControls: React.FC = () => {
 
         <button
           onClick={handleBack}
-          className="px-4 h-[32px] text-[10px] font-bold uppercase tracking-wider bg-zinc-850 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-750 hover:border-zinc-700 rounded-[4px] flex items-center gap-1.5 transition-all cursor-pointer focus:outline-none focus:ring-1 focus:ring-zinc-700"
+          className="px-4 h-[32px] text-[10px] font-bold uppercase tracking-wider bg-[#18233C] hover:bg-[#223050] text-slate-300 hover:text-white border border-[#2B3C60] rounded-[6px] flex items-center gap-1.5 transition-all cursor-pointer focus:outline-none"
           aria-label="Back to previous page"
         >
           <ArrowLeft className="w-3.5 h-3.5" />

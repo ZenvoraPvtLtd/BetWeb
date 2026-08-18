@@ -11,7 +11,6 @@ export const LiveCasinoGamePage: React.FC = () => {
   const game = liveCasinoGames.find((g) => g.slug === gameSlug);
 
   if (!game) {
-    // Redirect unknown game path parameters back to dashboard
     return <Navigate to="/admin/market-analysis" replace />;
   }
 
@@ -19,33 +18,33 @@ export const LiveCasinoGamePage: React.FC = () => {
     <SuperAdminLayout>
       <div className="flex flex-col text-left select-none animate-fadeIn">
         {/* Breadcrumb Path */}
-        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-5">
-          <Link to="/admin/market-analysis" className="hover:text-zinc-955 transition-colors">
+        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-5">
+          <Link to="/admin/market-analysis" className="hover:text-orange-400 transition-colors">
             Super Admin
           </Link>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-400">Live Casino</span>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-950">{game.label}</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-slate-500">Live Casino</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-orange-400">{game.label}</span>
         </nav>
 
         {/* Page Title */}
         <div className="mb-6">
-          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-955 leading-none">
+          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100 leading-none">
             {game.label}
           </h1>
-          <p className="text-xs text-zinc-550 mt-1.5">
+          <p className="text-xs text-slate-400 mt-1.5">
             Operational dashboard and betting ledger for Live Casino rooms.
           </p>
         </div>
 
-        {/* Premium Placeholder Card */}
-        <div className="bg-white border border-zinc-200 rounded-[8px] p-8 shadow-sm flex flex-col items-center justify-center min-h-[320px] text-center">
-          <div className="w-12 h-12 rounded-full bg-zinc-50/60 flex items-center justify-center text-zinc-400 mb-4 border border-zinc-150">
-            <Gamepad2 className="w-5 h-5 text-indigo-500 animate-pulse" />
+        {/* Placeholder Card */}
+        <div className="bg-[#131B2E] border border-[#233252] rounded-[12px] p-8 shadow-2xl flex flex-col items-center justify-center min-h-[320px] text-center">
+          <div className="w-14 h-14 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 mb-4 border border-orange-500/30">
+            <Gamepad2 className="w-6 h-6 text-orange-400 animate-pulse" />
           </div>
-          <h2 className="text-sm font-semibold text-zinc-800">{game.label} Game Deck</h2>
-          <p className="text-xs text-zinc-500 max-w-sm mt-1.5 leading-relaxed font-sans">
+          <h2 className="text-sm font-bold text-slate-100">{game.label} Game Deck</h2>
+          <p className="text-xs text-slate-400 max-w-sm mt-1.5 leading-relaxed font-sans">
             Live Casino game content will be implemented here. This room is currently configured as a
             development workspace.
           </p>

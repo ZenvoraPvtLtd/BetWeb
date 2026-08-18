@@ -57,7 +57,7 @@ export const CasinoReportHistoryPage: React.FC = () => {
       renderCell: (row: any) => {
         const isProfit = row.pl >= 0;
         return (
-          <span className={`font-extrabold ${isProfit ? 'text-[#22C55E]' : 'text-rose-500'}`}>
+          <span className={`font-extrabold ${isProfit ? 'text-emerald-400' : 'text-rose-400'}`}>
             {isProfit ? `+₹${row.pl.toLocaleString()}` : `-₹${Math.abs(row.pl).toLocaleString()}`}
           </span>
         );
@@ -71,8 +71,8 @@ export const CasinoReportHistoryPage: React.FC = () => {
         return (
           <span className={`text-[9px] px-1.5 py-0.5 rounded font-extrabold uppercase border ${
             isWon
-              ? 'bg-emerald-500/10 border-emerald-500/20 text-[#22C55E]'
-              : 'bg-rose-500/10 border-rose-500/20 text-[#F43F5E]'
+              ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400'
+              : 'bg-rose-500/15 border-rose-500/30 text-rose-400'
           }`}>
             {row.status}
           </span>
@@ -101,7 +101,7 @@ export const CasinoReportHistoryPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Casino Report History"
           description="Examine detailed dealer rounds, stake payouts, and casino profit logs."

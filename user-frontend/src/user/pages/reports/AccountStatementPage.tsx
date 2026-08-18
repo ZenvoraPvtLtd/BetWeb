@@ -71,18 +71,18 @@ export const AccountStatementPage: React.FC = () => {
   const summaryCards = [
     { label: 'Opening Balance', value: `₹${openingBalance.toLocaleString()}` },
     { label: 'Total Credits', value: `₹${totalCredits.toLocaleString()}`, color: 'text-emerald-400' },
-    { label: 'Total Debits', value: `₹${totalDebits.toLocaleString()}`, color: 'text-[#F43F5E]' },
-    { label: 'Current Balance', value: `₹${currentBalance.toLocaleString()}`, color: 'text-white' }
+    { label: 'Total Debits', value: `₹${totalDebits.toLocaleString()}`, color: 'text-rose-400' },
+    { label: 'Current Balance', value: `₹${currentBalance.toLocaleString()}`, color: 'text-amber-400' }
   ];
 
   const columns: TableColumn<AccountStatementEntry>[] = [
-    { header: 'Date/Time', key: 'date', renderCell: (row) => <span className="text-zinc-450 font-medium text-[11px]">{row.date}</span> },
-    { header: 'Description', key: 'description', renderCell: (row) => <span className="text-white font-extrabold text-left block">{row.description}</span> },
+    { header: 'Date/Time', key: 'date', renderCell: (row) => <span className="text-slate-400 font-medium text-[11px]">{row.date}</span> },
+    { header: 'Description', key: 'description', renderCell: (row) => <span className="text-slate-100 font-extrabold text-left block">{row.description}</span> },
     {
       header: 'Type',
       key: 'type',
       renderCell: (row) => (
-        <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-zinc-900 border border-zinc-800 text-zinc-400">
+        <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-[#18233C] border border-[#2B3C60] text-slate-300">
           {row.type}
         </span>
       )
@@ -91,33 +91,33 @@ export const AccountStatementPage: React.FC = () => {
       header: 'Credit (+)',
       key: 'credit',
       renderCell: (row) => {
-        if (row.credit === undefined) return <span className="text-zinc-650">--</span>;
-        return <span className="text-[#22C55E] font-extrabold">+₹{row.credit.toLocaleString()}</span>;
+        if (row.credit === undefined) return <span className="text-slate-600">--</span>;
+        return <span className="text-emerald-400 font-extrabold">+₹{row.credit.toLocaleString()}</span>;
       }
     },
     {
       header: 'Debit (-)',
       key: 'debit',
       renderCell: (row) => {
-        if (row.debit === undefined) return <span className="text-zinc-650">--</span>;
-        return <span className="text-[#F43F5E] font-extrabold">-₹{row.debit.toLocaleString()}</span>;
+        if (row.debit === undefined) return <span className="text-slate-600">--</span>;
+        return <span className="text-rose-400 font-extrabold">-₹{row.debit.toLocaleString()}</span>;
       }
     },
     {
       header: 'Running Balance',
       key: 'balance',
-      renderCell: (row) => <span className="text-emerald-400 font-bold">₹{row.balance.toLocaleString()}</span>
+      renderCell: (row) => <span className="text-amber-400 font-bold">₹{row.balance.toLocaleString()}</span>
     }
   ];
 
   const renderMobileCard = (row: AccountStatementEntry) => {
     return (
-      <div className="bg-[#111F30] border border-slate-700/15 rounded-[12px] p-4 flex flex-col gap-3 text-left text-xs">
-        <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
-          <span className="text-[10px] font-bold text-zinc-550 uppercase tracking-widest">#{row.id}</span>
+      <div className="bg-[#131B2E] border border-[#1E293B] rounded-[12px] p-4 flex flex-col gap-3 text-left text-xs shadow-md font-mono">
+        <div className="flex items-center justify-between border-b border-[#1E293B] pb-2">
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">#{row.id}</span>
           <button
             onClick={() => setSelectedRow(row)}
-            className="text-[10px] font-bold text-[#0EA5E9] uppercase tracking-wider outline-none"
+            className="text-[10px] font-bold text-orange-400 hover:text-orange-300 uppercase tracking-wider outline-none"
           >
             Details
           </button>
@@ -125,28 +125,28 @@ export const AccountStatementPage: React.FC = () => {
 
         <div className="flex flex-col gap-1.5">
           <div className="flex justify-between items-start">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Description</span>
-            <span className="font-extrabold text-white text-right max-w-[180px]">{row.description}</span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Description</span>
+            <span className="font-extrabold text-slate-100 text-right max-w-[180px]">{row.description}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Type / Date</span>
-            <span className="font-semibold text-zinc-400">{row.type} | {row.date}</span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Type / Date</span>
+            <span className="font-semibold text-slate-400">{row.type} | {row.date}</span>
           </div>
           {row.credit !== undefined && (
             <div className="flex justify-between items-center">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Amount</span>
-              <span className="text-[#22C55E] font-extrabold">+₹{row.credit.toLocaleString()}</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Amount</span>
+              <span className="text-emerald-400 font-extrabold">+₹{row.credit.toLocaleString()}</span>
             </div>
           )}
           {row.debit !== undefined && (
             <div className="flex justify-between items-center">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Amount</span>
-              <span className="text-[#F43F5E] font-extrabold">-₹{row.debit.toLocaleString()}</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Amount</span>
+              <span className="text-rose-400 font-extrabold">-₹{row.debit.toLocaleString()}</span>
             </div>
           )}
           <div className="flex justify-between items-center">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8]">Balance</span>
-            <span className="text-emerald-400 font-bold">₹{row.balance.toLocaleString()}</span>
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Balance</span>
+            <span className="text-amber-400 font-bold">₹{row.balance.toLocaleString()}</span>
           </div>
         </div>
       </div>
@@ -160,7 +160,7 @@ export const AccountStatementPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <ReportsHeader
           title="Account Statement"
           description="Statement details ledger containing credit and debit settlement adjustments."

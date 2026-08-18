@@ -9,23 +9,23 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
     switch (status.toUpperCase()) {
       case 'WON':
       case 'SETTLED':
-        return 'bg-emerald-500/10 border-emerald-500/20 text-[#22C55E]';
+        return 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400';
       case 'LOST':
-        return 'bg-rose-500/10 border-rose-500/20 text-[#F43F5E]';
+        return 'bg-rose-500/15 border-rose-500/30 text-rose-400';
       case 'OPEN':
       case 'ACTIVE':
-        return 'bg-[#0EA5E9]/10 border-[#0EA5E9]/20 text-[#0EA5E9]';
+        return 'bg-orange-500/15 border-orange-500/30 text-orange-400';
       case 'CANCELLED':
-        return 'bg-amber-500/10 border-amber-500/20 text-[#F59E0B]';
+        return 'bg-amber-500/15 border-amber-500/30 text-amber-400';
       case 'DELETED':
-        return 'bg-zinc-800 border-zinc-700 text-zinc-400';
+        return 'bg-[#18233C] border-[#2B3C60] text-slate-400';
       default:
-        return 'bg-zinc-800 border-zinc-750 text-zinc-300';
+        return 'bg-[#18233C] border-[#2B3C60] text-slate-300';
     }
   };
 
   return (
-    <span className={`px-2 py-0.5 border rounded-full text-[9px] font-bold uppercase tracking-wider ${getStyles()}`}>
+    <span className={`px-2 py-0.5 border rounded-full text-[9px] font-bold uppercase tracking-wider font-mono ${getStyles()}`}>
       {status}
     </span>
   );

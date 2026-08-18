@@ -51,22 +51,22 @@ export const AccountStatement: React.FC = () => {
     <SuperAdminLayout>
       <div className="flex flex-col text-left select-none animate-fadeIn">
         {/* Breadcrumb path */}
-        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-5">
-          <Link to="/admin/market-analysis" className="hover:text-zinc-950 transition-colors">
+        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-5">
+          <Link to="/admin/market-analysis" className="hover:text-orange-400 transition-colors">
             Super Admin
           </Link>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-400">Reports</span>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-955">Account's Statement</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-slate-500">Reports</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-orange-400">Account's Statement</span>
         </nav>
 
         {/* Page Titles */}
         <div className="mb-6">
-          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 leading-none">
+          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100 leading-none">
             Account Statements
           </h1>
-          <p className="text-xs text-zinc-550 mt-1.5">
+          <p className="text-xs text-slate-400 mt-1.5">
             View transaction credit, debit logs, and rolling account statements.
           </p>
         </div>

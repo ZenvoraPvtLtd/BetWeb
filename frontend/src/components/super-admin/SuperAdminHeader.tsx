@@ -10,13 +10,13 @@ interface SuperAdminHeaderProps {
 
 export const SuperAdminHeader: React.FC<SuperAdminHeaderProps> = ({ onMenuToggle }) => {
   return (
-    <header className="w-full bg-[#0E0E12] border-b border-zinc-800 text-white z-30 select-none">
+    <header className="w-full bg-[#0E1524] border-b border-[#1E293B] text-slate-100 z-30 select-none shadow-sm">
       <div className="w-full px-4 md:px-6 h-[56px] flex items-center justify-between">
         <div className="flex items-center gap-4">
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={onMenuToggle}
-            className="md:hidden p-1 text-zinc-400 hover:text-white focus:outline-none cursor-pointer"
+            className="md:hidden p-1.5 text-slate-400 hover:text-white hover:bg-[#18233C] rounded-lg transition-colors focus:outline-none cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             <Menu className="w-5 h-5" />

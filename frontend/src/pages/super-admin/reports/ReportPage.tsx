@@ -11,7 +11,6 @@ export const ReportPage: React.FC = () => {
   const report = reportsConfig.find((r) => r.slug === reportSlug);
 
   if (!report) {
-    // Redirect back to market analysis if invalid slug is passed
     return <Navigate to="/admin/market-analysis" replace />;
   }
 
@@ -19,41 +18,41 @@ export const ReportPage: React.FC = () => {
     <SuperAdminLayout>
       <div className="flex flex-col text-left select-none animate-fadeIn">
         {/* Dynamic Breadcrumbs */}
-        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-5">
-          <Link to="/admin/market-analysis" className="hover:text-zinc-950 transition-colors">
+        <nav className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-5">
+          <Link to="/admin/market-analysis" className="hover:text-orange-400 transition-colors">
             Super Admin
           </Link>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-400">Reports</span>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-          <span className="text-zinc-950">{report.label}</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-slate-500">Reports</span>
+          <ChevronRight className="w-3 h-3 text-slate-600" />
+          <span className="text-orange-400">{report.label}</span>
         </nav>
 
         {/* Dynamic Header */}
         <div className="mb-6 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center border border-zinc-200/60">
-            <FileText className="w-[18px] h-[18px] text-zinc-900" />
+          <div className="w-10 h-10 rounded-full bg-orange-500/15 flex items-center justify-center border border-orange-500/30">
+            <FileText className="w-5 h-5 text-orange-400" />
           </div>
           <div>
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 leading-none">
+            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100 leading-none">
               {report.label}
             </h1>
-            <p className="text-xs text-zinc-500 mt-1.5">
+            <p className="text-xs text-slate-400 mt-1.5">
               {report.description}
             </p>
           </div>
         </div>
 
-        {/* Premium Workspace Placeholder */}
-        <div className="flex flex-col items-center justify-center min-h-[350px] text-center p-6 md:p-8 bg-white border border-zinc-200 rounded-[8px] shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-zinc-50 flex items-center justify-center border border-zinc-200/60 mb-5">
-            <FileText className="w-5 h-5 text-zinc-400" />
+        {/* Workspace Placeholder */}
+        <div className="flex flex-col items-center justify-center min-h-[350px] text-center p-6 md:p-8 bg-[#131B2E] border border-[#233252] rounded-[12px] shadow-2xl">
+          <div className="w-14 h-14 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/30 mb-5">
+            <FileText className="w-6 h-6 text-orange-400" />
           </div>
 
-          <h2 className="text-base font-semibold text-zinc-900 mb-1.5">
+          <h2 className="text-base font-bold text-slate-100 mb-1.5">
             {report.label} Console
           </h2>
-          <p className="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-sm">
+          <p className="text-xs md:text-sm text-slate-400 leading-relaxed max-w-sm">
             {report.placeholderText} Visual filter layouts and data structures will be populated once mockup references are provided.
           </p>
         </div>

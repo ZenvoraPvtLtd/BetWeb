@@ -9,28 +9,26 @@ interface AddMatchListSportItemProps {
 
 export const AddMatchListSportItem: React.FC<AddMatchListSportItemProps> = ({ sport }) => {
   const location = useLocation();
-
-  // Active state validation
   const isActive = location.pathname === sport.path;
 
   return (
     <Link
       to={sport.path}
       className={`
-        w-full py-4 px-5 border-b border-zinc-150 flex items-center justify-between text-left select-none outline-none transition-colors
+        w-full py-4 px-5 border-b border-[#1E293B] last:border-b-0 flex items-center justify-between text-left select-none outline-none transition-colors
         ${
           isActive
-            ? 'bg-zinc-50 font-semibold text-indigo-600'
-            : 'bg-white hover:bg-zinc-50/50 text-zinc-800'
+            ? 'bg-[#18233C] font-semibold text-orange-400'
+            : 'bg-[#131B2E] hover:bg-[#18233C]/60 text-slate-200 hover:text-white'
         }
-        focus-visible:bg-zinc-50
+        focus-visible:bg-[#18233C]
       `}
       aria-label={`Open match configuration list for ${sport.name}`}
     >
       <span className="text-xs md:text-sm font-semibold tracking-wide truncate">{sport.name}</span>
       <ChevronRight
         className={`w-4 h-4 transition-transform duration-150 ${
-          isActive ? 'text-indigo-500 translate-x-0.5' : 'text-zinc-400'
+          isActive ? 'text-orange-400 translate-x-0.5' : 'text-slate-500'
         }`}
       />
     </Link>

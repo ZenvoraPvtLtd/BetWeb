@@ -25,12 +25,12 @@ export const AccountPagination: React.FC<AccountPaginationProps> = ({
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const buttonClass = (disabled: boolean) => `
-    w-8 h-8 flex items-center justify-center rounded-[6px] border border-zinc-200 text-xs font-semibold
-    transition-all focus:outline-none focus:ring-1 focus:ring-zinc-700 select-none
+    w-8 h-8 flex items-center justify-center rounded-[8px] border border-[#233252] text-xs font-semibold
+    transition-all focus:outline-none focus:ring-1 focus:ring-orange-500 select-none
     ${
       disabled
-        ? 'opacity-40 cursor-not-allowed bg-zinc-50 text-zinc-400'
-        : 'bg-white hover:bg-zinc-50 text-zinc-600 cursor-pointer active:brightness-95'
+        ? 'opacity-30 cursor-not-allowed bg-[#0E1524] text-slate-500'
+        : 'bg-[#131B2E] hover:bg-[#1C2844] text-slate-200 cursor-pointer active:scale-95'
     }
   `;
 
@@ -55,11 +55,11 @@ export const AccountPagination: React.FC<AccountPaginationProps> = ({
             onClick={() => onPageChange(num)}
             aria-current={isCurrent ? 'page' : undefined}
             className={`
-              w-8 h-8 flex items-center justify-center rounded-[6px] text-xs font-semibold select-none transition-all cursor-pointer
+              w-8 h-8 flex items-center justify-center rounded-[8px] text-xs font-semibold select-none transition-all cursor-pointer
               ${
                 isCurrent
-                  ? 'bg-zinc-900 border border-zinc-900 text-white font-bold'
-                  : 'bg-white border border-zinc-200 text-zinc-600 hover:bg-zinc-50 active:brightness-95'
+                  ? 'bg-gradient-to-r from-[#FF5722] to-[#F97316] border border-orange-500/30 text-white font-bold shadow-md shadow-orange-950/40'
+                  : 'bg-[#131B2E] border border-[#233252] text-slate-300 hover:bg-[#1C2844] hover:text-white'
               }
             `}
           >

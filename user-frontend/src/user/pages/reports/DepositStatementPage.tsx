@@ -38,14 +38,14 @@ export const DepositStatementPage: React.FC = () => {
     {
       header: 'Amount',
       key: 'amount',
-      renderCell: (row: any) => <span className="font-extrabold text-emerald-450 text-[#22C55E]">₹{row.amount.toLocaleString()}</span>
+      renderCell: (row: any) => <span className="font-extrabold text-emerald-400">₹{row.amount.toLocaleString()}</span>
     },
     { header: 'Payment Method', key: 'method' },
     {
       header: 'Status',
       key: 'status',
       renderCell: (row: any) => (
-        <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[#22C55E] font-bold uppercase">
+        <span className="text-[9px] px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold uppercase font-mono">
           {row.status}
         </span>
       )
@@ -73,7 +73,7 @@ export const DepositStatementPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Deposit Statement"
           description="View all of your processed balance deposit transactions ledger statement."

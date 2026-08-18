@@ -4,8 +4,7 @@ import { addMatchListConfig } from '../../../../config/superAdmin/addMatchList';
 
 export const AddMatchListSportList: React.FC = () => {
   return (
-    <div className="w-full bg-white border border-zinc-200 rounded-[8px] shadow-sm overflow-hidden flex flex-col">
-      {/* Map sports configurations dynamically */}
+    <div className="w-full bg-[#131B2E] border border-[#1E293B] rounded-[10px] shadow-xl overflow-hidden flex flex-col">
       {addMatchListConfig.map((sport) => (
         <AddMatchListSportItem key={sport.id} sport={sport} />
       ))}

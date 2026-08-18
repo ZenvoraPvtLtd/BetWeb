@@ -42,16 +42,16 @@ export const GenericCasinoPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none font-sans">
         <Breadcrumbs items={breadcrumbItems} />
 
-        <div className="flex items-center gap-2 pb-4 border-b border-zinc-900 text-left">
-          <Sparkles className="w-5 h-5 text-[#38BDF8]" />
+        <div className="flex items-center gap-2 pb-4 border-b border-[#1E293B] text-left">
+          <Sparkles className="w-5 h-5 text-orange-400" />
           <div>
-            <h2 className="text-xl font-extrabold text-white uppercase tracking-wider">
+            <h2 className="text-xl font-extrabold text-slate-100 uppercase tracking-wider font-mono">
               {title}
             </h2>
-            <p className="text-xs text-zinc-450 mt-0.5 font-semibold">
+            <p className="text-xs text-slate-400 mt-0.5 font-semibold">
               {desc}
             </p>
           </div>

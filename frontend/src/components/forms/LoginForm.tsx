@@ -42,7 +42,7 @@ export const LoginForm: React.FC = () => {
     <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
       {error && (
         <div
-          className="w-full mb-4 px-3.5 py-2.5 bg-red-50/50 text-red-600 border border-red-200/50 rounded-[6px] text-xs flex items-start gap-2 text-left transition-all duration-200 animate-fadeIn"
+          className="w-full mb-4 px-3.5 py-2.5 bg-red-950/40 text-red-400 border border-red-800/60 rounded-[8px] text-xs flex items-start gap-2 text-left transition-all duration-200 animate-fadeIn"
           role="alert"
         >
           <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />

@@ -17,12 +17,12 @@ export const Pagination: React.FC<PaginationProps> = ({
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className="flex items-center justify-center gap-2 select-none py-4 border-t border-zinc-900/60 mt-4">
+    <div className="flex items-center justify-center gap-2 select-none py-4 border-t border-[#1E293B] mt-4 font-mono">
       {/* Prev */}
       <button
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-        className="w-8 h-8 rounded-[8px] border border-zinc-850 bg-[#111F30] text-zinc-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer outline-none disabled:opacity-20 disabled:cursor-not-allowed"
+        className="w-8 h-8 rounded-[8px] border border-[#233252] bg-[#18233C] text-slate-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer outline-none disabled:opacity-20 disabled:cursor-not-allowed"
         aria-label="Previous Page"
       >
         <ChevronLeft className="w-4 h-4" />
@@ -37,8 +37,8 @@ export const Pagination: React.FC<PaginationProps> = ({
             w-8 h-8 rounded-[8px] text-[11px] font-bold transition-all cursor-pointer outline-none
             ${
               currentPage === p
-                ? 'bg-[#0EA5E9] text-white shadow-md shadow-[#0EA5E9]/15'
-                : 'border border-zinc-850 bg-[#111F30] text-zinc-400 hover:text-white'
+                ? 'bg-gradient-to-r from-[#FF5722] to-[#F97316] text-white shadow-md shadow-orange-950/40'
+                : 'border border-[#233252] bg-[#18233C] text-slate-400 hover:text-white'
             }
           `}
         >
@@ -50,7 +50,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       <button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        className="w-8 h-8 rounded-[8px] border border-zinc-850 bg-[#111F30] text-zinc-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer outline-none disabled:opacity-20 disabled:cursor-not-allowed"
+        className="w-8 h-8 rounded-[8px] border border-[#233252] bg-[#18233C] text-slate-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer outline-none disabled:opacity-20 disabled:cursor-not-allowed"
         aria-label="Next Page"
       >
         <ChevronRight className="w-4 h-4" />

@@ -39,7 +39,7 @@ export const BlockMarketsPage: React.FC = () => {
 
   return (
     <UserLayout>
-      <div className="p-6 flex flex-col gap-6 select-none text-left">
+      <div className="p-4 md:p-6 flex flex-col gap-6 select-none text-left font-sans">
         <SettingsHeader
           title="Block Markets"
           description="Manage which betting odds and bookmaker markets to hide from your exchange panels."
@@ -47,25 +47,25 @@ export const BlockMarketsPage: React.FC = () => {
         />
 
         {/* Filters bar */}
-        <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center bg-zinc-950/20 border border-zinc-900 p-4 rounded-[12px]">
+        <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center bg-[#131B2E] border border-[#1E293B] p-4 rounded-[12px] shadow-sm font-mono">
           <div className="relative flex-1">
             <input
               placeholder="Search markets or leagues..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-9 pl-9 pr-3 bg-[#111F30] border border-zinc-850 rounded-[8px] text-xs font-bold text-white placeholder-zinc-500 outline-none focus:border-[#0EA5E9]"
+              className="w-full h-9 pl-9 pr-3 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs font-bold text-slate-100 placeholder-slate-500 outline-none focus:border-orange-500 transition-colors"
             />
-            <Search className="w-4 h-4 text-zinc-505 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
           </div>
 
           <select
             value={sportFilter}
             onChange={(e) => setSportFilter(e.target.value)}
-            className="h-9 px-3 bg-[#111F30] border border-zinc-850 rounded-[8px] text-xs font-bold text-white outline-none cursor-pointer focus:border-[#0EA5E9]"
+            className="h-9 px-3 bg-[#090E17] border border-[#233252] rounded-[8px] text-xs font-bold text-slate-100 outline-none cursor-pointer focus:border-orange-500 transition-colors"
           >
             <option value="ALL">All Sports</option>
             {sportsOptions.map((sport) => (
-              <option key={sport} value={sport}>
+              <option key={sport} value={sport} className="bg-[#131B2E]">
                 {sport}
               </option>
             ))}
@@ -76,38 +76,38 @@ export const BlockMarketsPage: React.FC = () => {
         {isLoading ? (
           <div className="flex flex-col gap-3 animate-pulse">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-16 bg-[#111F30] rounded-[12px] border border-slate-700/10" />
+              <div key={i} className="h-16 bg-[#131B2E] rounded-[12px] border border-[#1E293B]" />
             ))}
           </div>
         ) : filteredMarkets.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono">
             {filteredMarkets.map((market) => {
               const isBlocked = market.status === 'BLOCKED';
               return (
                 <div
                   key={market.id}
                   className={`
-                    p-5 rounded-[12px] border flex items-center justify-between transition-colors
+                    p-5 rounded-[12px] border flex items-center justify-between transition-colors shadow-md
                     ${
                       isBlocked
-                        ? 'bg-zinc-950/15 border-rose-500/20'
-                        : 'bg-[#111F30] border-slate-700/15'
+                        ? 'bg-[#131B2E]/50 border-rose-500/30'
+                        : 'bg-[#131B2E] border-[#1E293B]'
                     }
                   `}
                 >
                   <div className="flex items-start gap-3">
                     <div className="mt-0.5">
                       {isBlocked ? (
-                        <ShieldAlert className="w-5 h-5 text-[#F43F5E]" />
+                        <ShieldAlert className="w-5 h-5 text-rose-400" />
                       ) : (
                         <Shield className="w-5 h-5 text-emerald-400" />
                       )}
                     </div>
                     <div className="flex flex-col text-left">
-                      <h4 className={`text-xs font-extrabold uppercase tracking-wide ${isBlocked ? 'text-zinc-500 line-through' : 'text-white'}`}>
+                      <h4 className={`text-xs font-extrabold uppercase tracking-wide ${isBlocked ? 'text-slate-500 line-through' : 'text-slate-100'}`}>
                         {market.marketName}
                       </h4>
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase mt-1 tracking-wider">
+                      <span className="text-[10px] text-slate-400 font-bold uppercase mt-1 tracking-wider font-mono">
                         {market.sport} • {market.competition}
                       </span>
                     </div>
